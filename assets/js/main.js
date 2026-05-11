@@ -3,6 +3,23 @@
    Particle canvas · Dropdown nav · 3D tilt · Scroll reveal · Counters
 ═══════════════════════════════════════════════════════════════ */
 
+/* ── 0. GLOBAL BACKGROUND EFFECTS (hex lattice · light rays · corner rings) ── */
+(function () {
+  const isAlgo = document.body.classList.contains('algo-page');
+  const wrap = document.createElement('div');
+  wrap.className = 'site-bg-effects' + (isAlgo ? ' site-bg-effects--algo' : '');
+  wrap.innerHTML =
+    '<div class="site-bg-hex"></div>' +
+    '<div class="site-bg-rays"></div>' +
+    '<div class="site-bg-rings">' +
+      '<div class="site-bg-ring" style="--d:0s"></div>' +
+      '<div class="site-bg-ring" style="--d:2.7s"></div>' +
+      '<div class="site-bg-ring" style="--d:5.4s"></div>' +
+    '</div>';
+  document.body.insertBefore(wrap, document.body.firstChild);
+})();
+
+
 /* ── 1. PARTICLE CANVAS ── */
 (function () {
   const canvas = document.getElementById('particle-canvas');
