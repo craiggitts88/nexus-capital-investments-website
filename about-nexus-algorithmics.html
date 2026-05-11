@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Nexus Algorithmics | A Nexus Capital &amp; Investments Division</title>
+  <meta name="description" content="Nexus Algorithmics — the technology and research division of Nexus Capital &amp; Investments. Building professional-grade trading tools for serious market participants.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* Animated grid background for algo about page */
+    .algo-hero-grid-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(0,204,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,204,255,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, black 20%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, black 20%, transparent 100%);
+    }
+    .algo-glow-tl {
+      position: absolute; top: -180px; left: -180px; width: 600px; height: 600px;
+      border-radius: 50%; pointer-events: none;
+      background: radial-gradient(circle, rgba(0,204,255,0.08) 0%, transparent 70%);
+      filter: blur(80px);
+    }
+    .algo-glow-br {
+      position: absolute; bottom: -180px; right: -180px; width: 500px; height: 500px;
+      border-radius: 50%; pointer-events: none;
+      background: radial-gradient(circle, rgba(0,80,200,0.07) 0%, transparent 70%);
+      filter: blur(80px);
+    }
+    /* Division lineage */
+    .division-lineage {
+      display: flex; align-items: center; justify-content: center;
+      gap: 16px; margin-bottom: 36px; flex-wrap: wrap;
+    }
+    .lineage-item {
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(4,10,18,0.8); border: 1px solid var(--gold-border);
+      border-radius: 8px; padding: 10px 16px;
+    }
+    .lineage-item img { height: 28px; width: auto; object-fit: contain; }
+    .lineage-item-name { font-size: 11px; font-weight: 600; color: var(--gold); letter-spacing: 0.5px; }
+    .lineage-arrow {
+      color: var(--text-muted); font-size: 16px; font-weight: 300;
+    }
+    .lineage-item--algo { border-color: var(--border-hi); }
+    .lineage-item--algo .lineage-item-name { color: var(--cyan); }
+
+    /* Value cards */
+    .values-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 64px;
+    }
+    .value-card {
+      background: rgba(0,204,255,0.04); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 32px 28px; text-align: center;
+      transition: border-color 0.3s, transform 0.2s var(--ease), box-shadow 0.3s;
+    }
+    .value-card:hover {
+      border-color: var(--border-hi); transform: translateY(-4px);
+      box-shadow: 0 0 36px rgba(0,204,255,0.07), 0 16px 40px rgba(0,0,0,0.4);
+    }
+    .value-card-icon {
+      width: 56px; height: 56px; border-radius: 14px;
+      background: rgba(0,204,255,0.07); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .value-card-icon svg { width: 32px; height: 32px; }
+    .value-card-title {
+      font-family: var(--font-head); font-size: 13px; font-weight: 700;
+      color: var(--cyan); letter-spacing: 1px; margin-bottom: 10px; text-transform: uppercase;
+    }
+    .value-card-text { font-size: 13px; color: var(--silver); line-height: 1.75; }
+
+    /* Timeline */
+    .timeline { position: relative; max-width: 700px; margin: 0 auto; }
+    .timeline::before {
+      content: ''; position: absolute; left: 20px; top: 0; bottom: 0;
+      width: 1px; background: linear-gradient(to bottom, var(--border), var(--border-hi), var(--border));
+    }
+    .timeline-item { position: relative; padding: 0 0 48px 60px; }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-dot {
+      position: absolute; left: 12px; top: 4px; width: 18px; height: 18px;
+      border-radius: 50%; background: var(--bg); border: 2px solid var(--cyan);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .timeline-dot::after {
+      content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--cyan);
+    }
+    .timeline-date {
+      font-family: var(--font-head); font-size: 9px; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase; color: var(--cyan);
+      margin-bottom: 8px; opacity: 0.8;
+    }
+    .timeline-title {
+      font-family: var(--font-head); font-size: 14px; font-weight: 700;
+      color: var(--text); margin-bottom: 8px; letter-spacing: 0.3px;
+    }
+    .timeline-text { font-size: 13px; color: var(--silver); line-height: 1.75; }
+
+    @media (max-width: 900px) {
+      .values-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .values-grid { grid-template-columns: 1fr; }
+      .division-lineage { flex-direction: column; }
+    }
+  </style>
+</head>
+<body class="algo-page">
+
+  <!-- ░░ SPLASH ░░ -->
+  <div id="splash" class="splash">
+    <div class="splash-inner">
+      <div class="splash-logo-wrap">
+        <div class="splash-ring splash-ring--cyan"></div>
+        <img src="Logo/Nexus Algorithmics Logo Redraw.png" alt="Nexus Algorithmics" class="splash-logo">
+      </div>
+      <div class="splash-name">NEXUS ALGORITHMICS</div>
+      <div class="splash-sub splash-sub--cyan">Technology &amp; Research Division</div>
+      <div class="splash-bar"><div class="splash-bar-fill splash-bar-fill--cyan"></div></div>
+    </div>
+  </div>
+
+  <!-- ░░ PARTICLE CANVAS ░░ -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- ░░ NAVIGATION — NCI Branded ░░ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="Logo/Nexus Capital and Investments Logo.png" alt="Nexus Capital and Investments">
+        <span class="nav-brand">Nexus<span class="nav-brand-dim"> Capital &amp; Investments</span></span>
+      </a>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html"        class="nav-link">Home</a></li>
+        <li><a href="index.html#about"  class="nav-link">About</a></li>
+
+        <li class="nav-dropdown">
+          <button class="nav-link nav-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+            Products <span class="nav-dropdown-caret">▾</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="products/nexus-position-tool.html" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Nexus Position Tool</span>
+              <span class="dropdown-item-sub">Professional ATAS position sizing</span>
+            </a>
+            <a href="products/quant-panel.html" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Quant Panel</span>
+              <span class="dropdown-item-sub coming-soon">Coming Soon</span>
+            </a>
+          </div>
+        </li>
+
+        <li><a href="about-nexus-algorithmics.html" class="nav-link" style="color:var(--cyan);">Nexus Algorithmics</a></li>
+      </ul>
+
+      <button class="nav-burger" id="nav-burger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ░░░░ HERO ░░░░ -->
+    <section class="algo-about-hero" style="position:relative;overflow:hidden;">
+      <div class="algo-hero-grid-bg"></div>
+      <div class="algo-glow-tl"></div>
+      <div class="algo-glow-br"></div>
+
+      <div class="algo-about-inner">
+
+        <!-- Division lineage -->
+        <div class="division-lineage">
+          <div class="lineage-item">
+            <img src="Logo/Nexus Capital and Investments Logo.png" alt="NCI">
+            <div class="lineage-item-name">Nexus Capital &amp; Investments</div>
+          </div>
+          <span class="lineage-arrow">›</span>
+          <div class="lineage-item lineage-item--algo">
+            <img src="Logo/Nexus Algorithmics Logo Redraw.png" alt="Nexus Algorithmics" style="border-radius:6px;">
+            <div class="lineage-item-name">Nexus Algorithmics</div>
+          </div>
+        </div>
+
+        <div class="section-label section-label--cyan" style="margin-bottom:16px;">TECHNOLOGY &amp; RESEARCH DIVISION</div>
+
+        <h1 class="algo-about-title">
+          The Engine Behind<br>
+          <span class="text-glow">Nexus Capital</span>
+        </h1>
+
+        <p class="algo-about-sub">
+          Nexus Algorithmics is the technology and research arm of Nexus Capital &amp; Investments — a division born from the same rigorous discipline that drives our systematic trading operations. We build professional-grade tools that elevate how serious traders operate in the market.
+        </p>
+
+        <div class="algo-about-badges">
+          <div class="algo-about-badge">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="6"/></svg>
+            ATAS Platform Integration
+          </div>
+          <div class="algo-about-badge">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="6"/></svg>
+            Active Trader Development
+          </div>
+          <div class="algo-about-badge">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="6"/></svg>
+            Precision Engineering
+          </div>
+          <div class="algo-about-badge">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="6"/></svg>
+            Continuous Innovation
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ░░░░ MISSION ░░░░ -->
+    <section class="algo-mission-section">
+      <div class="section-wrap">
+        <div class="algo-mission-grid">
+
+          <div class="algo-mission-text">
+            <div class="section-label section-label--cyan">OUR MISSION</div>
+            <h2 class="algo-mission-heading">
+              Tools Built By Traders.<br>
+              <span class="text-glow">For Traders.</span>
+            </h2>
+            <div class="algo-mission-body">
+              <p>
+                Nexus Algorithmics exists because we experienced firsthand the friction and risk that comes with manual position sizing, imprecise execution, and tools that weren't designed for professional trading environments.
+              </p>
+              <p>
+                As active systematic traders — running live algorithms across global markets through Nexus Capital &amp; Investments — we know exactly what a high-performance trading tool needs to do. Every product we develop comes from real operational experience, not theory.
+              </p>
+              <p>
+                Our standard is simple: if we wouldn't stake our own capital on it, we won't put it in your hands. That means precision-engineered software, deep platform integration, and the kind of reliability that professionals demand when real money is on the line.
+              </p>
+            </div>
+          </div>
+
+          <div class="algo-mission-visual">
+            <div class="algo-mission-card">
+              <div class="algo-mission-card-title">Platform Expertise</div>
+              <div class="algo-mission-card-text">Deep integration with the ATAS orderflow platform — we trade on it daily, so our tools are built from the inside out. No guesswork, no surface-level features.</div>
+            </div>
+            <div class="algo-mission-card">
+              <div class="algo-mission-card-title">Operational Discipline</div>
+              <div class="algo-mission-card-text">The same systematic discipline that drives Nexus Capital's trading methodology — institutional-grade robustness — is applied to every line of tool code we write.</div>
+            </div>
+            <div class="algo-mission-card">
+              <div class="algo-mission-card-title">Continuous Development</div>
+              <div class="algo-mission-card-text">Our tools evolve alongside our trading operations. As we discover new edges and requirements in live markets, those learnings feed directly back into product development.</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Core values -->
+        <div class="values-grid">
+
+          <div class="value-card">
+            <div class="value-card-icon">
+              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="16" cy="16" r="13" stroke="#00ccff" stroke-width="1.5" fill="rgba(0,204,255,0.05)"/>
+                <path d="M10 16 L14 20 L22 12" stroke="#00e88a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="value-card-title">Precision</div>
+            <div class="value-card-text">Every calculation is exact. Every execution is verified. We design tools that eliminate the possibility of human error at the critical moment of trade entry.</div>
+          </div>
+
+          <div class="value-card">
+            <div class="value-card-icon">
+              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 4 L28 10 L28 22 L16 28 L4 22 L4 10 Z" stroke="#00ccff" stroke-width="1.5" fill="rgba(0,204,255,0.05)"/>
+                <path d="M16 10 L22 14 L22 20 L16 24 L10 20 L10 14 Z" stroke="rgba(0,204,255,0.4)" stroke-width="1"/>
+                <circle cx="16" cy="16" r="3" fill="rgba(0,204,255,0.3)" stroke="#00ccff" stroke-width="1.2"/>
+              </svg>
+            </div>
+            <div class="value-card-title">Reliability</div>
+            <div class="value-card-text">Built for live market conditions — not demo environments. Our tools are stress-tested in the same volatile conditions our own trading capital faces daily.</div>
+          </div>
+
+          <div class="value-card">
+            <div class="value-card-icon">
+              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 4 L12 14 L16 12 L20 14 Z" fill="#00ccff" opacity="0.8"/>
+                <circle cx="16" cy="18" r="10" stroke="#00ccff" stroke-width="1.5" fill="rgba(0,204,255,0.05)" stroke-dasharray="4 2"/>
+                <line x1="16" y1="8" x2="16" y2="28" stroke="rgba(0,204,255,0.3)" stroke-width="1" stroke-dasharray="2 3"/>
+              </svg>
+            </div>
+            <div class="value-card-title">Speed</div>
+            <div class="value-card-text">Markets don't wait. Our tools are engineered for the speed of live execution — removing every unnecessary step between your analysis and your order in the market.</div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ░░░░ JOURNEY / TIMELINE ░░░░ -->
+    <section class="algo-products-section" style="padding:100px 28px;">
+      <div class="section-wrap">
+
+        <div class="section-header">
+          <div class="section-label section-label--cyan">THE JOURNEY</div>
+          <h2 class="section-title">How Nexus Algorithmics<br><span class="text-glow">Came to Be</span></h2>
+          <p class="section-desc">Born from years of active trading, algorithm development, and a relentless pursuit of operational precision.</p>
+        </div>
+
+        <div class="timeline">
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">The Beginning</div>
+            <div class="timeline-title">Manual Trading &amp; Market Foundations</div>
+            <div class="timeline-text">Craig Gittins and Usama Azim met through their trading mentor while learning Wyckoff theory. Over three years of manual trading, they built deep market knowledge — understanding price action, orderflow, and the psychological demands of active trading.</div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">The Pivot</div>
+            <div class="timeline-title">From Manual to Systematic</div>
+            <div class="timeline-text">Recognising that the psychological burden of manual trading was a structural disadvantage, the founders began developing algorithmic systems. Their first algorithm — "White Rabbit" — was coded in MQ4 and MQ5, based on statistical research from published trader Tom Hougaard.</div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">The Platform</div>
+            <div class="timeline-title">ATAS &amp; Orderflow Mastery</div>
+            <div class="timeline-text">Deep engagement with the ATAS platform for orderflow analysis became central to the founders' trading operations. The desire to build precision tools for this platform planted the seed for what would become Nexus Algorithmics.</div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">The Division</div>
+            <div class="timeline-title">Nexus Algorithmics is Founded</div>
+            <div class="timeline-text">The technology and research arm of Nexus Capital &amp; Investments is established — with a clear mandate: build the professional tools that active traders actually need. The Nexus Position Tool becomes the first product, solving a real problem the founders faced in their own trading every day.</div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">The Future</div>
+            <div class="timeline-title">Quant Panel &amp; Beyond</div>
+            <div class="timeline-text">Nexus Algorithmics continues to build. The Quant Panel is in active development — a full quantitative analytics suite designed to bring institutional-grade intelligence to the individual trader's screen. Python-based algorithm development and market-neutral strategies are also on the roadmap for the Nexus Capital trading division.</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ░░░░ PRODUCTS ░░░░ -->
+    <section style="position:relative;z-index:1;padding:100px 28px;border-top:1px solid var(--border);">
+      <div class="section-wrap">
+
+        <div class="section-header">
+          <div class="section-label section-label--cyan">OUR PRODUCTS</div>
+          <h2 class="section-title">Built by Nexus Algorithmics.<br><span class="text-glow">Ready for the Market.</span></h2>
+        </div>
+
+        <div class="algo-products-grid">
+
+          <div class="algo-product-card">
+            <div class="section-label section-label--cyan" style="margin-bottom:12px;text-align:left;">Available Now</div>
+            <div class="algo-product-card-title">Nexus Position Tool</div>
+            <div class="algo-product-card-sub">ATAS Platform · Professional Position Sizing</div>
+            <p class="algo-product-card-desc">
+              The professional position sizing solution built exclusively for ATAS orderflow traders. Auto tick detection, real-time contract calculation, Fast Mode execution, and automated order management — everything you need to trade with precision and speed.
+            </p>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;">
+              <a href="products/nexus-position-tool.html" class="btn-algo-product">
+                View Product
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <a href="https://buy.stripe.com/YOUR_LINK_HERE" class="btn-algo-product btn-algo-product--ghost" target="_blank" rel="noopener noreferrer">
+                Buy — £249
+              </a>
+            </div>
+          </div>
+
+          <div class="algo-product-card">
+            <div class="section-label" style="color:var(--gold);font-family:var(--font-head);font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;margin-bottom:12px;text-align:left;opacity:0.8;">In Development</div>
+            <div class="algo-product-card-title">Quant Panel</div>
+            <div class="algo-product-card-sub">ATAS Platform · Quantitative Analytics Suite</div>
+            <p class="algo-product-card-desc">
+              The next-generation quantitative dashboard — institutional-grade analytics, real-time portfolio monitoring, and advanced orderflow intelligence in a single, powerful panel. Pricing and availability to be announced.
+            </p>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;">
+              <a href="products/quant-panel.html" class="btn-algo-product">
+                Register Interest
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ░░ FOOTER — NCI Branded ░░ -->
+  <footer class="nci-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+
+        <div class="footer-brand">
+          <div class="footer-brand-row">
+            <img src="Logo/Nexus Capital and Investments Logo.png" alt="Nexus Capital and Investments" class="footer-logo">
+            <div class="footer-brand-name">Nexus Capital &amp; Investments</div>
+          </div>
+          <p class="footer-tagline">Systematic. Algorithmic. Institutional.</p>
+        </div>
+
+        <div class="footer-nav-col">
+          <div class="footer-nav-title">Navigation</div>
+          <div class="footer-nav-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#about">About NCI</a>
+            <a href="about-nexus-algorithmics.html">Nexus Algorithmics</a>
+            <a href="products/nexus-position-tool.html">Nexus Position Tool</a>
+            <a href="products/quant-panel.html">Quant Panel</a>
+          </div>
+        </div>
+
+        <div class="footer-legal">
+          <div class="footer-legal-title">This Division</div>
+          <div class="footer-algo-credit" style="justify-content:flex-end;">
+            <img src="Logo/Nexus Algorithmics Logo Redraw.png" alt="" style="height:28px;width:auto;object-fit:contain;opacity:0.8;border-radius:6px;">
+            <span>Nexus <span>Algorithmics</span></span>
+          </div>
+          <p style="font-size:12px;color:var(--text-muted);margin-top:12px;line-height:1.7;text-align:right;">
+            Technology &amp; Research Division of<br>Nexus Capital &amp; Investments
+          </p>
+        </div>
+
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Nexus Capital &amp; Investments · Nexus Algorithmics. All rights reserved.</p>
+        <p class="footer-risk">Trading involves substantial risk of loss. Past performance is not indicative of future results. This site does not constitute financial advice.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

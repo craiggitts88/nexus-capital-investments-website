@@ -1,0 +1,263 @@
+<svg viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg" font-family="'Courier New', Courier, monospace">
+
+  <!-- ── Window background ── -->
+  <rect width="640" height="480" rx="4" fill="#070c18" stroke="rgba(0,150,200,0.25)" stroke-width="1.5"/>
+
+  <!-- ══════════════════════════════════════
+       ATAS TOP TOOLBAR  (y 0–26)
+  ═════════════════════════════════════════ -->
+  <rect width="640" height="26" rx="4" fill="#0a1020"/>
+  <rect y="22" width="640" height="4" fill="#0a1020"/>
+  <line x1="0" y1="26" x2="640" y2="26" stroke="rgba(80,110,150,0.35)" stroke-width="1"/>
+
+  <!-- Symbol / timeframe info -->
+  <text x="10" y="17" font-size="10" fill="rgba(180,200,230,0.55)">⊞</text>
+  <text x="22" y="17" font-size="10" fill="rgba(180,200,230,0.65)">#NQM6  M5  H1  D  M1*</text>
+  <text x="222" y="17" font-size="10" fill="rgba(180,200,230,0.38)">1 Lots</text>
+  <!-- Replay badge -->
+  <rect x="310" y="7" width="52" height="14" rx="2" fill="#009900"/>
+  <text x="336" y="18" font-size="9" fill="#ffffff" text-anchor="middle" font-weight="bold">Replay</text>
+  <text x="490" y="17" font-size="10" fill="rgba(180,200,230,0.4)">Chart</text>
+
+
+  <!-- ══════════════════════════════════════
+       NEXUS WIDGET  (y 26–133)
+       Nested SVG scales 700px → 640px
+  ═════════════════════════════════════════ -->
+  <svg x="0" y="26" width="640" height="107" viewBox="0 0 700 107">
+
+    <!-- Panel background + border -->
+    <rect width="700" height="107" fill="#0d1e35" stroke="#00bcd4" stroke-width="1.5"/>
+
+    <!-- Header (y 0–25) -->
+    <rect x="1.5" y="1.5" width="697" height="24" fill="#091829"/>
+    <line x1="0" y1="25.5" x2="700" y2="25.5" stroke="#00bcd4" stroke-width="1"/>
+
+    <!-- Grid icon -->
+    <rect x="6"    y="9"    width="3.5" height="3.5" rx="0.5" fill="rgba(0,188,212,0.9)"/>
+    <rect x="10.5" y="9"    width="3.5" height="3.5" rx="0.5" fill="rgba(0,188,212,0.9)"/>
+    <rect x="15"   y="9"    width="3.5" height="3.5" rx="0.5" fill="rgba(0,188,212,0.9)"/>
+    <rect x="6"    y="13.5" width="3.5" height="3.5" rx="0.5" fill="rgba(0,188,212,0.9)"/>
+    <rect x="10.5" y="13.5" width="3.5" height="3.5" rx="0.5" fill="rgba(0,188,212,0.9)"/>
+    <rect x="15"   y="13.5" width="3.5" height="3.5" rx="0.5" fill="rgba(0,188,212,0.9)"/>
+
+    <text x="24"  y="18" font-size="11" fill="rgba(255,255,255,0.92)" letter-spacing="0.2">Nexus Position Sizer</text>
+    <text x="155" y="18" font-size="11" fill="rgba(255,255,255,0.36)"> — Drag to Move</text>
+
+    <!-- ── Buttons (y 26–52) ── -->
+    <!-- BUY STOP — selected (bright green + selection border) -->
+    <rect x="5" y="28" width="82" height="22" rx="2" fill="#00cc44"/>
+    <rect x="3.5" y="26.5" width="85" height="25" rx="3" fill="none" stroke="#77ff99" stroke-width="1.8"/>
+    <text x="46" y="43" font-size="10.5" fill="#001a00" font-weight="bold" text-anchor="middle">BUY STOP</text>
+
+    <!-- BUY LIMIT -->
+    <rect x="91"  y="28" width="82" height="22" rx="2" fill="#008c2e"/>
+    <text x="132" y="43" font-size="10.5" fill="#ccffcc" font-weight="bold" text-anchor="middle">BUY LIMIT</text>
+
+    <!-- SELL STOP -->
+    <rect x="177" y="28" width="88" height="22" rx="2" fill="#cc1122"/>
+    <text x="221" y="43" font-size="10.5" fill="#ffffff" font-weight="bold" text-anchor="middle">SELL STOP</text>
+
+    <!-- SELL LIMIT -->
+    <rect x="269" y="28" width="90" height="22" rx="2" fill="#cc1122"/>
+    <text x="314" y="43" font-size="10.5" fill="#ffffff" font-weight="bold" text-anchor="middle">SELL LIMIT</text>
+
+    <line x1="363" y1="29" x2="363" y2="50" stroke="rgba(0,188,212,0.2)" stroke-width="1"/>
+
+    <!-- FAST -->
+    <rect x="612" y="28" width="82" height="22" rx="2" fill="#4a3b00"/>
+    <text x="653" y="43" font-size="10.5" fill="#ccaa00" font-weight="bold" text-anchor="middle">FAST</text>
+
+    <line x1="0" y1="52.5" x2="700" y2="52.5" stroke="rgba(0,188,212,0.13)" stroke-width="1"/>
+
+    <!-- ── Input row (y 53–79) ── -->
+    <text x="8"   y="69" font-size="10.5" fill="rgba(200,220,240,0.7)">$ Risk</text>
+    <rect x="50"  y="57" width="76" height="19" rx="3" fill="#0a1626" stroke="#1c3a5c" stroke-width="1"/>
+    <text x="88"  y="70" font-size="10.5" fill="#ddf0ff" text-anchor="middle">$ 2000</text>
+
+    <text x="138" y="69" font-size="10.5" fill="rgba(200,220,240,0.7)">TP Mode:</text>
+
+    <!-- R:R button — inactive -->
+    <rect x="200" y="57" width="42" height="19" rx="3" fill="#0a1626" stroke="#1c3a5c" stroke-width="1"/>
+    <text x="221" y="70" font-size="10.5" fill="rgba(155,185,215,0.48)" text-anchor="middle">R : R</text>
+
+    <!-- $Reward button — ACTIVE -->
+    <rect x="246" y="57" width="60" height="19" rx="3" fill="#005f72" stroke="#00bcd4" stroke-width="1.3"/>
+    <text x="276" y="70" font-size="10.5" fill="#00eeff" font-weight="bold" text-anchor="middle">$Reward</text>
+
+    <rect x="310" y="57" width="68" height="19" rx="3" fill="#0a1626" stroke="#1c3a5c" stroke-width="1"/>
+    <text x="344" y="70" font-size="10.5" fill="#ddf0ff" text-anchor="middle">$ 5000</text>
+
+    <text x="388" y="69" font-size="10.5" fill="rgba(200,220,240,0.7)">Tick (auto):</text>
+
+    <rect x="470" y="57" width="68" height="19" rx="3" fill="#0a1626" stroke="#1c3a5c" stroke-width="1"/>
+    <text x="504" y="70" font-size="10.5" fill="#ddf0ff" text-anchor="middle">$ 5.00</text>
+
+    <line x1="0" y1="79.5" x2="700" y2="79.5" stroke="rgba(0,188,212,0.1)" stroke-width="1"/>
+
+    <!-- ── Footer / result row (y 80–107) ── -->
+    <text x="8" y="97" font-size="10.5">
+      <tspan fill="#00e8aa" font-weight="bold">Buy 5 ct</tspan>
+      <tspan fill="rgba(0,188,212,0.4)">  |  </tspan>
+      <tspan fill="rgba(185,210,240,0.68)">Risk </tspan>
+      <tspan fill="#00e8aa">$2000</tspan>
+      <tspan fill="rgba(0,188,212,0.4)">  |  </tspan>
+      <tspan fill="rgba(185,210,240,0.68)">TP </tspan>
+      <tspan fill="#00e8aa">$5000</tspan>
+    </text>
+
+    <rect x="536" y="82" width="100" height="20" rx="3" fill="#0066bb"/>
+    <text x="586" y="96" font-size="10" fill="#ffffff" font-weight="bold" text-anchor="middle" letter-spacing="0.3">SEND ORDER</text>
+
+    <rect x="640" y="82" width="55" height="20" rx="3" fill="#3d1010"/>
+    <text x="668" y="96" font-size="10" fill="#ff9999" font-weight="bold" text-anchor="middle" letter-spacing="0.3">RESET</text>
+  </svg>
+
+
+  <!-- ══════════════════════════════════════
+       CHART AREA  (y 133–454 , x 0–562)
+  ═════════════════════════════════════════ -->
+  <rect x="0" y="133" width="562" height="321" fill="#070c18"/>
+
+  <!-- Grid lines (every 5 pts: 25110→158, 25100→207, 25090→257, 25080→306, 25070→355, 25060→405) -->
+  <line x1="0" y1="158" x2="562" y2="158" stroke="rgba(70,95,135,0.18)" stroke-width="1"/>
+  <line x1="0" y1="207" x2="562" y2="207" stroke="rgba(70,95,135,0.18)" stroke-width="1"/>
+  <line x1="0" y1="257" x2="562" y2="257" stroke="rgba(70,95,135,0.18)" stroke-width="1"/>
+  <line x1="0" y1="306" x2="562" y2="306" stroke="rgba(70,95,135,0.18)" stroke-width="1"/>
+  <line x1="0" y1="355" x2="562" y2="355" stroke="rgba(70,95,135,0.18)" stroke-width="1"/>
+  <line x1="0" y1="405" x2="562" y2="405" stroke="rgba(70,95,135,0.18)" stroke-width="1"/>
+
+  <!-- Stop zone shading (entry y=310 → stop y=392) -->
+  <rect x="0" y="310" width="562" height="82" fill="rgba(200,30,10,0.10)"/>
+
+  <!-- Entry line — gold dashed (y=310 → price 25079.25) -->
+  <line x1="0" y1="310" x2="562" y2="310" stroke="#ccaa00" stroke-width="1.2" stroke-dasharray="7 4" opacity="0.88"/>
+
+  <!-- Stop line — orange solid (y=392 → price 25062.50) -->
+  <line x1="0" y1="392" x2="562" y2="392" stroke="#ff5500" stroke-width="1.3" opacity="0.92"/>
+
+  <!-- ── CANDLESTICKS (35 candles, 16px pitch, cx = 8 + i*16) ──
+       Green: #00cc44   Red: #cc1122
+       Format per candle: wick <line>, body <rect>           -->
+
+  <!-- c1  cx=8   G wick 321-380 body y=340 h=15 -->
+  <line x1="8"   y1="321" x2="8"   y2="380" stroke="#00cc44" stroke-width="1"/>  <rect x="3"   y="340" width="10" height="15" fill="#00cc44"/>
+  <!-- c2  cx=24  R wick 326-365 body y=340 h=10 -->
+  <line x1="24"  y1="326" x2="24"  y2="365" stroke="#cc1122" stroke-width="1"/>  <rect x="19"  y="340" width="10" height="10" fill="#cc1122"/>
+  <!-- c3  cx=40  G wick 319-378 body y=332 h=23 -->
+  <line x1="40"  y1="319" x2="40"  y2="378" stroke="#00cc44" stroke-width="1"/>  <rect x="35"  y="332" width="10" height="23" fill="#00cc44"/>
+  <!-- c4  cx=56  R wick 322-368 body y=340 h=12 -->
+  <line x1="56"  y1="322" x2="56"  y2="368" stroke="#cc1122" stroke-width="1"/>  <rect x="51"  y="340" width="10" height="12" fill="#cc1122"/>
+  <!-- c5  cx=72  R wick 326-382 body y=347 h=21 -->
+  <line x1="72"  y1="326" x2="72"  y2="382" stroke="#cc1122" stroke-width="1"/>  <rect x="67"  y="347" width="10" height="21" fill="#cc1122"/>
+  <!-- c6  cx=88  G wick 329-383 body y=342 h=21 -->
+  <line x1="88"  y1="329" x2="88"  y2="383" stroke="#00cc44" stroke-width="1"/>  <rect x="83"  y="342" width="10" height="21" fill="#00cc44"/>
+  <!-- c7  cx=104 G wick 318-375 body y=334 h=24 -->
+  <line x1="104" y1="318" x2="104" y2="375" stroke="#00cc44" stroke-width="1"/>  <rect x="99"  y="334" width="10" height="24" fill="#00cc44"/>
+  <!-- c8  cx=120 R wick 320-366 body y=340 h=13 -->
+  <line x1="120" y1="320" x2="120" y2="366" stroke="#cc1122" stroke-width="1"/>  <rect x="115" y="340" width="10" height="13" fill="#cc1122"/>
+  <!-- c9  cx=136 G wick 326-372 body y=338 h=18 -->
+  <line x1="136" y1="326" x2="136" y2="372" stroke="#00cc44" stroke-width="1"/>  <rect x="131" y="338" width="10" height="18" fill="#00cc44"/>
+  <!-- c10 cx=152 G wick 315-368 body y=326 h=22 -->
+  <line x1="152" y1="315" x2="152" y2="368" stroke="#00cc44" stroke-width="1"/>  <rect x="147" y="326" width="10" height="22" fill="#00cc44"/>
+  <!-- c11 cx=168 R wick 318-368 body y=335 h=17 -->
+  <line x1="168" y1="318" x2="168" y2="368" stroke="#cc1122" stroke-width="1"/>  <rect x="163" y="335" width="10" height="17" fill="#cc1122"/>
+  <!-- c12 cx=184 R wick 320-370 body y=340 h=16 -->
+  <line x1="184" y1="320" x2="184" y2="370" stroke="#cc1122" stroke-width="1"/>  <rect x="179" y="340" width="10" height="16" fill="#cc1122"/>
+  <!-- c13 cx=200 G wick 316-375 body y=330 h=22 -->
+  <line x1="200" y1="316" x2="200" y2="375" stroke="#00cc44" stroke-width="1"/>  <rect x="195" y="330" width="10" height="22" fill="#00cc44"/>
+  <!-- c14 cx=216 G wick 313-372 body y=322 h=20 (breakout building) -->
+  <line x1="216" y1="313" x2="216" y2="372" stroke="#00cc44" stroke-width="1"/>  <rect x="211" y="322" width="10" height="20" fill="#00cc44"/>
+  <!-- c15 cx=232 G wick 285-356 body y=290 h=50 (big breakout) -->
+  <line x1="232" y1="285" x2="232" y2="356" stroke="#00cc44" stroke-width="1.2"/><rect x="227" y="290" width="10" height="50" fill="#00cc44"/>
+  <!-- c16 cx=248 G wick 158-280 body y=173 h=89 (SPIKE) -->
+  <line x1="248" y1="158" x2="248" y2="280" stroke="#00cc44" stroke-width="1.2"/><rect x="243" y="173" width="10" height="89" fill="#00cc44"/>
+  <!-- c17 cx=264 R wick 163-284 body y=185 h=82 (top reversal) -->
+  <line x1="264" y1="163" x2="264" y2="284" stroke="#cc1122" stroke-width="1.2"/><rect x="259" y="185" width="10" height="82" fill="#cc1122"/>
+  <!-- c18 cx=280 R wick 196-358 body y=218 h=126 (sharp drop) -->
+  <line x1="280" y1="196" x2="280" y2="358" stroke="#cc1122" stroke-width="1.2"/><rect x="275" y="218" width="10" height="126" fill="#cc1122"/>
+  <!-- c19 cx=296 R wick 280-373 body y=296 h=68 -->
+  <line x1="296" y1="280" x2="296" y2="373" stroke="#cc1122" stroke-width="1"/>  <rect x="291" y="296" width="10" height="68" fill="#cc1122"/>
+  <!-- c20 cx=312 G wick 328-382 body y=347 h=18 -->
+  <line x1="312" y1="328" x2="312" y2="382" stroke="#00cc44" stroke-width="1"/>  <rect x="307" y="347" width="10" height="18" fill="#00cc44"/>
+  <!-- c21 cx=328 R wick 325-375 body y=341 h=16 -->
+  <line x1="328" y1="325" x2="328" y2="375" stroke="#cc1122" stroke-width="1"/>  <rect x="323" y="341" width="10" height="16" fill="#cc1122"/>
+  <!-- c22 cx=344 G wick 320-372 body y=337 h=18 -->
+  <line x1="344" y1="320" x2="344" y2="372" stroke="#00cc44" stroke-width="1"/>  <rect x="339" y="337" width="10" height="18" fill="#00cc44"/>
+  <!-- c23 cx=360 R wick 323-375 body y=341 h=17 -->
+  <line x1="360" y1="323" x2="360" y2="375" stroke="#cc1122" stroke-width="1"/>  <rect x="355" y="341" width="10" height="17" fill="#cc1122"/>
+  <!-- c24 cx=376 G wick 327-370 body y=343 h=14 -->
+  <line x1="376" y1="327" x2="376" y2="370" stroke="#00cc44" stroke-width="1"/>  <rect x="371" y="343" width="10" height="14" fill="#00cc44"/>
+  <!-- c25 cx=392 G wick 316-368 body y=330 h=18 -->
+  <line x1="392" y1="316" x2="392" y2="368" stroke="#00cc44" stroke-width="1"/>  <rect x="387" y="330" width="10" height="18" fill="#00cc44"/>
+  <!-- c26 cx=408 R wick 320-370 body y=341 h=13 -->
+  <line x1="408" y1="320" x2="408" y2="370" stroke="#cc1122" stroke-width="1"/>  <rect x="403" y="341" width="10" height="13" fill="#cc1122"/>
+  <!-- c27 cx=424 R wick 323-373 body y=341 h=15 -->
+  <line x1="424" y1="323" x2="424" y2="373" stroke="#cc1122" stroke-width="1"/>  <rect x="419" y="341" width="10" height="15" fill="#cc1122"/>
+  <!-- c28 cx=440 G wick 325-374 body y=340 h=15 -->
+  <line x1="440" y1="325" x2="440" y2="374" stroke="#00cc44" stroke-width="1"/>  <rect x="435" y="340" width="10" height="15" fill="#00cc44"/>
+  <!-- c29 cx=456 G wick 318-365 body y=335 h=15 -->
+  <line x1="456" y1="318" x2="456" y2="365" stroke="#00cc44" stroke-width="1"/>  <rect x="451" y="335" width="10" height="15" fill="#00cc44"/>
+  <!-- c30 cx=472 R wick 320-370 body y=337 h=18 -->
+  <line x1="472" y1="320" x2="472" y2="370" stroke="#cc1122" stroke-width="1"/>  <rect x="467" y="337" width="10" height="18" fill="#cc1122"/>
+  <!-- c31 cx=488 G wick 325-370 body y=339 h=14 -->
+  <line x1="488" y1="325" x2="488" y2="370" stroke="#00cc44" stroke-width="1"/>  <rect x="483" y="339" width="10" height="14" fill="#00cc44"/>
+  <!-- c32 cx=504 R wick 318-368 body y=335 h=17 -->
+  <line x1="504" y1="318" x2="504" y2="368" stroke="#cc1122" stroke-width="1"/>  <rect x="499" y="335" width="10" height="17" fill="#cc1122"/>
+  <!-- c33 cx=520 G wick 322-368 body y=337 h=15 -->
+  <line x1="520" y1="322" x2="520" y2="368" stroke="#00cc44" stroke-width="1"/>  <rect x="515" y="337" width="10" height="15" fill="#00cc44"/>
+  <!-- c34 cx=536 R wick 320-372 body y=337 h=19 -->
+  <line x1="536" y1="320" x2="536" y2="372" stroke="#cc1122" stroke-width="1"/>  <rect x="531" y="337" width="10" height="19" fill="#cc1122"/>
+  <!-- c35 cx=552 G wick 325-368 body y=339 h=13 (current, semi-transparent) -->
+  <line x1="552" y1="325" x2="552" y2="368" stroke="#00cc44" stroke-width="0.8" opacity="0.65"/><rect x="547" y="339" width="10" height="13" fill="#00cc44" opacity="0.65"/>
+
+
+  <!-- ══════════════════════════════════════
+       PRICE AXIS  (x 562–640 , y 133–454)
+  ═════════════════════════════════════════ -->
+  <rect x="562" y="133" width="78" height="321" fill="#060b16"/>
+  <line x1="562" y1="133" x2="562" y2="454" stroke="rgba(70,95,135,0.3)" stroke-width="1"/>
+
+  <!-- Price grid labels -->
+  <text x="566" y="162" font-size="9" fill="rgba(150,170,205,0.5)">-25110.00</text>
+  <text x="566" y="211" font-size="9" fill="rgba(150,170,205,0.5)">-25100.00</text>
+  <text x="566" y="261" font-size="9" fill="rgba(150,170,205,0.5)">-25090.00</text>
+  <text x="566" y="310" font-size="9" fill="rgba(150,170,205,0.5)">-25080.00</text>
+  <text x="566" y="359" font-size="9" fill="rgba(150,170,205,0.5)">-25070.00</text>
+  <text x="566" y="409" font-size="9" fill="rgba(150,170,205,0.5)">-25060.00</text>
+
+  <!-- Entry label pill -->
+  <rect x="562" y="302" width="78" height="16" fill="#ccaa00"/>
+  <text x="601" y="313" font-size="8.5" fill="#000000" text-anchor="middle" font-weight="bold">ENTRY 25079.25</text>
+
+  <!-- Stop label pill -->
+  <rect x="562" y="384" width="78" height="16" fill="#ff4400"/>
+  <text x="601" y="395" font-size="8.5" fill="#ffffff" text-anchor="middle" font-weight="bold">STOP 25062.50</text>
+
+  <!-- Stop detail: ticks / dollar loss -->
+  <text x="564" y="410" font-size="8" fill="rgba(255,100,30,0.7)">-67 ticks  -$2000</text>
+
+  <!-- Current price (highlighted green pill) -->
+  <rect x="562" y="342" width="78" height="16" fill="#00cc44"/>
+  <text x="601" y="353" font-size="9" fill="#001800" text-anchor="middle" font-weight="bold">25071.00</text>
+
+
+  <!-- ══════════════════════════════════════
+       TIME AXIS  (y 454–480)
+  ═════════════════════════════════════════ -->
+  <rect x="0" y="454" width="562" height="26" fill="#060b16"/>
+  <line x1="0" y1="454" x2="562" y2="454" stroke="rgba(70,95,135,0.3)" stroke-width="1"/>
+  <text x="56"  y="469" font-size="8.5" fill="rgba(130,155,190,0.48)" text-anchor="middle">05:00</text>
+  <text x="168" y="469" font-size="8.5" fill="rgba(130,155,190,0.48)" text-anchor="middle">05:15</text>
+  <text x="280" y="469" font-size="8.5" fill="rgba(130,155,190,0.48)" text-anchor="middle">05:30</text>
+  <text x="392" y="469" font-size="8.5" fill="rgba(130,155,190,0.48)" text-anchor="middle">05:45</text>
+  <text x="504" y="469" font-size="8.5" fill="rgba(130,155,190,0.48)" text-anchor="middle">06:00</text>
+
+  <!-- Corner fill -->
+  <rect x="562" y="454" width="78" height="26" fill="#060b16"/>
+
+  <!-- ETH bottom-left (like in screenshots) -->
+  <rect x="0" y="460" width="42" height="16" rx="2" fill="#111a28"/>
+  <text x="21" y="471" font-size="8.5" fill="rgba(160,180,220,0.6)" text-anchor="middle">ETH ∨</text>
+
+</svg>

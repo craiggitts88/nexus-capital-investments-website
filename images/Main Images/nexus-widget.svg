@@ -1,0 +1,119 @@
+<svg viewBox="0 0 700 107" xmlns="http://www.w3.org/2000/svg" font-family="'Courier New', Courier, monospace">
+  <defs>
+    <clipPath id="wclip">
+      <rect width="700" height="107" rx="3"/>
+    </clipPath>
+    <filter id="wglow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="2.5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="btn-glow" x="-15%" y="-15%" width="130%" height="130%">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- ── Panel background + border ── -->
+  <rect width="700" height="107" rx="3" fill="#0d1e35" stroke="#00bcd4" stroke-width="1.5"/>
+
+  <!-- ── HEADER (y 0–25) ── -->
+  <g clip-path="url(#wclip)">
+    <rect x="1.5" y="1.5" width="697" height="24" fill="#091829"/>
+    <line x1="0" y1="25.5" x2="700" y2="25.5" stroke="#00bcd4" stroke-width="1"/>
+
+    <!-- Grid icon (6-cell, 3×2) -->
+    <rect x="6"   y="9"    width="3.5" height="3.5" rx="0.5" fill="rgba(0,188,212,0.85)"/>
+    <rect x="10.5" y="9"   width="3.5" height="3.5" rx="0.5" fill="rgba(0,188,212,0.85)"/>
+    <rect x="15"  y="9"    width="3.5" height="3.5" rx="0.5" fill="rgba(0,188,212,0.85)"/>
+    <rect x="6"   y="13.5" width="3.5" height="3.5" rx="0.5" fill="rgba(0,188,212,0.85)"/>
+    <rect x="10.5" y="13.5" width="3.5" height="3.5" rx="0.5" fill="rgba(0,188,212,0.85)"/>
+    <rect x="15"  y="13.5" width="3.5" height="3.5" rx="0.5" fill="rgba(0,188,212,0.85)"/>
+
+    <!-- Title -->
+    <text x="24" y="18" font-size="11" fill="rgba(255,255,255,0.92)" letter-spacing="0.2">Nexus Position Sizer</text>
+    <text x="155" y="18" font-size="11" fill="rgba(255,255,255,0.38)"> — Drag to Move</text>
+  </g>
+
+  <!-- ── BUTTON ROW (y 26–52) ── -->
+
+  <!-- BUY STOP — SELECTED (bright green + selection border) -->
+  <rect x="5"  y="28" width="82" height="22" rx="2" fill="#00cc44"/>
+  <rect x="3.5" y="26.5" width="85" height="25" rx="3" fill="none" stroke="#77ff99" stroke-width="1.8"/>
+  <text x="46" y="43" font-size="10.5" fill="#001a00" font-weight="bold" text-anchor="middle">BUY STOP</text>
+
+  <!-- BUY LIMIT -->
+  <rect x="91" y="28" width="82" height="22" rx="2" fill="#008c2e"/>
+  <text x="132" y="43" font-size="10.5" fill="#ccffcc" font-weight="bold" text-anchor="middle">BUY LIMIT</text>
+
+  <!-- SELL STOP -->
+  <rect x="177" y="28" width="88" height="22" rx="2" fill="#cc1122"/>
+  <text x="221" y="43" font-size="10.5" fill="#ffffff" font-weight="bold" text-anchor="middle">SELL STOP</text>
+
+  <!-- SELL LIMIT -->
+  <rect x="269" y="28" width="90" height="22" rx="2" fill="#cc1122"/>
+  <text x="314" y="43" font-size="10.5" fill="#ffffff" font-weight="bold" text-anchor="middle">SELL LIMIT</text>
+
+  <!-- Separator -->
+  <line x1="363" y1="29" x2="363" y2="50" stroke="rgba(0,188,212,0.22)" stroke-width="1"/>
+
+  <!-- FAST -->
+  <rect x="612" y="28" width="82" height="22" rx="2" fill="#4a3b00"/>
+  <text x="653" y="43" font-size="10.5" fill="#ccaa00" font-weight="bold" text-anchor="middle">FAST</text>
+
+  <!-- ── LINE BETWEEN ROWS ── -->
+  <line x1="0" y1="52.5" x2="700" y2="52.5" stroke="rgba(0,188,212,0.14)" stroke-width="1"/>
+
+  <!-- ── INPUT ROW (y 53–79) ── -->
+
+  <!-- $ Risk label -->
+  <text x="8" y="69" font-size="10.5" fill="rgba(200,220,240,0.72)">$ Risk</text>
+
+  <!-- Risk value box -->
+  <rect x="50" y="57" width="76" height="19" rx="3" fill="#0a1626" stroke="#1c3a5c" stroke-width="1"/>
+  <text x="88" y="70" font-size="10.5" fill="#ddf0ff" text-anchor="middle">$ 2000</text>
+
+  <!-- TP Mode label -->
+  <text x="138" y="69" font-size="10.5" fill="rgba(200,220,240,0.72)">TP Mode:</text>
+
+  <!-- R:R button (inactive) -->
+  <rect x="200" y="57" width="42" height="19" rx="3" fill="#0a1626" stroke="#1c3a5c" stroke-width="1"/>
+  <text x="221" y="70" font-size="10.5" fill="rgba(160,190,220,0.50)" text-anchor="middle">R : R</text>
+
+  <!-- $Reward button (ACTIVE / highlighted) -->
+  <rect x="246" y="57" width="60" height="19" rx="3" fill="#005f72" stroke="#00bcd4" stroke-width="1.3"/>
+  <text x="276" y="70" font-size="10.5" fill="#00eeff" font-weight="bold" text-anchor="middle">$Reward</text>
+
+  <!-- Reward value input -->
+  <rect x="310" y="57" width="68" height="19" rx="3" fill="#0a1626" stroke="#1c3a5c" stroke-width="1"/>
+  <text x="344" y="70" font-size="10.5" fill="#ddf0ff" text-anchor="middle">$ 5000</text>
+
+  <!-- Tick (auto) label -->
+  <text x="388" y="69" font-size="10.5" fill="rgba(200,220,240,0.72)">Tick (auto):</text>
+
+  <!-- Tick value box -->
+  <rect x="470" y="57" width="68" height="19" rx="3" fill="#0a1626" stroke="#1c3a5c" stroke-width="1"/>
+  <text x="504" y="70" font-size="10.5" fill="#ddf0ff" text-anchor="middle">$ 5.00</text>
+
+  <!-- ── LINE BELOW INPUTS ── -->
+  <line x1="0" y1="79.5" x2="700" y2="79.5" stroke="rgba(0,188,212,0.1)" stroke-width="1"/>
+
+  <!-- ── FOOTER / RESULT ROW (y 80–107) ── -->
+  <!-- Result text: "Buy 5 ct | Risk $2000 | TP $5000" -->
+  <text x="8" y="97" font-size="10.5">
+    <tspan fill="#00e8aa" font-weight="bold">Buy 5 ct</tspan>
+    <tspan fill="rgba(0,188,212,0.45)">  |  </tspan>
+    <tspan fill="rgba(190,215,240,0.7)">Risk </tspan>
+    <tspan fill="#00e8aa">$2000</tspan>
+    <tspan fill="rgba(0,188,212,0.45)">  |  </tspan>
+    <tspan fill="rgba(190,215,240,0.7)">TP </tspan>
+    <tspan fill="#00e8aa">$5000</tspan>
+  </text>
+
+  <!-- SEND ORDER button -->
+  <rect x="536" y="82" width="100" height="20" rx="3" fill="#0066bb"/>
+  <text x="586" y="96" font-size="10" fill="#ffffff" font-weight="bold" text-anchor="middle" letter-spacing="0.3">SEND ORDER</text>
+
+  <!-- RESET button -->
+  <rect x="640" y="82" width="55" height="20" rx="3" fill="#3d1010"/>
+  <text x="668" y="96" font-size="10" fill="#ff9999" font-weight="bold" text-anchor="middle" letter-spacing="0.3">RESET</text>
+</svg>

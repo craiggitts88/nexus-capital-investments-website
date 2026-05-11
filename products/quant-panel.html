@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quant Panel | Coming Soon · Nexus Algorithmics</title>
+  <meta name="description" content="Quant Panel — the next-generation quantitative dashboard from Nexus Algorithmics. Coming soon.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    /* Animated countdown-style ring for coming soon */
+    .cs-ring-wrap {
+      position: relative; width: 160px; height: 160px;
+      margin: 0 auto 40px;
+    }
+    .cs-ring-svg { width: 160px; height: 160px; transform: rotate(-90deg); }
+    .cs-ring-track { fill: none; stroke: rgba(201,168,76,0.1); stroke-width: 3; }
+    .cs-ring-progress {
+      fill: none; stroke: url(#cs-ring-grad); stroke-width: 3;
+      stroke-linecap: round; stroke-dasharray: 440; stroke-dashoffset: 110;
+      animation: cs-ring-spin 8s linear infinite;
+    }
+    @keyframes cs-ring-spin {
+      0%   { stroke-dashoffset: 440; }
+      100% { stroke-dashoffset: 0; }
+    }
+    .cs-ring-logo {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 90px; height: 90px; object-fit: contain; border-radius: 14px;
+    }
+    /* Animated data stream lines */
+    .cs-data-streams {
+      position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+    }
+    .cs-stream {
+      position: absolute; height: 1px; background: linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent);
+      animation: cs-stream-flow 3s ease-in-out infinite;
+    }
+    .cs-stream:nth-child(1) { top: 18%; width: 60%; left: -10%; animation-delay: 0s; }
+    .cs-stream:nth-child(2) { top: 35%; width: 45%; left: 50%; animation-delay: 0.8s; }
+    .cs-stream:nth-child(3) { top: 60%; width: 55%; left: -5%; animation-delay: 1.6s; }
+    .cs-stream:nth-child(4) { top: 80%; width: 40%; left: 55%; animation-delay: 2.4s; }
+    @keyframes cs-stream-flow {
+      0%   { opacity: 0; transform: translateX(-20px); }
+      30%  { opacity: 1; }
+      70%  { opacity: 1; }
+      100% { opacity: 0; transform: translateX(20px); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ░░ SPLASH ░░ -->
+  <div id="splash" class="splash">
+    <div class="splash-inner">
+      <div class="splash-logo-wrap">
+        <div class="splash-ring"></div>
+        <img src="../Logo/Nexus Capital and Investments Logo.png" alt="Nexus Capital and Investments" class="splash-logo">
+      </div>
+      <div class="splash-name">NEXUS CAPITAL &amp; INVESTMENTS</div>
+      <div class="splash-sub">Quant Panel · Coming Soon</div>
+      <div class="splash-bar"><div class="splash-bar-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- ░░ PARTICLE CANVAS ░░ -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- ░░ NAVIGATION — NCI Branded ░░ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">
+        <img src="../Logo/Nexus Capital and Investments Logo.png" alt="Nexus Capital and Investments">
+        <span class="nav-brand">Nexus<span class="nav-brand-dim"> Capital &amp; Investments</span></span>
+      </a>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="../index.html"       class="nav-link">Home</a></li>
+        <li><a href="../index.html#about" class="nav-link">About</a></li>
+
+        <li class="nav-dropdown">
+          <button class="nav-link nav-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+            Products <span class="nav-dropdown-caret">▾</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="nexus-position-tool.html" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Nexus Position Tool</span>
+              <span class="dropdown-item-sub">Professional ATAS position sizing</span>
+            </a>
+            <a href="quant-panel.html" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Quant Panel</span>
+              <span class="dropdown-item-sub coming-soon">Coming Soon</span>
+            </a>
+          </div>
+        </li>
+
+        <li><a href="../about-nexus-algorithmics.html" class="nav-link">Nexus Algorithmics</a></li>
+      </ul>
+
+      <button class="nav-burger" id="nav-burger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ░░░░ COMING SOON HERO ░░░░ -->
+    <section class="coming-soon-section">
+      <div class="coming-soon-glow"></div>
+
+      <!-- Animated data streams -->
+      <div class="cs-data-streams">
+        <div class="cs-stream"></div>
+        <div class="cs-stream"></div>
+        <div class="cs-stream"></div>
+        <div class="cs-stream"></div>
+      </div>
+
+      <div class="coming-soon-inner">
+
+        <!-- Animated ring logo -->
+        <div class="cs-ring-wrap">
+          <svg class="cs-ring-svg" viewBox="0 0 160 160">
+            <defs>
+              <linearGradient id="cs-ring-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%"   stop-color="#c9a84c" stop-opacity="0.3"/>
+                <stop offset="50%"  stop-color="#e2c068"/>
+                <stop offset="100%" stop-color="#c9a84c" stop-opacity="0.3"/>
+              </linearGradient>
+            </defs>
+            <circle class="cs-ring-track" cx="80" cy="80" r="70"/>
+            <circle class="cs-ring-progress" cx="80" cy="80" r="70"/>
+          </svg>
+          <img src="../Logo/Nexus Algorithmics Logo Redraw.png" class="cs-ring-logo" alt="Nexus Algorithmics">
+        </div>
+
+        <!-- NCI Origin Badge -->
+        <div class="nci-origin-badge" style="margin:0 auto 24px;width:fit-content;">
+          <img src="../Logo/Nexus Capital and Investments Logo.png" alt="">
+          <span class="nci-origin-badge-text">A Nexus Capital &amp; Investments Division</span>
+        </div>
+
+        <div class="coming-soon-badge">In Development · Nexus Algorithmics</div>
+
+        <h1 class="coming-soon-title">
+          Quant<br>
+          <span class="text-glow-gold">Panel</span>
+        </h1>
+
+        <p class="coming-soon-sub">
+          The next-generation quantitative dashboard — bringing institutional-grade analytics, real-time portfolio monitoring, and advanced orderflow intelligence directly to your trading environment. Built by Nexus Algorithmics, the algorithmic division of Nexus Capital &amp; Investments.
+        </p>
+
+        <div class="coming-soon-features">
+          <div class="coming-soon-feat">
+            <span class="coming-soon-feat-dot"></span>
+            Advanced Quantitative Analytics
+          </div>
+          <div class="coming-soon-feat">
+            <span class="coming-soon-feat-dot"></span>
+            Real-Time Portfolio Monitoring
+          </div>
+          <div class="coming-soon-feat">
+            <span class="coming-soon-feat-dot"></span>
+            Institutional Orderflow Intelligence
+          </div>
+          <div class="coming-soon-feat">
+            <span class="coming-soon-feat-dot"></span>
+            Multi-Instrument Correlation
+          </div>
+          <div class="coming-soon-feat">
+            <span class="coming-soon-feat-dot"></span>
+            ATAS Platform Native
+          </div>
+          <div class="coming-soon-feat">
+            <span class="coming-soon-feat-dot"></span>
+            Risk-Adjusted Performance Metrics
+          </div>
+        </div>
+
+        <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;">
+          Register your interest and be first to know when Quant Panel launches.
+        </p>
+
+        <form class="notify-form" id="notify-form">
+          <input type="email" class="notify-input" placeholder="your@email.com" required>
+          <button type="submit" class="notify-btn">Notify Me</button>
+        </form>
+
+        <div style="margin-top:40px;">
+          <a href="nexus-position-tool.html" class="btn-ghost-gold" style="display:inline-flex;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+            View Nexus Position Tool
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ░░ FOOTER — NCI Branded ░░ -->
+  <footer class="nci-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+
+        <div class="footer-brand">
+          <div class="footer-brand-row">
+            <img src="../Logo/Nexus Capital and Investments Logo.png" alt="Nexus Capital and Investments" class="footer-logo">
+            <div class="footer-brand-name">Nexus Capital &amp; Investments</div>
+          </div>
+          <p class="footer-tagline">Systematic. Algorithmic. Institutional.</p>
+        </div>
+
+        <div class="footer-nav-col">
+          <div class="footer-nav-title">Navigation</div>
+          <div class="footer-nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../about-nexus-algorithmics.html">Nexus Algorithmics</a>
+            <a href="nexus-position-tool.html">Nexus Position Tool</a>
+            <a href="quant-panel.html">Quant Panel</a>
+          </div>
+        </div>
+
+        <div class="footer-legal">
+          <div class="footer-legal-title">Developed By</div>
+          <div class="footer-algo-credit" style="justify-content:flex-end;">
+            <img src="../Logo/Nexus Algorithmics Logo Redraw.png" alt="" style="height:28px;width:auto;object-fit:contain;opacity:0.7;border-radius:6px;">
+            <span>Nexus <span>Algorithmics</span></span>
+          </div>
+        </div>
+
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Nexus Capital &amp; Investments · Nexus Algorithmics. All rights reserved.</p>
+        <p class="footer-risk">Trading involves substantial risk of loss. Past performance is not indicative of future results. This tool does not provide financial advice.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

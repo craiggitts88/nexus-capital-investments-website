@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexus Capital & Investments | Systematic Algorithmic Trading</title>
+  <meta name="description" content="Nexus Capital & Investments — a systematic, algorithm-driven trading firm built on institutional-grade robustness testing, portfolio construction and professional discipline.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ░░ SPLASH ░░ -->
+  <div id="splash" class="splash">
+    <div class="splash-inner">
+      <div class="splash-logo-wrap">
+        <div class="splash-ring"></div>
+        <img src="Logo/Nexus Capital and Investments Logo.png" alt="Nexus Capital and Investments" class="splash-logo">
+      </div>
+      <div class="splash-name">NEXUS CAPITAL &amp; INVESTMENTS</div>
+      <div class="splash-sub">Systematic · Algorithmic · Institutional</div>
+      <div class="splash-bar"><div class="splash-bar-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- ░░ PARTICLE CANVAS ░░ -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- ░░ NAVIGATION ░░ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="Logo/Nexus Capital and Investments Logo.png" alt="Nexus Capital and Investments">
+        <span class="nav-brand">Nexus<span class="nav-brand-dim"> Capital &amp; Investments</span></span>
+      </a>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home"        class="nav-link">Home</a></li>
+        <li><a href="#about"       class="nav-link">About</a></li>
+        <li><a href="#methodology" class="nav-link">Methodology</a></li>
+
+        <!-- Products Dropdown -->
+        <li class="nav-dropdown">
+          <button class="nav-link nav-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+            Products <span class="nav-dropdown-caret">▾</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="products/nexus-position-tool.html" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Nexus Position Tool</span>
+              <span class="dropdown-item-sub">Professional ATAS position sizing</span>
+            </a>
+            <a href="products/quant-panel.html" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Quant Panel</span>
+              <span class="dropdown-item-sub coming-soon">Coming Soon</span>
+            </a>
+          </div>
+        </li>
+
+        <li><a href="about-nexus-algorithmics.html" class="nav-link">Nexus Algorithmics</a></li>
+      </ul>
+
+      <button class="nav-burger" id="nav-burger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ░░░░ HERO ░░░░ -->
+    <section class="nci-hero" id="home">
+      <div class="nci-hero-grid"></div>
+      <div class="nci-hero-glow--tl"></div>
+      <div class="nci-hero-glow--br"></div>
+
+      <div class="nci-hero-inner">
+
+        <!-- Left: Text -->
+        <div class="nci-hero-text">
+          <div class="nci-hero-tag">Nexus Capital &amp; Investments</div>
+
+          <div class="nci-hero-eyebrow">
+            <span class="eyebrow-pulse-gold"></span>
+            Systematic · Algorithmic · Institutional
+          </div>
+
+          <h1 class="nci-hero-heading">
+            Capital.<br>
+            Engineered<br>
+            <span class="text-glow-gold">With Precision.</span>
+          </h1>
+
+          <p class="nci-hero-sub">
+            We operate at the intersection of quantitative research and professional capital management — building systematic, algorithm-driven trading strategies tested to institutional standards and designed for long-term performance.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#methodology" class="btn-primary-gold">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L4.09 12.97 12 12.97 11 22 19.91 11.03 12 11.03z"/></svg>
+              Our Approach
+            </a>
+            <a href="#about" class="btn-ghost-gold">
+              About Us
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-arrow"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+            </a>
+          </div>
+
+          <div class="nci-trust">
+            <div class="nci-trust-badge"><span class="nci-trust-check">✓</span> Systematic Trading</div>
+            <div class="nci-trust-badge"><span class="nci-trust-check">✓</span> FTMO Verified</div>
+            <div class="nci-trust-badge"><span class="nci-trust-check">✓</span> Institutional Methodology</div>
+          </div>
+        </div>
+
+        <!-- Right: Globe Visual -->
+        <div class="nci-hero-visual">
+          <div class="nci-mockup-scene">
+            <div class="nci-mockup-glow"></div>
+            <img src="images/Main Images/nci-hero.svg" class="nci-globe-img" alt="Nexus Capital — Global Algorithmic Trading Operations">
+          </div>
+        </div>
+
+      </div><!-- /nci-hero-inner -->
+
+      <div class="scroll-cue">
+        <div class="scroll-cue-line"></div>
+        <span>SCROLL</span>
+      </div>
+    </section><!-- /hero -->
+
+
+    <!-- ░░░░ PERFORMANCE STATS (Placeholder) ░░░░ -->
+    <div class="perf-bar" id="performance">
+      <div class="perf-bar-inner">
+        <div class="perf-stats-row">
+          <div class="perf-stat">
+            <div class="perf-stat-number">—</div>
+            <div class="perf-stat-label">Avg. Monthly Return</div>
+          </div>
+          <div class="perf-stat-sep"></div>
+          <div class="perf-stat">
+            <div class="perf-stat-number">—</div>
+            <div class="perf-stat-label">Max Drawdown</div>
+          </div>
+          <div class="perf-stat-sep"></div>
+          <div class="perf-stat">
+            <div class="perf-stat-number">—</div>
+            <div class="perf-stat-label">Sharpe Ratio</div>
+          </div>
+          <div class="perf-stat-sep"></div>
+          <div class="perf-stat">
+            <div class="perf-stat-number" data-count="6">0</div>
+            <div class="perf-stat-label">Markets Traded</div>
+          </div>
+          <div class="perf-stat-sep"></div>
+          <div class="perf-stat">
+            <div class="perf-stat-number">FTMO</div>
+            <div class="perf-stat-label">Challenges Passed</div>
+          </div>
+        </div>
+        <div class="perf-placeholder-note">
+          <span class="perf-note-line"></span>
+          <span>Performance statistics — verified live results coming soon</span>
+          <span class="perf-note-line"></span>
+        </div>
+      </div>
+    </div><!-- /perf-bar -->
+
+
+    <!-- ░░░░ ABOUT NCI ░░░░ -->
+    <section class="about-section" id="about">
+      <div class="section-wrap">
+        <div class="about-grid">
+
+          <!-- Left: Text -->
+          <div class="about-text-col">
+            <div class="section-label about-label">WHO WE ARE</div>
+            <h2 class="about-heading">
+              Built on Discipline.<br>
+              <span class="text-glow-gold">Driven by Data.</span>
+            </h2>
+            <div class="about-body">
+              <p>
+                Nexus Capital &amp; Investments was founded by Craig Gittins and Usama Azim — two professionals whose complementary skill sets have built a rigorous, systematic approach to algorithmic trading.
+              </p>
+              <p>
+                Inspired by the statistical discipline of traders like Tom Hougaard, the company moved beyond retail systems to develop its own proprietary edge: a research methodology grounded in 20-year backtests, comprehensive robustness testing, and institutional-grade portfolio construction.
+              </p>
+              <p>
+                Three years of manual trading experience and two years of algorithm development have produced a professional-grade systematic trading operation — capable of passing FTMO challenges and generating consistent demo performance across global markets.
+              </p>
+            </div>
+
+            <div class="about-highlight">
+              <div class="about-highlight-icon">⚡</div>
+              <div class="about-highlight-text">
+                <strong>Professional Discipline, Professional Results.</strong> Both founders apply the same precision-focused approach from their primary careers — IT systems and cosmetic dentistry — to the demanding world of algorithmic development and market analysis.
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Founder Cards -->
+          <div class="founders-grid">
+            <div class="founder-card">
+              <div class="founder-name">Craig Gittins</div>
+              <div class="founder-title">Co-Founder · Technology &amp; Systems</div>
+              <p class="founder-bio">
+                Craig brings extensive IT expertise spanning pharmaceutical systems, advanced robotics implementations, and business process automation. His deep understanding of both technology and business operations drives the company's technological development — from platform architecture to the algorithmic systems powering live trading operations.
+              </p>
+            </div>
+            <div class="founder-card">
+              <div class="founder-name">Usama Azim</div>
+              <div class="founder-title">Co-Founder · Quantitative Research</div>
+              <p class="founder-bio">
+                Usama is an accomplished cosmetic dentist who relocated to Dubai to expand his practice while spearheading Nexus's growth in financial markets. His entrepreneurial background and precision-focused medical discipline translate directly into the rigorous demands of algorithmic development — advancing programming capabilities alongside Craig to build robust, long-duration trading systems.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section><!-- /about -->
+
+
+    <!-- ░░░░ METHODOLOGY ░░░░ -->
+    <section class="methodology-section" id="methodology">
+      <div class="section-wrap">
+
+        <div class="section-header">
+          <div class="section-label">OUR EDGE</div>
+          <h2 class="section-title">Institutional-Grade<br><span class="text-glow-gold">Robustness Testing</span></h2>
+          <p class="section-desc">Every algorithm we deploy has survived a multi-stage gauntlet designed to eliminate curve-fit, short-lived strategies — leaving only those built to perform for decades.</p>
+        </div>
+
+        <div class="method-grid">
+
+          <!-- Card 1: Algorithm Development -->
+          <div class="method-card">
+            <div class="method-num">01</div>
+            <div class="method-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="6" y="8" width="36" height="32" rx="4" stroke="#c9a84c" stroke-width="1.5" fill="rgba(201,168,76,0.05)"/>
+                <line x1="6" y1="17" x2="42" y2="17" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
+                <path d="M14 26 L18 30 L14 34" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="21" y1="34" x2="30" y2="34" stroke="rgba(201,168,76,0.6)" stroke-width="1.5" stroke-linecap="round"/>
+                <circle cx="10" cy="13" r="2" fill="#c9a84c" opacity="0.6"/>
+                <circle cx="15" cy="13" r="2" fill="rgba(201,168,76,0.3)"/>
+                <circle cx="20" cy="13" r="2" fill="rgba(201,168,76,0.15)"/>
+              </svg>
+            </div>
+            <div class="method-tag">Development</div>
+            <h3 class="method-title">Algorithm Generation</h3>
+            <p class="method-desc">Using StrategyQuantX professional data-mining software, we generate and test thousands of algorithmic candidates built on proven edges — including Asia range breakouts, New York Liquidity Injections, and Larry Connors' RSI2 and NR4 methods.</p>
+          </div>
+
+          <!-- Card 2: Robustness Testing -->
+          <div class="method-card">
+            <div class="method-num">02</div>
+            <div class="method-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24 6 L42 16 L42 32 L24 42 L6 32 L6 16 Z" stroke="#c9a84c" stroke-width="1.5" fill="rgba(201,168,76,0.05)"/>
+                <path d="M24 14 L34 20 L34 30 L24 36 L14 30 L14 20 Z" stroke="rgba(201,168,76,0.4)" stroke-width="1"/>
+                <circle cx="24" cy="24" r="5" fill="rgba(201,168,76,0.15)" stroke="#c9a84c" stroke-width="1.5"/>
+                <path d="M24 19 L24 14 M29 24 L34 24 M24 29 L24 34 M19 24 L14 24" stroke="rgba(201,168,76,0.5)" stroke-width="1" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="method-tag">Validation</div>
+            <h3 class="method-title">Robustness Testing</h3>
+            <p class="method-desc">We employ comprehensive in-sample and out-of-sample testing — not a simple single split. Every strategy passes:</p>
+            <ul class="method-list">
+              <li>Full range Monte Carlo simulations</li>
+              <li>Walk-forward optimizations &amp; matrices</li>
+              <li>Strategy parameter permutations</li>
+              <li>Comprehensive slippage &amp; spread testing</li>
+            </ul>
+          </div>
+
+          <!-- Card 3: Incubation -->
+          <div class="method-card">
+            <div class="method-num">03</div>
+            <div class="method-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="8" y="20" width="32" height="20" rx="3" stroke="#c9a84c" stroke-width="1.5" fill="rgba(201,168,76,0.05)"/>
+                <path d="M16 20 L16 14 Q16 8 24 8 Q32 8 32 14 L32 20" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                <circle cx="24" cy="32" r="4" fill="rgba(201,168,76,0.2)" stroke="#c9a84c" stroke-width="1.2"/>
+                <line x1="24" y1="34" x2="24" y2="37" stroke="#c9a84c" stroke-width="1.2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="method-tag">Incubation</div>
+            <h3 class="method-title">Live-Market Validation</h3>
+            <p class="method-desc">Strategies that pass all robustness tests enter our custom incubation system — a live-market validation process designed to verify real-world performance before full deployment. Unlike frequent strategy rotation, we focus on long-term gains aligned with Robert Pardo's principle that algorithms should work for decades.</p>
+          </div>
+
+          <!-- Card 4: Portfolio Construction -->
+          <div class="method-card">
+            <div class="method-num">04</div>
+            <div class="method-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="6"  y="32" width="10" height="10" rx="2" fill="rgba(201,168,76,0.5)" stroke="#c9a84c" stroke-width="1"/>
+                <rect x="20" y="24" width="10" height="18" rx="2" fill="rgba(201,168,76,0.35)" stroke="#c9a84c" stroke-width="1"/>
+                <rect x="34" y="16" width="10" height="26" rx="2" fill="rgba(201,168,76,0.65)" stroke="#c9a84c" stroke-width="1.2"/>
+                <path d="M8 28 Q15 18 25 22 Q32 14 40 10" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                <circle cx="40" cy="10" r="3" fill="#c9a84c"/>
+              </svg>
+            </div>
+            <div class="method-tag">Portfolio</div>
+            <h3 class="method-title">Portfolio Construction</h3>
+            <p class="method-desc">Top-performing strategies are combined using StrategyQuant's Portfolio Master software, which automatically weights exposures for optimal balance. Portfolios are configured for highest return for lowest drawdown, ensuring individual algorithms work together cohesively rather than competing.</p>
+          </div>
+
+        </div><!-- /method-grid -->
+      </div>
+    </section><!-- /methodology -->
+
+
+    <!-- ░░░░ GLOBAL MARKETS ░░░░ -->
+    <section class="markets-section" id="markets">
+      <div class="section-wrap">
+
+        <div class="section-header">
+          <div class="section-label">WHAT WE TRADE</div>
+          <h2 class="section-title">Global Market<br><span class="text-glow-gold">Diversification</span></h2>
+          <p class="section-desc">We trade a diversified portfolio of global instruments — designed so that individual equity indices are naturally hedged against macro headwinds via directional trades in currencies, metals, and energy.</p>
+        </div>
+
+        <div class="markets-grid">
+          <div class="market-pill">
+            <span class="market-dot market-dot--gold"></span>
+            <div>
+              <div class="market-name">US Indices</div>
+              <div class="market-sub">S&amp;P 500 · NASDAQ · Dow Jones</div>
+            </div>
+          </div>
+          <div class="market-pill">
+            <span class="market-dot market-dot--gold"></span>
+            <div>
+              <div class="market-name">European Indices</div>
+              <div class="market-sub">DAX · FTSE · Euro Stoxx</div>
+            </div>
+          </div>
+          <div class="market-pill">
+            <span class="market-dot market-dot--gold"></span>
+            <div>
+              <div class="market-name">Asia Pacific Indices</div>
+              <div class="market-sub">Nikkei · ASX · Hang Seng</div>
+            </div>
+          </div>
+          <div class="market-pill">
+            <span class="market-dot market-dot--silver"></span>
+            <div>
+              <div class="market-name">JPY Pairs</div>
+              <div class="market-sub">USD/JPY · EUR/JPY · GBP/JPY</div>
+            </div>
+          </div>
+          <div class="market-pill">
+            <span class="market-dot market-dot--gold"></span>
+            <div>
+              <div class="market-name">Gold (XAU/USD)</div>
+              <div class="market-sub">Directional macro hedge</div>
+            </div>
+          </div>
+          <div class="market-pill">
+            <span class="market-dot market-dot--silver"></span>
+            <div>
+              <div class="market-name">Crude Oil (WTI/Brent)</div>
+              <div class="market-sub">Directional macro hedge</div>
+            </div>
+          </div>
+        </div>
+
+        <p class="markets-note">
+          By combining long-biased equity indices with well-timed directional trades on JPY pairs, gold and oil, we construct a natural hedge against bear market conditions — maintaining portfolio stability across market cycles.
+        </p>
+
+      </div>
+    </section><!-- /markets -->
+
+
+    <!-- ░░░░ NEXUS ALGORITHMICS DIVISION ░░░░ -->
+    <section class="algo-division-section" id="algo-division">
+      <div class="algo-division-glow"></div>
+      <div class="section-wrap">
+        <div class="algo-division-inner">
+
+          <!-- Left: Text -->
+          <div>
+            <div class="section-label algo-div-label">A NEXUS CAPITAL DIVISION</div>
+            <h2 class="algo-div-heading">
+              Meet<br>
+              <span class="text-glow">Nexus Algorithmics</span>
+            </h2>
+            <p class="algo-div-sub">
+              Nexus Algorithmics is the technology and research arm of Nexus Capital &amp; Investments — dedicated to building professional-grade trading tools for serious market participants. Where our capital division focuses on systematic portfolio performance, Nexus Algorithmics channels that same rigorous discipline into creating software that elevates how traders operate.
+            </p>
+            <div class="algo-div-features">
+              <div class="algo-div-feat"><span class="algo-div-feat-check">✓</span> Professional tools built by active traders, for active traders</div>
+              <div class="algo-div-feat"><span class="algo-div-feat-check">✓</span> Deep ATAS orderflow platform integration</div>
+              <div class="algo-div-feat"><span class="algo-div-feat-check">✓</span> Precision-engineered for institutional-grade execution</div>
+              <div class="algo-div-feat"><span class="algo-div-feat-check">✓</span> Continuous development — tools that evolve with you</div>
+            </div>
+            <a href="about-nexus-algorithmics.html" class="btn-ghost-gold">
+              About Nexus Algorithmics
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+
+          <!-- Right: Algo visual -->
+          <div class="algo-div-visual">
+            <div class="algo-logo-block">
+              <img src="Logo/Nexus Algorithmics Logo Redraw.png" alt="Nexus Algorithmics">
+              <div class="algo-logo-info">
+                <div class="algo-logo-title">Nexus Algorithmics</div>
+                <div class="algo-logo-parent">A division of Nexus Capital &amp; Investments</div>
+              </div>
+            </div>
+            <div class="algo-stats-row">
+              <div class="algo-stat-card">
+                <div class="algo-stat-num">2+</div>
+                <div class="algo-stat-lbl">Years in Development</div>
+              </div>
+              <div class="algo-stat-card">
+                <div class="algo-stat-num">ATAS</div>
+                <div class="algo-stat-lbl">Platform Native</div>
+              </div>
+              <div class="algo-stat-card">
+                <div class="algo-stat-num">£249</div>
+                <div class="algo-stat-lbl">Lifetime Licence</div>
+              </div>
+              <div class="algo-stat-card">
+                <div class="algo-stat-num">Live</div>
+                <div class="algo-stat-lbl">Production Ready</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section><!-- /algo-division -->
+
+
+    <!-- ░░░░ PRODUCTS ░░░░ -->
+    <section class="nci-products-section" id="products">
+      <div class="section-wrap">
+
+        <div class="section-header">
+          <div class="section-label">OUR TOOLS</div>
+          <h2 class="section-title">Professional Tools Built by<br><span class="text-glow-gold">Nexus Algorithmics</span></h2>
+          <p class="section-desc">Every product emerges from the same methodology that drives our capital operations — built to remove hesitation, eliminate error, and keep your focus on the market.</p>
+        </div>
+
+        <div class="nci-products-grid">
+
+          <!-- Product 1: Nexus Position Tool -->
+          <div class="product-card">
+            <div class="product-card-glow"></div>
+            <div class="product-card-badge">
+              <svg width="8" height="8" viewBox="0 0 8 8" fill="currentColor"><circle cx="4" cy="4" r="4"/></svg>
+              Available Now
+            </div>
+            <div class="product-card-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="18" stroke="#c9a84c" stroke-width="1.5" fill="rgba(201,168,76,0.05)"/>
+                <line x1="4"  y1="24" x2="44" y2="24" stroke="rgba(201,168,76,0.2)" stroke-width="1" stroke-dasharray="3 2"/>
+                <line x1="24" y1="4"  x2="24" y2="44" stroke="rgba(201,168,76,0.2)" stroke-width="1" stroke-dasharray="3 2"/>
+                <path d="M24 6 L20 16 L24 13 L28 16 Z" fill="#c9a84c"/>
+                <circle cx="24" cy="24" r="4" fill="#c9a84c" fill-opacity="0.3" stroke="#c9a84c" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <h3 class="product-card-title">Nexus Position Tool</h3>
+            <div class="product-card-sub">By Nexus Algorithmics · ATAS Platform</div>
+            <p class="product-card-desc">The professional position sizing solution built exclusively for ATAS orderflow traders. Auto tick detection, instant contract calculation, and lightning-fast execution through Fast Mode.</p>
+            <ul class="product-card-list">
+              <li><span class="plist-check-gold">✓</span> Auto Tick Value Detection for any instrument</li>
+              <li><span class="plist-check-gold">✓</span> Real-Time Contract Size Calculation</li>
+              <li><span class="plist-check-gold">✓</span> Fast Mode — instant single-click execution</li>
+              <li><span class="plist-check-gold">✓</span> Automated SL/TP Order Management</li>
+              <li><span class="plist-check-gold">✓</span> Lifetime licence · Instant download</li>
+            </ul>
+            <a href="products/nexus-position-tool.html" class="btn-product">
+              View Product
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+
+          <!-- Product 2: Quant Panel -->
+          <div class="product-card">
+            <div class="product-card-glow"></div>
+            <div class="product-card-badge product-card-badge--coming">
+              <svg width="8" height="8" viewBox="0 0 8 8" fill="currentColor"><circle cx="4" cy="4" r="4"/></svg>
+              Coming Soon
+            </div>
+            <div class="product-card-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="6"  y="8"  width="36" height="32" rx="4" stroke="#c9a84c" stroke-width="1.5" fill="rgba(201,168,76,0.05)"/>
+                <line x1="6"  y1="18" x2="42" y2="18" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
+                <line x1="22" y1="18" x2="22" y2="40" stroke="rgba(201,168,76,0.2)" stroke-width="1"/>
+                <rect x="10" y="22" width="8"  height="6"  rx="2" fill="rgba(201,168,76,0.25)" stroke="#c9a84c" stroke-width="0.8"/>
+                <rect x="26" y="22" width="12" height="4"  rx="2" fill="rgba(201,168,76,0.15)" stroke="#c9a84c" stroke-width="0.8"/>
+                <rect x="26" y="29" width="8"  height="4"  rx="2" fill="rgba(201,168,76,0.15)" stroke="#c9a84c" stroke-width="0.8"/>
+                <rect x="10" y="31" width="8"  height="6"  rx="2" fill="rgba(201,168,76,0.3)" stroke="#c9a84c" stroke-width="0.8"/>
+                <circle cx="10" cy="13" r="1.5" fill="#c9a84c" opacity="0.5"/>
+                <circle cx="14" cy="13" r="1.5" fill="rgba(201,168,76,0.3)"/>
+              </svg>
+            </div>
+            <h3 class="product-card-title">Quant Panel</h3>
+            <div class="product-card-sub">By Nexus Algorithmics · In Development</div>
+            <p class="product-card-desc">The next-generation quantitative dashboard — bringing institutional-grade analytics, real-time portfolio monitoring, and advanced orderflow intelligence directly to your trading environment.</p>
+            <ul class="product-card-list">
+              <li><span class="plist-check-gold">◈</span> Advanced quantitative analytics suite</li>
+              <li><span class="plist-check-gold">◈</span> Real-time portfolio performance monitoring</li>
+              <li><span class="plist-check-gold">◈</span> Institutional orderflow intelligence</li>
+              <li><span class="plist-check-gold">◈</span> Multi-instrument correlation analysis</li>
+              <li><span class="plist-check-gold">◈</span> Details and pricing to be announced</li>
+            </ul>
+            <a href="products/quant-panel.html" class="btn-product btn-product--ghost">
+              Register Interest
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section><!-- /products -->
+
+  </main>
+
+
+  <!-- ░░ FOOTER ░░ -->
+  <footer class="nci-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+
+        <div class="footer-brand">
+          <div class="footer-brand-row">
+            <img src="Logo/Nexus Capital and Investments Logo.png" alt="Nexus Capital and Investments" class="footer-logo">
+            <div class="footer-brand-name">Nexus Capital &amp; Investments</div>
+          </div>
+          <p class="footer-tagline">Systematic. Algorithmic. Institutional.<br>Building the next generation of quantitative trading operations.</p>
+        </div>
+
+        <div class="footer-nav-col">
+          <div class="footer-nav-title">Navigation</div>
+          <div class="footer-nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#methodology">Methodology</a>
+            <a href="about-nexus-algorithmics.html">Nexus Algorithmics</a>
+            <a href="products/nexus-position-tool.html">Nexus Position Tool</a>
+            <a href="products/quant-panel.html">Quant Panel</a>
+          </div>
+        </div>
+
+        <div class="footer-legal">
+          <div class="footer-legal-title">Nexus Algorithmics</div>
+          <div class="footer-algo-credit">
+            <img src="Logo/Nexus Algorithmics Logo Redraw.png" alt="" style="height:28px;width:auto;object-fit:contain;opacity:0.7;border-radius:6px;">
+            <span>Powered by <span>Nexus Algorithmics</span></span>
+          </div>
+          <p style="font-size:12px;color:var(--text-muted);margin-top:12px;line-height:1.7;">
+            Professional trading tools developed by the algorithmic division of Nexus Capital &amp; Investments.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Nexus Capital &amp; Investments. All rights reserved.</p>
+        <p class="footer-risk">
+          Trading in financial markets involves substantial risk of loss and is not suitable for all investors. Past performance of algorithmic systems is not indicative of future results. Nexus Capital &amp; Investments does not provide financial advice. All content on this site is for informational purposes only.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
