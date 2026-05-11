@@ -65,37 +65,39 @@ svg { display: block; }
   position: fixed; inset: 0; pointer-events: none; z-index: 0;
 }
 
-/* Animated hex-lattice texture */
+/* Rectangular grid texture — same technique as the depth grid (proven visible) */
 .site-bg-hex {
   position: absolute; inset: 0;
   background-image:
-    linear-gradient(60deg,  rgba(201,168,76,0.028) 0.5px, transparent 0.5px),
-    linear-gradient(-60deg, rgba(201,168,76,0.028) 0.5px, transparent 0.5px),
-    linear-gradient(0deg,   rgba(201,168,76,0.014) 0.5px, transparent 0.5px);
-  background-size: 52px 90px;
-  animation: hex-drift 28s linear infinite;
+    linear-gradient(rgba(201,168,76,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,0.06) 1px, transparent 1px);
+  background-size: 80px 80px;
+  animation: grid-drift 22s linear infinite;
 }
 .site-bg-effects--algo .site-bg-hex {
   background-image:
-    linear-gradient(60deg,  rgba(0,204,255,0.022) 0.5px, transparent 0.5px),
-    linear-gradient(-60deg, rgba(0,204,255,0.022) 0.5px, transparent 0.5px),
-    linear-gradient(0deg,   rgba(0,204,255,0.011) 0.5px, transparent 0.5px);
+    linear-gradient(rgba(0,204,255,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,204,255,0.05) 1px, transparent 1px);
+}
+@keyframes grid-drift {
+  0%   { background-position: 0 0; }
+  100% { background-position: 80px 80px; }
 }
 
 /* Diagonal light rays */
 .site-bg-rays {
   position: absolute; inset: 0;
   background:
-    linear-gradient(122deg, transparent 20%, rgba(201,168,76,0.014) 38%, transparent 56%),
-    linear-gradient(152deg, transparent 24%, rgba(201,168,76,0.009) 50%, transparent 68%),
-    linear-gradient(76deg,  transparent 40%, rgba(201,168,76,0.007) 60%, transparent 74%);
+    linear-gradient(122deg, transparent 15%, rgba(201,168,76,0.07) 35%, transparent 55%),
+    linear-gradient(152deg, transparent 20%, rgba(201,168,76,0.045) 48%, transparent 66%),
+    linear-gradient(76deg,  transparent 38%, rgba(201,168,76,0.03) 58%, transparent 72%);
   animation: ray-shift 14s ease-in-out infinite alternate;
 }
 .site-bg-effects--algo .site-bg-rays {
   background:
-    linear-gradient(122deg, transparent 20%, rgba(0,204,255,0.011) 38%, transparent 56%),
-    linear-gradient(152deg, transparent 24%, rgba(0,204,255,0.007) 50%, transparent 68%),
-    linear-gradient(76deg,  transparent 40%, rgba(0,204,255,0.005) 60%, transparent 74%);
+    linear-gradient(122deg, transparent 15%, rgba(0,204,255,0.055) 35%, transparent 55%),
+    linear-gradient(152deg, transparent 20%, rgba(0,204,255,0.035) 48%, transparent 66%),
+    linear-gradient(76deg,  transparent 38%, rgba(0,204,255,0.022) 58%, transparent 72%);
 }
 
 /* Corner pulse rings (top-right of viewport) */
@@ -105,12 +107,12 @@ svg { display: block; }
 }
 .site-bg-ring {
   position: absolute; inset: 0; border-radius: 50%;
-  border: 1px solid rgba(201,168,76,0.10);
+  border: 1px solid rgba(201,168,76,0.45);
   animation: scan-ring-pulse 8s ease-out infinite;
   animation-delay: var(--d, 0s);
 }
 .site-bg-effects--algo .site-bg-ring {
-  border-color: rgba(0,204,255,0.09);
+  border-color: rgba(0,204,255,0.40);
 }
 
 /* ── Utility ── */
@@ -364,8 +366,8 @@ svg { display: block; }
 .hero-depth-grid {
   position: absolute; bottom: 0; left: -25%; right: -25%; height: 60%;
   background-image:
-    linear-gradient(rgba(201,168,76,0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(201,168,76,0.055) 1px, transparent 1px);
+    linear-gradient(rgba(201,168,76,0.11) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,0.09) 1px, transparent 1px);
   background-size: 72px 72px;
   transform: perspective(500px) rotateX(62deg);
   transform-origin: center bottom;
@@ -374,35 +376,34 @@ svg { display: block; }
   pointer-events: none; z-index: 0;
 }
 
-/* Animated hex-like lattice overlay */
+/* Angled grid overlay — hero right side (rectangular, proven visible) */
 .hero-hex-pattern {
   position: absolute; inset: 0; pointer-events: none; z-index: 0;
   background-image:
-    linear-gradient(60deg,  rgba(201,168,76,0.035) 0.5px, transparent 0.5px),
-    linear-gradient(-60deg, rgba(201,168,76,0.035) 0.5px, transparent 0.5px),
-    linear-gradient(0deg,   rgba(201,168,76,0.018) 0.5px, transparent 0.5px);
-  background-size: 52px 90px;
-  animation: hex-drift 28s linear infinite;
-  mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.25) 45%, rgba(0,0,0,0.5) 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.25) 45%, rgba(0,0,0,0.5) 100%);
+    linear-gradient(rgba(201,168,76,0.10) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,0.07) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: hex-drift 20s linear infinite;
+  mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.9) 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.9) 100%);
 }
 @keyframes hex-drift {
   0%   { background-position: 0 0; }
-  100% { background-position: 52px 90px; }
+  100% { background-position: 60px 60px; }
 }
 
 /* Diagonal light rays */
 .hero-light-rays {
   position: absolute; inset: 0; pointer-events: none; z-index: 0;
   background:
-    linear-gradient(118deg, transparent 18%, rgba(201,168,76,0.022) 36%, transparent 54%),
-    linear-gradient(148deg, transparent 22%, rgba(201,168,76,0.014) 48%, transparent 65%),
-    linear-gradient(78deg,  transparent 38%, rgba(201,168,76,0.010) 58%, transparent 72%);
+    linear-gradient(118deg, transparent 15%, rgba(201,168,76,0.07) 34%, transparent 53%),
+    linear-gradient(148deg, transparent 20%, rgba(201,168,76,0.045) 46%, transparent 63%),
+    linear-gradient(78deg,  transparent 36%, rgba(201,168,76,0.03) 56%, transparent 70%);
   animation: ray-shift 12s ease-in-out infinite alternate;
 }
 @keyframes ray-shift {
-  0%   { opacity: 0.6; }
-  100% { opacity: 1.4; }
+  0%   { opacity: 0.5; }
+  100% { opacity: 1; }
 }
 
 /* Expanding radar scan rings (behind the dashboard visual) */
@@ -414,13 +415,13 @@ svg { display: block; }
 }
 .hero-scan-ring {
   position: absolute; inset: 0; border-radius: 50%;
-  border: 1px solid rgba(201,168,76,0.18);
+  border: 1px solid rgba(201,168,76,0.45);
   animation: scan-ring-pulse 6s ease-out infinite;
   animation-delay: var(--d, 0s);
 }
 @keyframes scan-ring-pulse {
   0%   { transform: scale(0.25); opacity: 0; }
-  20%  { opacity: 0.4; }
+  20%  { opacity: 0.85; }
   100% { transform: scale(1); opacity: 0; }
 }
 
