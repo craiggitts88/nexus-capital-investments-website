@@ -3,30 +3,14 @@
    Particle canvas · Dropdown nav · 3D tilt · Scroll reveal · Counters
 ═══════════════════════════════════════════════════════════════ */
 
-/* ── 0. GLOBAL BACKGROUND EFFECTS (hex lattice · light rays · corner rings) ── */
-(function () {
-  const isAlgo = document.body.classList.contains('algo-page');
-  const wrap = document.createElement('div');
-  wrap.className = 'site-bg-effects' + (isAlgo ? ' site-bg-effects--algo' : '');
-  wrap.innerHTML =
-    '<div class="site-bg-hex"></div>' +
-    '<div class="site-bg-rays"></div>' +
-    '<div class="site-bg-rings">' +
-      '<div class="site-bg-ring" style="--d:0s"></div>' +
-      '<div class="site-bg-ring" style="--d:2.7s"></div>' +
-      '<div class="site-bg-ring" style="--d:5.4s"></div>' +
-    '</div>';
-  document.body.insertBefore(wrap, document.body.firstChild);
-})();
-
-
-/* ── 1. PARTICLE CANVAS ── */
+/* ── 1. PARTICLE CANVAS + BACKGROUND EFFECTS ── */
+/* Grid, pulse rings, and particles all drawn here — the canvas is the only
+   layer guaranteed to render over all page stacking contexts on every page. */
 (function () {
   const canvas = document.getElementById('particle-canvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
 
-  // Use gold colour on NCI pages, cyan on algo pages
   const isAlgoPage = document.body.classList.contains('algo-page');
   const COLOR = isAlgoPage ? '0, 204, 255' : '201, 168, 76';
 
@@ -41,6 +25,54 @@
   resize();
   window.addEventListener('resize', resize);
 
+  /* ── Grid ── */
+  let gridTime = 0;
+  const GRID_STEP = 80;
+
+  function drawGrid(dt) {
+    gridTime += dt * 6; // 6 px/s diagonal drift
+    const off = ((gridTime % GRID_STEP) + GRID_STEP) % GRID_STEP;
+    ctx.lineWidth = 1;
+    // Horizontal lines
+    ctx.strokeStyle = `rgba(${COLOR}, 0.13)`;
+    ctx.beginPath();
+    for (let y = off - GRID_STEP; y < H + GRID_STEP; y += GRID_STEP) {
+      ctx.moveTo(0,  Math.round(y));
+      ctx.lineTo(W,  Math.round(y));
+    }
+    ctx.stroke();
+    // Vertical lines (slightly fainter)
+    ctx.strokeStyle = `rgba(${COLOR}, 0.09)`;
+    ctx.beginPath();
+    for (let x = off - GRID_STEP; x < W + GRID_STEP; x += GRID_STEP) {
+      ctx.moveTo(Math.round(x), 0);
+      ctx.lineTo(Math.round(x), H);
+    }
+    ctx.stroke();
+  }
+
+  /* ── Corner pulse rings ── */
+  const RING_PERIOD = 8000; // ms per full cycle
+
+  function drawRings(ts) {
+    const maxR = Math.hypot(W, H) * 0.55;
+    const cx = W, cy = 0; // top-right corner
+    ctx.lineWidth = 1.5;
+    for (let i = 0; i < 3; i++) {
+      const phase = ((ts + i * (RING_PERIOD / 3)) % RING_PERIOD) / RING_PERIOD;
+      const r     = maxR * phase;
+      const alpha = phase < 0.18
+        ? (phase / 0.18) * 0.55
+        : ((1 - phase) / 0.82) * 0.55;
+      if (alpha < 0.02) continue;
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(${COLOR}, ${alpha})`;
+      ctx.stroke();
+    }
+  }
+
+  /* ── Particles ── */
   class Particle {
     constructor() { this.init(); }
     init() {
@@ -49,7 +81,7 @@
       this.vx = (Math.random() - 0.5) * 0.25;
       this.vy = (Math.random() - 0.5) * 0.25;
       this.r  = Math.random() * 1.6 + 0.4;
-      this.a  = Math.random() * 0.4 + 0.06;
+      this.a  = Math.random() * 0.22 + 0.04;
     }
     update() {
       this.x += this.vx;
@@ -77,7 +109,7 @@
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(${COLOR}, ${0.1 * (1 - d / MAX_DIST)})`;
+          ctx.strokeStyle = `rgba(${COLOR}, ${0.07 * (1 - d / MAX_DIST)})`;
           ctx.lineWidth   = 0.6;
           ctx.stroke();
         }
@@ -85,13 +117,25 @@
     }
   }
 
-  function loop() {
+  /* ── Main loop ── */
+  let lastTs = 0;
+  function loop(ts) {
+    const dt = Math.min((ts - lastTs) / 1000, 0.05);
+    lastTs = ts;
+
     ctx.clearRect(0, 0, W, H);
+
+    // Background layers (drawn first, behind particles)
+    drawGrid(dt);
+    drawRings(ts);
+
+    // Particles on top
     particles.forEach(p => { p.update(); p.draw(); });
     drawConnections();
+
     requestAnimationFrame(loop);
   }
-  loop();
+  requestAnimationFrame(loop);
 })();
 
 
