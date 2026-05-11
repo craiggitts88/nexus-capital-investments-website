@@ -1,0 +1,369 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 460" fill="none">
+  <defs>
+    <!-- Clip entire terminal to rounded rect -->
+    <clipPath id="terminal-clip">
+      <rect width="640" height="460" rx="10"/>
+    </clipPath>
+    <!-- Equity curve gradient fill -->
+    <linearGradient id="eq-fill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#c9a84c" stop-opacity="0.30"/>
+      <stop offset="55%"  stop-color="#c9a84c" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#c9a84c" stop-opacity="0"/>
+    </linearGradient>
+    <!-- Header gradient -->
+    <linearGradient id="hdr-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#0e1c2e"/>
+      <stop offset="100%" stop-color="#0a1422"/>
+    </linearGradient>
+    <!-- Bottom bar gradient -->
+    <linearGradient id="bar-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#0a1422"/>
+      <stop offset="100%" stop-color="#060e1a"/>
+    </linearGradient>
+    <!-- Progress bar gold gradient -->
+    <linearGradient id="pg1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#c9a84c"/>
+      <stop offset="100%" stop-color="#e2c068"/>
+    </linearGradient>
+    <linearGradient id="pg2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#c9a84c"/>
+      <stop offset="100%" stop-color="#e2c068"/>
+    </linearGradient>
+    <!-- Ambient glow behind chart -->
+    <radialGradient id="chart-glow" cx="65%" cy="40%" r="50%">
+      <stop offset="0%"   stop-color="#c9a84c" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#c9a84c" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Subtle glow filter -->
+    <filter id="glow-sm" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="2.5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-lg" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- ═══════════════════════════════════════
+       BASE: TERMINAL CHROME
+  ═══════════════════════════════════════ -->
+  <g clip-path="url(#terminal-clip)">
+
+    <!-- Terminal body -->
+    <rect width="640" height="460" fill="#040c18"/>
+
+    <!-- Ambient background glow -->
+    <rect width="640" height="460" fill="url(#chart-glow)"/>
+
+    <!-- Subtle scan-line texture -->
+    <rect width="640" height="460" fill="url(#scanlines)" opacity="0.03"/>
+
+    <!-- ═══ HEADER BAR ═══ -->
+    <rect width="640" height="46" fill="url(#hdr-bg)"/>
+    <line x1="0" y1="46" x2="640" y2="46" stroke="#c9a84c" stroke-opacity="0.20" stroke-width="1"/>
+
+    <!-- Corner accent marks -->
+    <rect x="0"   y="0"  width="3" height="46" fill="#c9a84c" fill-opacity="0.35"/>
+    <rect x="637" y="0"  width="3" height="46" fill="#c9a84c" fill-opacity="0.12"/>
+
+    <!-- Header text -->
+    <text x="16" y="17" font-family="'Courier New',monospace" font-size="7.5" fill="#c9a84c" fill-opacity="0.45" letter-spacing="2.5">NCI · NEXUS CAPITAL &amp; INVESTMENTS</text>
+    <text x="16" y="35" font-family="'Courier New',monospace" font-size="11.5" fill="#c9a84c" font-weight="bold" letter-spacing="3">PORTFOLIO ANALYTICS TERMINAL</text>
+
+    <!-- Traffic lights -->
+    <circle cx="600" cy="23" r="4.5" fill="#ef4444" fill-opacity="0.85"/>
+    <circle cx="615" cy="23" r="4.5" fill="#f59e0b" fill-opacity="0.85"/>
+    <circle cx="630" cy="23" r="4.5" fill="#22c55e" fill-opacity="0.85"/>
+
+    <!-- LIVE badge -->
+    <rect x="558" y="30" width="32" height="11" rx="2.5" fill="#22c55e" fill-opacity="0.14" stroke="#22c55e" stroke-opacity="0.4" stroke-width="0.7"/>
+    <text x="574" y="38.5" font-family="'Courier New',monospace" font-size="7" fill="#22c55e" text-anchor="middle" letter-spacing="1.5">LIVE</text>
+
+    <!-- Blinking cursor -->
+    <rect x="594" y="10" width="7" height="2" fill="#c9a84c" fill-opacity="0.5">
+      <animate attributeName="fill-opacity" values="0.5;0;0.5" dur="1.1s" repeatCount="indefinite"/>
+    </rect>
+
+
+    <!-- ═══════════════════════════════════════
+         LEFT PANEL — EQUITY PERFORMANCE CHART
+    ═══════════════════════════════════════ -->
+
+    <!-- Panel labels -->
+    <text x="16" y="64" font-family="'Courier New',monospace" font-size="8" fill="#c9a84c" fill-opacity="0.55" letter-spacing="2.5">EQUITY PERFORMANCE</text>
+    <text x="175" y="64" font-family="'Courier New',monospace" font-size="8" fill="#8a9ab8" fill-opacity="0.35" letter-spacing="1">·  YTD 2026  ·  NCI SYSTEMATIC</text>
+    <text x="356" y="64" font-family="'Courier New',monospace" font-size="7" fill="#8a9ab8" fill-opacity="0.28" letter-spacing="1">09:47:23 UTC</text>
+
+    <!-- Y-axis labels -->
+    <!-- Scale: y=90 (160%) → y=320 (80%), 230px / 80pts = 2.875 px/% -->
+    <text x="54" y="94"  font-family="'Courier New',monospace" font-size="7.5" fill="#8a9ab8" fill-opacity="0.45" text-anchor="end">160%</text>
+    <text x="54" y="151" font-family="'Courier New',monospace" font-size="7.5" fill="#8a9ab8" fill-opacity="0.45" text-anchor="end">140%</text>
+    <text x="54" y="208" font-family="'Courier New',monospace" font-size="7.5" fill="#8a9ab8" fill-opacity="0.45" text-anchor="end">120%</text>
+    <text x="54" y="265" font-family="'Courier New',monospace" font-size="7.5" fill="#8a9ab8" fill-opacity="0.45" text-anchor="end">100%</text>
+    <text x="54" y="322" font-family="'Courier New',monospace" font-size="7.5" fill="#8a9ab8" fill-opacity="0.28" text-anchor="end">80%</text>
+
+    <!-- Horizontal grid lines -->
+    <line x1="58" y1="91"  x2="418" y2="91"  stroke="#c9a84c" stroke-opacity="0.055" stroke-width="0.7"/>
+    <line x1="58" y1="148" x2="418" y2="148" stroke="#c9a84c" stroke-opacity="0.055" stroke-width="0.7"/>
+    <line x1="58" y1="205" x2="418" y2="205" stroke="#c9a84c" stroke-opacity="0.055" stroke-width="0.7"/>
+    <line x1="58" y1="262" x2="418" y2="262" stroke="#c9a84c" stroke-opacity="0.08"  stroke-width="0.7"/>
+    <line x1="58" y1="320" x2="418" y2="320" stroke="#c9a84c" stroke-opacity="0.13"  stroke-width="0.7"/>
+
+    <!-- Vertical grid lines (monthly) -->
+    <line x1="80"  y1="91" x2="80"  y2="320" stroke="#8a9ab8" stroke-opacity="0.04" stroke-width="0.7"/>
+    <line x1="148" y1="91" x2="148" y2="320" stroke="#8a9ab8" stroke-opacity="0.04" stroke-width="0.7"/>
+    <line x1="216" y1="91" x2="216" y2="320" stroke="#8a9ab8" stroke-opacity="0.04" stroke-width="0.7"/>
+    <line x1="284" y1="91" x2="284" y2="320" stroke="#8a9ab8" stroke-opacity="0.04" stroke-width="0.7"/>
+    <line x1="352" y1="91" x2="352" y2="320" stroke="#8a9ab8" stroke-opacity="0.04" stroke-width="0.7"/>
+    <line x1="412" y1="91" x2="412" y2="320" stroke="#8a9ab8" stroke-opacity="0.04" stroke-width="0.7"/>
+
+    <!-- Chart frame -->
+    <rect x="58" y="91" width="360" height="229" rx="2" fill="none" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="0.7"/>
+
+    <!-- Drawdown zone shading (APR dip: x≈264 to x≈296) -->
+    <path d="M 264,202 L 296,202 C 292,210 285,228 278,230 C 271,224 268,200 264,202 Z"
+      fill="#ef4444" fill-opacity="0.10"/>
+    <!-- Drawdown ceiling line -->
+    <line x1="262" y1="201" x2="298" y2="201" stroke="#ef4444" stroke-opacity="0.35" stroke-width="0.7" stroke-dasharray="2,3"/>
+    <!-- Drawdown label -->
+    <text x="280" y="198" font-family="'Courier New',monospace" font-size="6.5" fill="#ef4444" fill-opacity="0.65" text-anchor="middle">DD -4.2%</text>
+
+    <!-- Equity curve gradient fill -->
+    <path d="M 80,263
+      C 96,259 122,246 148,241
+      C 168,237 192,223 216,218
+      C 234,214 250,206 264,202
+      C 270,199 273,224 278,229
+      C 282,232 289,212 296,207
+      C 315,200 334,186 352,173
+      C 368,161 390,147 412,130
+      L 412,320 L 80,320 Z"
+      fill="url(#eq-fill)"/>
+
+    <!-- Equity curve line (on top of fill) -->
+    <path d="M 80,263
+      C 96,259 122,246 148,241
+      C 168,237 192,223 216,218
+      C 234,214 250,206 264,202
+      C 270,199 273,224 278,229
+      C 282,232 289,212 296,207
+      C 315,200 334,186 352,173
+      C 368,161 390,147 412,130"
+      stroke="#c9a84c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Current price horizontal guide -->
+    <line x1="58" y1="130" x2="412" y2="130" stroke="#c9a84c" stroke-opacity="0.13" stroke-width="0.7" stroke-dasharray="3,5"/>
+    <!-- Current price label -->
+    <rect x="8" y="124" width="34" height="12" rx="2" fill="#c9a84c" fill-opacity="0.16"/>
+    <text x="25" y="133" font-family="'Courier New',monospace" font-size="7.5" fill="#c9a84c" text-anchor="middle" font-weight="bold">147%</text>
+
+    <!-- Current price dot — pulsing -->
+    <circle cx="412" cy="130" r="10" fill="#c9a84c" fill-opacity="0.06">
+      <animate attributeName="r" values="10;18;10" dur="2.2s" repeatCount="indefinite"/>
+      <animate attributeName="fill-opacity" values="0.06;0.02;0.06" dur="2.2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="412" cy="130" r="5" fill="#c9a84c" fill-opacity="0.22">
+      <animate attributeName="r" values="5;8;5" dur="2.2s" repeatCount="indefinite"/>
+      <animate attributeName="fill-opacity" values="0.22;0.08;0.22" dur="2.2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="412" cy="130" r="2.8" fill="#e2c068" filter="url(#glow-sm)"/>
+
+    <!-- Start annotation -->
+    <rect x="70" y="254" width="28" height="11" rx="2" fill="#0a1422" stroke="#c9a84c" stroke-opacity="0.25" stroke-width="0.6"/>
+    <text x="84" y="263" font-family="'Courier New',monospace" font-size="6.5" fill="#c9a84c" text-anchor="middle">+0%</text>
+
+    <!-- End annotation -->
+    <rect x="395" y="119" width="38" height="11" rx="2" fill="#c9a84c" fill-opacity="0.22" stroke="#c9a84c" stroke-opacity="0.45" stroke-width="0.7"/>
+    <text x="414" y="128" font-family="'Courier New',monospace" font-size="7" fill="#e2c068" text-anchor="middle" font-weight="bold">+47.2%</text>
+
+    <!-- X-axis labels -->
+    <text x="80"  y="337" font-family="'Courier New',monospace" font-size="7.5" fill="#8a9ab8" fill-opacity="0.45" text-anchor="middle">JAN</text>
+    <text x="148" y="337" font-family="'Courier New',monospace" font-size="7.5" fill="#8a9ab8" fill-opacity="0.45" text-anchor="middle">FEB</text>
+    <text x="216" y="337" font-family="'Courier New',monospace" font-size="7.5" fill="#8a9ab8" fill-opacity="0.45" text-anchor="middle">MAR</text>
+    <text x="284" y="337" font-family="'Courier New',monospace" font-size="7.5" fill="#8a9ab8" fill-opacity="0.45" text-anchor="middle">APR</text>
+    <text x="352" y="337" font-family="'Courier New',monospace" font-size="7.5" fill="#8a9ab8" fill-opacity="0.45" text-anchor="middle">MAY</text>
+    <text x="412" y="337" font-family="'Courier New',monospace" font-size="7.5" fill="#c9a84c" fill-opacity="0.75" text-anchor="middle">JUN</text>
+
+
+    <!-- ═══════════════════════════════════════
+         VERTICAL DIVIDER
+    ═══════════════════════════════════════ -->
+    <line x1="430" y1="52" x2="430" y2="352" stroke="#c9a84c" stroke-opacity="0.11" stroke-width="1"/>
+
+
+    <!-- ═══════════════════════════════════════
+         RIGHT PANEL — ALGORITHM MONITOR
+    ═══════════════════════════════════════ -->
+
+    <!-- Panel label -->
+    <text x="442" y="64" font-family="'Courier New',monospace" font-size="8" fill="#c9a84c" fill-opacity="0.55" letter-spacing="2.5">ALGO MONITOR</text>
+    <line x1="430" y1="70" x2="636" y2="70" stroke="#c9a84c" stroke-opacity="0.10" stroke-width="0.7"/>
+
+    <!-- ── Algorithm 1: White Rabbit ── -->
+    <!-- Pulsing outer halo -->
+    <circle cx="443" cy="91" r="7" fill="#22c55e" fill-opacity="0.06">
+      <animate attributeName="r" values="7;11;7" dur="2.5s" repeatCount="indefinite"/>
+      <animate attributeName="fill-opacity" values="0.06;0.02;0.06" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <!-- Status dot -->
+    <circle cx="443" cy="91" r="4" fill="#22c55e" fill-opacity="0.20" stroke="#22c55e" stroke-opacity="0.5" stroke-width="1">
+      <animate attributeName="fill-opacity" values="0.20;0.50;0.20" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="443" cy="91" r="2.2" fill="#22c55e">
+      <animate attributeName="fill-opacity" values="1;0.4;1" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+
+    <text x="454" y="88" font-family="'Courier New',monospace" font-size="9" fill="#e2c068" letter-spacing="0.5">WHITE RABBIT</text>
+    <rect x="454" y="92" width="34" height="9" rx="2" fill="#22c55e" fill-opacity="0.12" stroke="#22c55e" stroke-opacity="0.3" stroke-width="0.5"/>
+    <text x="471" y="99" font-family="'Courier New',monospace" font-size="6" fill="#22c55e" text-anchor="middle" letter-spacing="0.5">ACTIVE</text>
+    <text x="632" y="88" font-family="'Courier New',monospace" font-size="9.5" fill="#22c55e" text-anchor="end" font-weight="bold">+23.4%</text>
+
+    <!-- Progress bar track -->
+    <rect x="443" y="106" width="184" height="5" rx="2.5" fill="#0a1422"/>
+    <rect x="443" y="106" width="184" height="5" rx="2.5" fill="none" stroke="#c9a84c" stroke-opacity="0.10" stroke-width="0.5"/>
+    <!-- Progress fill (78%) -->
+    <rect x="443" y="106" width="143" height="5" rx="2.5" fill="url(#pg1)">
+      <animate attributeName="width" from="0" to="143" dur="1.4s" calcMode="spline" keySplines="0.4 0 0.2 1" fill="freeze"/>
+    </rect>
+
+    <text x="443" y="119" font-family="'Courier New',monospace" font-size="6.5" fill="#8a9ab8" fill-opacity="0.45" letter-spacing="0.5">ES · NQ · RTY · YM</text>
+    <text x="632" y="119" font-family="'Courier New',monospace" font-size="6.5" fill="#8a9ab8" fill-opacity="0.38" text-anchor="end">78% alloc</text>
+
+    <line x1="430" y1="128" x2="636" y2="128" stroke="#c9a84c" stroke-opacity="0.07" stroke-width="0.6"/>
+
+    <!-- ── Algorithm 2: Portfolio Master ── -->
+    <circle cx="443" cy="149" r="7" fill="#22c55e" fill-opacity="0.06">
+      <animate attributeName="r" values="7;11;7" dur="3.3s" repeatCount="indefinite"/>
+      <animate attributeName="fill-opacity" values="0.06;0.02;0.06" dur="3.3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="443" cy="149" r="4" fill="#22c55e" fill-opacity="0.20" stroke="#22c55e" stroke-opacity="0.5" stroke-width="1">
+      <animate attributeName="fill-opacity" values="0.20;0.50;0.20" dur="3.3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="443" cy="149" r="2.2" fill="#22c55e">
+      <animate attributeName="fill-opacity" values="1;0.4;1" dur="3.3s" repeatCount="indefinite"/>
+    </circle>
+
+    <text x="454" y="146" font-family="'Courier New',monospace" font-size="9" fill="#e2c068" letter-spacing="0.5">PORTFOLIO MASTER</text>
+    <rect x="454" y="150" width="34" height="9" rx="2" fill="#22c55e" fill-opacity="0.12" stroke="#22c55e" stroke-opacity="0.3" stroke-width="0.5"/>
+    <text x="471" y="157" font-family="'Courier New',monospace" font-size="6" fill="#22c55e" text-anchor="middle" letter-spacing="0.5">ACTIVE</text>
+    <text x="632" y="146" font-family="'Courier New',monospace" font-size="9.5" fill="#22c55e" text-anchor="end" font-weight="bold">+18.7%</text>
+
+    <!-- Progress bar (65%) -->
+    <rect x="443" y="164" width="184" height="5" rx="2.5" fill="#0a1422"/>
+    <rect x="443" y="164" width="184" height="5" rx="2.5" fill="none" stroke="#c9a84c" stroke-opacity="0.10" stroke-width="0.5"/>
+    <rect x="443" y="164" width="120" height="5" rx="2.5" fill="url(#pg2)">
+      <animate attributeName="width" from="0" to="120" dur="1.7s" calcMode="spline" keySplines="0.4 0 0.2 1" fill="freeze"/>
+    </rect>
+
+    <text x="443" y="177" font-family="'Courier New',monospace" font-size="6.5" fill="#8a9ab8" fill-opacity="0.45" letter-spacing="0.5">6× INSTRUMENTS</text>
+    <text x="632" y="177" font-family="'Courier New',monospace" font-size="6.5" fill="#8a9ab8" fill-opacity="0.38" text-anchor="end">65% alloc</text>
+
+    <line x1="430" y1="186" x2="636" y2="186" stroke="#c9a84c" stroke-opacity="0.07" stroke-width="0.6"/>
+
+    <!-- ── Algorithm 3: Risk Engine ── -->
+    <circle cx="443" cy="207" r="7" fill="#f59e0b" fill-opacity="0.06">
+      <animate attributeName="r" values="7;11;7" dur="1.9s" repeatCount="indefinite"/>
+      <animate attributeName="fill-opacity" values="0.06;0.02;0.06" dur="1.9s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="443" cy="207" r="4" fill="#f59e0b" fill-opacity="0.20" stroke="#f59e0b" stroke-opacity="0.5" stroke-width="1">
+      <animate attributeName="fill-opacity" values="0.20;0.55;0.20" dur="1.9s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="443" cy="207" r="2.2" fill="#f59e0b">
+      <animate attributeName="fill-opacity" values="1;0.4;1" dur="1.9s" repeatCount="indefinite"/>
+    </circle>
+
+    <text x="454" y="204" font-family="'Courier New',monospace" font-size="9" fill="#e2c068" letter-spacing="0.5">RISK ENGINE</text>
+    <rect x="454" y="208" width="45" height="9" rx="2" fill="#f59e0b" fill-opacity="0.10" stroke="#f59e0b" stroke-opacity="0.3" stroke-width="0.5"/>
+    <text x="476" y="215" font-family="'Courier New',monospace" font-size="6" fill="#f59e0b" text-anchor="middle" letter-spacing="0.5">MONITORING</text>
+
+    <!-- Risk progress (45%) -->
+    <rect x="443" y="222" width="184" height="5" rx="2.5" fill="#0a1422"/>
+    <rect x="443" y="222" width="184" height="5" rx="2.5" fill="none" stroke="#c9a84c" stroke-opacity="0.10" stroke-width="0.5"/>
+    <rect x="443" y="222" width="83" height="5" rx="2.5" fill="#f59e0b" fill-opacity="0.65">
+      <animate attributeName="width" from="0" to="83" dur="2.0s" calcMode="spline" keySplines="0.4 0 0.2 1" fill="freeze"/>
+    </rect>
+
+    <text x="443" y="235" font-family="'Courier New',monospace" font-size="6.5" fill="#8a9ab8" fill-opacity="0.45" letter-spacing="0.5">ALL LIMITS: WITHIN RANGE</text>
+    <text x="632" y="235" font-family="'Courier New',monospace" font-size="6.5" fill="#f59e0b" fill-opacity="0.65" text-anchor="end">45% risk</text>
+
+    <line x1="430" y1="244" x2="636" y2="244" stroke="#c9a84c" stroke-opacity="0.07" stroke-width="0.6"/>
+
+    <!-- ── System Status ── -->
+    <text x="442" y="260" font-family="'Courier New',monospace" font-size="7" fill="#8a9ab8" fill-opacity="0.30" letter-spacing="2">SYSTEM STATUS</text>
+
+    <text x="442" y="277" font-family="'Courier New',monospace" font-size="7.5" fill="#8a9ab8" fill-opacity="0.45">UPTIME</text>
+    <text x="632" y="277" font-family="'Courier New',monospace" font-size="7.5" fill="#c9a84c" fill-opacity="0.70" text-anchor="end">847h 23m</text>
+    <line x1="430" y1="283" x2="636" y2="283" stroke="#c9a84c" stroke-opacity="0.05" stroke-width="0.6"/>
+
+    <text x="442" y="296" font-family="'Courier New',monospace" font-size="7.5" fill="#8a9ab8" fill-opacity="0.45">LAST SYNC</text>
+    <text x="632" y="296" font-family="'Courier New',monospace" font-size="7.5" fill="#22c55e" fill-opacity="0.80" text-anchor="end">0.3s ago</text>
+    <line x1="430" y1="302" x2="636" y2="302" stroke="#c9a84c" stroke-opacity="0.05" stroke-width="0.6"/>
+
+    <text x="442" y="315" font-family="'Courier New',monospace" font-size="7.5" fill="#8a9ab8" fill-opacity="0.45">MODE</text>
+    <rect x="578" y="306" width="54" height="12" rx="2.5" fill="#c9a84c" fill-opacity="0.12" stroke="#c9a84c" stroke-opacity="0.30" stroke-width="0.6"/>
+    <text x="605" y="315" font-family="'Courier New',monospace" font-size="7.5" fill="#c9a84c" text-anchor="middle" font-weight="bold">LIVE TRADE</text>
+    <line x1="430" y1="322" x2="636" y2="322" stroke="#c9a84c" stroke-opacity="0.05" stroke-width="0.6"/>
+
+    <text x="442" y="335" font-family="'Courier New',monospace" font-size="7.5" fill="#8a9ab8" fill-opacity="0.45">LATENCY</text>
+    <text x="632" y="335" font-family="'Courier New',monospace" font-size="7.5" fill="#22c55e" fill-opacity="0.80" text-anchor="end">2.4ms</text>
+
+    <!-- Nexus Algorithmics engine label -->
+    <text x="535" y="350" font-family="'Courier New',monospace" font-size="6" fill="#c9a84c" fill-opacity="0.28" text-anchor="middle" letter-spacing="1.5">NEXUS ALGORITHMICS ENGINE</text>
+
+
+    <!-- ═══════════════════════════════════════
+         BOTTOM METRICS BAR
+    ═══════════════════════════════════════ -->
+    <line x1="0" y1="356" x2="640" y2="356" stroke="#c9a84c" stroke-opacity="0.18" stroke-width="1"/>
+    <rect y="357" width="640" height="103" fill="url(#bar-bg)"/>
+
+    <!-- Metric separators — 6 slots: centers at 53, 160, 266, 373, 480, 587 -->
+    <line x1="106" y1="364" x2="106" y2="448" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="0.7"/>
+    <line x1="213" y1="364" x2="213" y2="448" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="0.7"/>
+    <line x1="320" y1="364" x2="320" y2="448" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="0.7"/>
+    <line x1="427" y1="364" x2="427" y2="448" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="0.7"/>
+    <line x1="534" y1="364" x2="534" y2="448" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="0.7"/>
+
+    <!-- Metric 1: Period RTN -->
+    <text x="53"  y="380" font-family="'Courier New',monospace" font-size="7" fill="#8a9ab8" fill-opacity="0.45" text-anchor="middle" letter-spacing="1.5">PERIOD RTN</text>
+    <text x="53"  y="408" font-family="'Courier New',monospace" font-size="20" fill="#22c55e" text-anchor="middle" font-weight="bold">+47.2%</text>
+    <text x="53"  y="423" font-family="'Courier New',monospace" font-size="6.5" fill="#22c55e" fill-opacity="0.45" text-anchor="middle">YTD 2026</text>
+
+    <!-- Metric 2: Sharpe Ratio -->
+    <text x="159" y="380" font-family="'Courier New',monospace" font-size="7" fill="#8a9ab8" fill-opacity="0.45" text-anchor="middle" letter-spacing="1.5">SHARPE RATIO</text>
+    <text x="159" y="408" font-family="'Courier New',monospace" font-size="20" fill="#c9a84c" text-anchor="middle" font-weight="bold">1.84</text>
+    <text x="159" y="423" font-family="'Courier New',monospace" font-size="6.5" fill="#c9a84c" fill-opacity="0.45" text-anchor="middle">Risk-Adjusted</text>
+
+    <!-- Metric 3: Max Drawdown -->
+    <text x="266" y="380" font-family="'Courier New',monospace" font-size="7" fill="#8a9ab8" fill-opacity="0.45" text-anchor="middle" letter-spacing="1.5">MAX DRAWDOWN</text>
+    <text x="266" y="408" font-family="'Courier New',monospace" font-size="20" fill="#ef4444" fill-opacity="0.80" text-anchor="middle" font-weight="bold">-8.2%</text>
+    <text x="266" y="423" font-family="'Courier New',monospace" font-size="6.5" fill="#ef4444" fill-opacity="0.40" text-anchor="middle">Peak-to-Trough</text>
+
+    <!-- Metric 4: Win Rate -->
+    <text x="373" y="380" font-family="'Courier New',monospace" font-size="7" fill="#8a9ab8" fill-opacity="0.45" text-anchor="middle" letter-spacing="1.5">WIN RATE</text>
+    <text x="373" y="408" font-family="'Courier New',monospace" font-size="20" fill="#c9a84c" text-anchor="middle" font-weight="bold">63%</text>
+    <text x="373" y="423" font-family="'Courier New',monospace" font-size="6.5" fill="#c9a84c" fill-opacity="0.45" text-anchor="middle">All Strategies</text>
+
+    <!-- Metric 5: Instruments -->
+    <text x="480" y="380" font-family="'Courier New',monospace" font-size="7" fill="#8a9ab8" fill-opacity="0.45" text-anchor="middle" letter-spacing="1.5">INSTRUMENTS</text>
+    <text x="480" y="408" font-family="'Courier New',monospace" font-size="20" fill="#c9a84c" text-anchor="middle" font-weight="bold">6</text>
+    <text x="480" y="423" font-family="'Courier New',monospace" font-size="6.5" fill="#c9a84c" fill-opacity="0.45" text-anchor="middle">Active Markets</text>
+
+    <!-- Metric 6: Algo Score -->
+    <text x="587" y="380" font-family="'Courier New',monospace" font-size="7" fill="#8a9ab8" fill-opacity="0.45" text-anchor="middle" letter-spacing="1.5">ALGO SCORE</text>
+    <text x="587" y="408" font-family="'Courier New',monospace" font-size="20" fill="#c9a84c" text-anchor="middle" font-weight="bold">9.2</text>
+    <text x="587" y="423" font-family="'Courier New',monospace" font-size="6.5" fill="#c9a84c" fill-opacity="0.45" text-anchor="middle">/ 10.0</text>
+
+    <!-- Footer credit line -->
+    <line x1="0" y1="440" x2="640" y2="440" stroke="#c9a84c" stroke-opacity="0.08" stroke-width="0.7"/>
+    <text x="320" y="453" font-family="'Courier New',monospace" font-size="6" fill="#8a9ab8" fill-opacity="0.25" text-anchor="middle" letter-spacing="2">NEXUS CAPITAL &amp; INVESTMENTS  ·  NEXUS ALGORITHMICS PLATFORM  ·  ALL DATA ILLUSTRATIVE</text>
+
+  </g><!-- /clip -->
+
+  <!-- Border drawn on top (outside clip so full stroke is visible) -->
+  <rect width="640" height="460" rx="10" fill="none" stroke="#c9a84c" stroke-opacity="0.25" stroke-width="1.2"/>
+  <!-- Inner shimmer border -->
+  <rect x="1.5" y="1.5" width="637" height="457" rx="8.5" fill="none" stroke="#c9a84c" stroke-opacity="0.06" stroke-width="0.7"/>
+
+</svg>
