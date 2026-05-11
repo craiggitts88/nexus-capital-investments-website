@@ -116,24 +116,42 @@
     const menu = dropdown.querySelector('.nav-dropdown-menu');
     if (!btn || !menu) return;
 
+    let leaveTimer;
+
     // Toggle on click (works on desktop + mobile)
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
+      clearTimeout(leaveTimer);
       const isOpen = dropdown.classList.toggle('open');
       btn.setAttribute('aria-expanded', isOpen);
     });
 
-    // Hover open on desktop
+    // Hover open on desktop — clear any pending close on re-enter
     dropdown.addEventListener('mouseenter', () => {
       if (window.innerWidth > 700) {
+        clearTimeout(leaveTimer);
         dropdown.classList.add('open');
         btn.setAttribute('aria-expanded', 'true');
       }
     });
+    // Delay close so cursor can travel into the menu without it vanishing
     dropdown.addEventListener('mouseleave', () => {
       if (window.innerWidth > 700) {
-        dropdown.classList.remove('open');
-        btn.setAttribute('aria-expanded', 'false');
+        leaveTimer = setTimeout(() => {
+          dropdown.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+        }, 180);
+      }
+    });
+
+    // Keep open if mouse enters the menu itself
+    menu.addEventListener('mouseenter', () => { clearTimeout(leaveTimer); });
+    menu.addEventListener('mouseleave', () => {
+      if (window.innerWidth > 700) {
+        leaveTimer = setTimeout(() => {
+          dropdown.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+        }, 180);
       }
     });
   });

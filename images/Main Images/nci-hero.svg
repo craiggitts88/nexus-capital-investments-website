@@ -1,177 +1,172 @@
-<svg viewBox="0 0 580 500" xmlns="http://www.w3.org/2000/svg" fill="none">
-  <defs>
-    <!-- Globe gradient: subtle gold highlight top-left -->
-    <radialGradient id="globeSurface" cx="38%" cy="32%" r="65%">
-      <stop offset="0%"   stop-color="#c9a84c" stop-opacity="0.18"/>
-      <stop offset="55%"  stop-color="#0d1a2e" stop-opacity="0.7"/>
-      <stop offset="100%" stop-color="#040a12" stop-opacity="0.95"/>
-    </radialGradient>
-    <!-- Outer aura -->
-    <radialGradient id="globeAura" cx="50%" cy="50%" r="50%">
-      <stop offset="0%"   stop-color="#c9a84c" stop-opacity="0.25"/>
-      <stop offset="60%"  stop-color="#c9a84c" stop-opacity="0.04"/>
-      <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
-    </radialGradient>
-    <!-- Gold glow filter -->
-    <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="4" result="blur"/>
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="8" result="blur"/>
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-    <!-- Clip to globe -->
-    <clipPath id="globeClip">
-      <circle cx="268" cy="242" r="148"/>
-    </clipPath>
-  </defs>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 500">
+<defs>
+  <clipPath id="globe-clip"><circle cx="268" cy="242" r="148"/></clipPath>
+  <filter id="blur-sm" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="4"/></filter>
+  <filter id="blur-md" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="12"/></filter>
+  <filter id="blur-lg" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="24"/></filter>
+  <filter id="glow-dot" x="-200%" y="-200%" width="500%" height="500%">
+    <feGaussianBlur stdDeviation="3" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <radialGradient id="globe-fill" cx="35%" cy="30%" r="70%">
+    <stop offset="0%"   stop-color="#16100a"/>
+    <stop offset="45%"  stop-color="#0a0e18"/>
+    <stop offset="100%" stop-color="#020609"/>
+  </radialGradient>
+  <radialGradient id="globe-hi" cx="32%" cy="28%" r="55%">
+    <stop offset="0%"   stop-color="#ffd878" stop-opacity="0.1"/>
+    <stop offset="100%" stop-color="#000"    stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="amb" cx="50%" cy="50%" r="50%">
+    <stop offset="0%"   stop-color="#c9a84c" stop-opacity="0.13"/>
+    <stop offset="100%" stop-color="#c9a84c" stop-opacity="0"/>
+  </radialGradient>
+  <!-- Ring orbital motion paths (full CW ellipses)
+       Ring 1: rx=195 ry=60 rot=-25  P1=(445,160) P2=(91,324)
+       Ring 2: rx=210 ry=50 rot=+15  P1=(471,296) P2=(65,188)
+       Ring 3: rx=155 ry=38 rot=-55  P1=(357,115) P2=(179,369) -->
+  <path id="r1" d="M 445,160 A 195,60,-25,1,1,91,324  A 195,60,-25,1,1,445,160"/>
+  <path id="r2" d="M 471,296 A 210,50,15,1,1,65,188   A 210,50,15,1,1,471,296"/>
+  <path id="r3" d="M 357,115 A 155,38,-55,1,1,179,369 A 155,38,-55,1,1,357,115"/>
+</defs>
 
-  <!-- ── Outer aura ── -->
-  <ellipse cx="268" cy="242" rx="230" ry="230" fill="url(#globeAura)"/>
+<!-- Ambient glow -->
+<circle cx="268" cy="242" r="215" fill="url(#amb)" filter="url(#blur-lg)">
+  <animate attributeName="r" values="210;230;210" dur="8s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values="0.8;1;0.8" dur="8s" repeatCount="indefinite"/>
+</circle>
+<circle cx="268" cy="242" r="178" fill="rgba(201,168,76,0.05)" filter="url(#blur-md)"/>
 
-  <!-- ── Orbital ring BACK (behind globe) ── -->
-  <!-- Ring 1 back arc: top portion of a tilted ellipse -->
-  <path d="M 110 195 Q 268 138 426 195" stroke="#c9a84c" stroke-width="1" stroke-opacity="0.22" fill="none" stroke-dasharray="5 4"/>
-  <!-- Ring 2 back arc -->
-  <path d="M 84 268 Q 268 192 452 268" stroke="#c9a84c" stroke-width="0.8" stroke-opacity="0.15" fill="none" stroke-dasharray="4 5"/>
+<!-- Background stars -->
+<circle cx="55"  cy="32"  r="1"   fill="rgba(201,168,76,0.35)"><animate attributeName="opacity" values="0.35;0.9;0.35"   dur="3.2s"             repeatCount="indefinite"/></circle>
+<circle cx="510" cy="66"  r="0.8" fill="rgba(201,168,76,0.25)"><animate attributeName="opacity" values="0.25;0.75;0.25"  dur="4s"   begin="0.5s" repeatCount="indefinite"/></circle>
+<circle cx="480" cy="178" r="1"   fill="rgba(201,168,76,0.2)"><animate  attributeName="opacity" values="0.2;0.65;0.2"   dur="2.8s" begin="1s"   repeatCount="indefinite"/></circle>
+<circle cx="38"  cy="162" r="0.7" fill="rgba(201,168,76,0.2)"><animate  attributeName="opacity" values="0.2;0.7;0.2"    dur="3.6s" begin="0.3s" repeatCount="indefinite"/></circle>
+<circle cx="88"  cy="402" r="0.9" fill="rgba(201,168,76,0.18)"><animate attributeName="opacity" values="0.18;0.55;0.18" dur="4.5s" begin="1.2s" repeatCount="indefinite"/></circle>
+<circle cx="544" cy="420" r="0.8" fill="rgba(201,168,76,0.22)"><animate attributeName="opacity" values="0.22;0.62;0.22" dur="3s"   begin="0.7s" repeatCount="indefinite"/></circle>
+<circle cx="140" cy="468" r="1"   fill="rgba(201,168,76,0.18)"><animate attributeName="opacity" values="0.18;0.5;0.18"  dur="5s"   begin="2s"   repeatCount="indefinite"/></circle>
 
-  <!-- ── Globe body ── -->
-  <circle cx="268" cy="242" r="148" fill="url(#globeSurface)"/>
-  <circle cx="268" cy="242" r="148" stroke="#c9a84c" stroke-width="1.4" stroke-opacity="0.55"/>
+<!-- Ring back arcs — behind globe, dim + dashed -->
+<path d="M 445,160 A 195,60,-25,1,0,91,324"  fill="none" stroke="rgba(201,168,76,0.2)"  stroke-width="1"   stroke-dasharray="5,4"/>
+<path d="M 471,296 A 210,50,15,1,0,65,188"   fill="none" stroke="rgba(201,168,76,0.16)" stroke-width="1"   stroke-dasharray="4,5"/>
+<path d="M 357,115 A 155,38,-55,1,0,179,369" fill="none" stroke="rgba(201,168,76,0.13)" stroke-width="0.8" stroke-dasharray="3,6"/>
 
-  <!-- ── Latitude lines (clipped) ── -->
-  <g clip-path="url(#globeClip)" stroke="#c9a84c" stroke-opacity="0.14" stroke-width="0.8" fill="none">
-    <ellipse cx="268" cy="164" rx="108" ry="22"/>
-    <ellipse cx="268" cy="203" rx="135" ry="22"/>
-    <ellipse cx="268" cy="242" rx="148" ry="22"/>
-    <ellipse cx="268" cy="281" rx="135" ry="22"/>
-    <ellipse cx="268" cy="320" rx="108" ry="22"/>
-  </g>
+<!-- Globe sphere -->
+<circle cx="268" cy="242" r="148" fill="url(#globe-fill)" stroke="rgba(201,168,76,0.32)" stroke-width="1.5"/>
+<circle cx="268" cy="242" r="148" fill="none" stroke="rgba(201,168,76,0.45)" stroke-width="0.6">
+  <animate attributeName="stroke-opacity" values="0.45;0.1;0.45" dur="5s" repeatCount="indefinite"/>
+</circle>
+<circle cx="268" cy="242" r="152" fill="none" stroke="rgba(201,168,76,0.18)" stroke-width="1.5">
+  <animate attributeName="r"             values="150;165;150" dur="5s" repeatCount="indefinite"/>
+  <animate attributeName="stroke-opacity" values="0.18;0;0.18" dur="5s" repeatCount="indefinite"/>
+</circle>
 
-  <!-- ── Longitude lines (clipped) ── -->
-  <g clip-path="url(#globeClip)" stroke="#c9a84c" stroke-opacity="0.14" stroke-width="0.8" fill="none">
-    <ellipse cx="268" cy="242" rx="36"  ry="148"/>
-    <ellipse cx="268" cy="242" rx="74"  ry="148"/>
-    <ellipse cx="268" cy="242" rx="112" ry="148"/>
-  </g>
+<!-- Globe grid (clipped) -->
+<g clip-path="url(#globe-clip)" opacity="0.55">
+  <ellipse cx="268" cy="168" rx="128" ry="30"  fill="none" stroke="rgba(201,168,76,0.22)" stroke-width="0.75"/>
+  <ellipse cx="268" cy="316" rx="128" ry="30"  fill="none" stroke="rgba(201,168,76,0.22)" stroke-width="0.75"/>
+  <line x1="120" y1="242" x2="416" y2="242"    stroke="rgba(201,168,76,0.3)"  stroke-width="1"/>
+  <ellipse cx="268" cy="126" rx="72"  ry="14"  fill="none" stroke="rgba(201,168,76,0.12)" stroke-width="0.5"/>
+  <ellipse cx="268" cy="358" rx="72"  ry="14"  fill="none" stroke="rgba(201,168,76,0.12)" stroke-width="0.5"/>
+  <ellipse cx="268" cy="242" rx="148" ry="148" fill="none" stroke="rgba(201,168,76,0.22)" stroke-width="0.75"/>
+  <ellipse cx="268" cy="242" rx="74"  ry="148" fill="none" stroke="rgba(201,168,76,0.16)" stroke-width="0.75"/>
+  <ellipse cx="268" cy="242" rx="124" ry="148" fill="none" stroke="rgba(201,168,76,0.1)"  stroke-width="0.5"/>
+  <ellipse cx="268" cy="242" rx="36"  ry="148" fill="none" stroke="rgba(201,168,76,0.1)"  stroke-width="0.5"/>
+  <circle  cx="268" cy="242" r="148"  fill="url(#globe-hi)"/>
+</g>
 
-  <!-- ── Globe highlight (specular) ── -->
-  <ellipse cx="232" cy="198" rx="38" ry="24" fill="rgba(201,168,76,0.07)" transform="rotate(-15 232 198)"/>
+<!-- City nodes -->
+<circle cx="228" cy="198" r="5" fill="none" stroke="rgba(201,168,76,0.55)" stroke-width="1"><animate attributeName="r" values="5;10;5" dur="3s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values="0.55;0;0.55" dur="3s" repeatCount="indefinite"/></circle>
+<circle cx="228" cy="198" r="3" fill="#c9a84c" filter="url(#glow-dot)"/>
+<text x="228" y="187" font-family="Orbitron,monospace" font-size="6.5" fill="rgba(201,168,76,0.85)" text-anchor="middle" letter-spacing="1.5" font-weight="600">LON</text>
 
-  <!-- ── Orbital ring FRONT ── -->
-  <!-- Ring 1 front arc -->
-  <path d="M 110 195 Q 268 252 426 195" stroke="#c9a84c" stroke-width="1.2" stroke-opacity="0.55" fill="none"/>
-  <!-- Traveling dot on ring 1 -->
-  <circle cx="192" cy="215" r="3.5" fill="#c9a84c" opacity="0.9" filter="url(#goldGlow)"/>
-  <!-- Ring 2 front arc -->
-  <path d="M 84 268 Q 268 350 452 268" stroke="#c9a84c" stroke-width="0.9" stroke-opacity="0.38" fill="none" stroke-dasharray="none"/>
-  <!-- Traveling dot on ring 2 -->
-  <circle cx="370" cy="322" r="3" fill="#c9a84c" opacity="0.75" filter="url(#goldGlow)"/>
+<circle cx="182" cy="228" r="5" fill="none" stroke="rgba(201,168,76,0.55)" stroke-width="1"><animate attributeName="r" values="5;10;5" dur="3.5s" begin="0.6s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values="0.55;0;0.55" dur="3.5s" begin="0.6s" repeatCount="indefinite"/></circle>
+<circle cx="182" cy="228" r="3" fill="#c9a84c" filter="url(#glow-dot)"/>
+<text x="165" y="234" font-family="Orbitron,monospace" font-size="6.5" fill="rgba(201,168,76,0.85)" text-anchor="end" letter-spacing="1.5" font-weight="600">NYC</text>
 
-  <!-- ── Financial center nodes on globe ── -->
-  <!-- London: ~(228, 198) -->
-  <circle cx="228" cy="198" r="4.5" fill="rgba(201,168,76,0.15)" stroke="#c9a84c" stroke-width="1.2"/>
-  <circle cx="228" cy="198" r="2"   fill="#c9a84c"/>
-  <!-- New York: ~(182, 228) -->
-  <circle cx="182" cy="228" r="4.5" fill="rgba(201,168,76,0.15)" stroke="#c9a84c" stroke-width="1.2"/>
-  <circle cx="182" cy="228" r="2"   fill="#c9a84c"/>
-  <!-- Frankfurt: ~(260, 192) -->
-  <circle cx="260" cy="192" r="4.5" fill="rgba(201,168,76,0.15)" stroke="#c9a84c" stroke-width="1.2"/>
-  <circle cx="260" cy="192" r="2"   fill="#c9a84c"/>
-  <!-- Tokyo: ~(338, 215) -->
-  <circle cx="338" cy="215" r="4.5" fill="rgba(201,168,76,0.15)" stroke="#c9a84c" stroke-width="1.2"/>
-  <circle cx="338" cy="215" r="2"   fill="#c9a84c"/>
-  <!-- Sydney: ~(348, 288) -->
-  <circle cx="348" cy="288" r="4.5" fill="rgba(201,168,76,0.15)" stroke="#c9a84c" stroke-width="1.2"/>
-  <circle cx="348" cy="288" r="2"   fill="#c9a84c"/>
-  <!-- Dubai: ~(296" cy="240) -->
-  <circle cx="296" cy="240" r="4.5" fill="rgba(201,168,76,0.15)" stroke="#c9a84c" stroke-width="1.2"/>
-  <circle cx="296" cy="240" r="2"   fill="#c9a84c"/>
+<circle cx="260" cy="192" r="4" fill="none" stroke="rgba(201,168,76,0.45)" stroke-width="1"><animate attributeName="r" values="4;8;4" dur="4s" begin="1.1s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values="0.45;0;0.45" dur="4s" begin="1.1s" repeatCount="indefinite"/></circle>
+<circle cx="260" cy="192" r="2.5" fill="#c9a84c" filter="url(#glow-dot)" opacity="0.85"/>
+<text x="248" y="182" font-family="Orbitron,monospace" font-size="6" fill="rgba(201,168,76,0.7)" text-anchor="end" letter-spacing="1.5">FRA</text>
 
-  <!-- ── Connection arcs between nodes ── -->
-  <path d="M 228 198 Q 245 175 260 192" stroke="#c9a84c" stroke-width="0.8" stroke-opacity="0.4" fill="none" stroke-dasharray="3 2"/>
-  <path d="M 260 192 Q 299 186 338 215" stroke="#c9a84c" stroke-width="0.8" stroke-opacity="0.4" fill="none" stroke-dasharray="3 2"/>
-  <path d="M 338 215 Q 343 252 348 288" stroke="#c9a84c" stroke-width="0.8" stroke-opacity="0.4" fill="none" stroke-dasharray="3 2"/>
-  <path d="M 182 228 Q 205 213 228 198" stroke="#c9a84c" stroke-width="0.8" stroke-opacity="0.4" fill="none" stroke-dasharray="3 2"/>
-  <path d="M 296 240 Q 317 264 348 288" stroke="#c9a84c" stroke-width="0.8" stroke-opacity="0.3" fill="none" stroke-dasharray="3 2"/>
-  <path d="M 182 228 Q 239 234 296 240" stroke="#c9a84c" stroke-width="0.8" stroke-opacity="0.3" fill="none" stroke-dasharray="3 2"/>
+<circle cx="338" cy="215" r="5" fill="none" stroke="rgba(201,168,76,0.55)" stroke-width="1"><animate attributeName="r" values="5;10;5" dur="2.8s" begin="0.9s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values="0.55;0;0.55" dur="2.8s" begin="0.9s" repeatCount="indefinite"/></circle>
+<circle cx="338" cy="215" r="3" fill="#c9a84c" filter="url(#glow-dot)"/>
+<text x="352" y="212" font-family="Orbitron,monospace" font-size="6.5" fill="rgba(201,168,76,0.85)" text-anchor="start" letter-spacing="1.5" font-weight="600">TYO</text>
 
-  <!-- City labels -->
-  <text x="214" y="190" font-family="monospace" font-size="7" fill="#c9a84c" fill-opacity="0.7">LON</text>
-  <text x="156" y="226" font-family="monospace" font-size="7" fill="#c9a84c" fill-opacity="0.7">NYC</text>
-  <text x="248" y="184" font-family="monospace" font-size="7" fill="#c9a84c" fill-opacity="0.7">FRA</text>
-  <text x="344" y="209" font-family="monospace" font-size="7" fill="#c9a84c" fill-opacity="0.7">TYO</text>
-  <text x="354" y="284" font-family="monospace" font-size="7" fill="#c9a84c" fill-opacity="0.7">SYD</text>
-  <text x="300" y="255" font-family="monospace" font-size="7" fill="#c9a84c" fill-opacity="0.7">DXB</text>
+<circle cx="348" cy="288" r="4" fill="none" stroke="rgba(201,168,76,0.45)" stroke-width="1"><animate attributeName="r" values="4;8;4" dur="3.8s" begin="1.6s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values="0.45;0;0.45" dur="3.8s" begin="1.6s" repeatCount="indefinite"/></circle>
+<circle cx="348" cy="288" r="2.5" fill="#c9a84c" filter="url(#glow-dot)" opacity="0.85"/>
+<text x="362" y="293" font-family="Orbitron,monospace" font-size="6" fill="rgba(201,168,76,0.7)" text-anchor="start" letter-spacing="1.5">SYD</text>
 
-  <!-- ── Floating data panel — Portfolio Performance ── -->
-  <g transform="translate(440, 68)">
-    <rect x="0" y="0" width="128" height="96" rx="8" fill="rgba(4,10,18,0.9)" stroke="#c9a84c" stroke-width="1" stroke-opacity="0.5"/>
-    <rect x="0" y="0" width="128" height="20" rx="8" fill="rgba(201,168,76,0.08)"/>
-    <rect x="0" y="12" width="128" height="8" fill="rgba(201,168,76,0.08)"/>
-    <text x="10" y="14" font-family="monospace" font-size="7" fill="#c9a84c" fill-opacity="0.9" font-weight="bold">PORTFOLIO STATUS</text>
-    <!-- Mini bar chart -->
-    <rect x="10"  y="30" width="8" height="42" rx="2" fill="rgba(201,168,76,0.12)" stroke="#c9a84c" stroke-width="0.5" stroke-opacity="0.3"/>
-    <rect x="10"  y="46" width="8" height="26" rx="2" fill="rgba(201,168,76,0.45)"/>
-    <rect x="22"  y="30" width="8" height="42" rx="2" fill="rgba(201,168,76,0.12)" stroke="#c9a84c" stroke-width="0.5" stroke-opacity="0.3"/>
-    <rect x="22"  y="38" width="8" height="34" rx="2" fill="rgba(201,168,76,0.45)"/>
-    <rect x="34"  y="30" width="8" height="42" rx="2" fill="rgba(201,168,76,0.12)" stroke="#c9a84c" stroke-width="0.5" stroke-opacity="0.3"/>
-    <rect x="34"  y="40" width="8" height="32" rx="2" fill="rgba(201,168,76,0.45)"/>
-    <rect x="46"  y="30" width="8" height="42" rx="2" fill="rgba(201,168,76,0.12)" stroke="#c9a84c" stroke-width="0.5" stroke-opacity="0.3"/>
-    <rect x="46"  y="34" width="8" height="38" rx="2" fill="rgba(201,168,76,0.55)"/>
-    <rect x="58"  y="30" width="8" height="42" rx="2" fill="rgba(201,168,76,0.12)" stroke="#c9a84c" stroke-width="0.5" stroke-opacity="0.3"/>
-    <rect x="58"  y="31" width="8" height="41" rx="2" fill="rgba(201,168,76,0.7)"/>
-    <!-- Line -->
-    <line x1="10" y1="76" x2="118" y2="76" stroke="rgba(201,168,76,0.2)" stroke-width="0.5"/>
-    <text x="10" y="87" font-family="monospace" font-size="6.5" fill="#c9a84c" fill-opacity="0.6">ALGO PORTFOLIO</text>
-    <text x="88" y="87" font-family="monospace" font-size="6.5" fill="#c9a84c" fill-opacity="0.9">LIVE</text>
-    <circle cx="82" cy="84" r="2.5" fill="#00e88a" opacity="0.9"/>
-  </g>
+<circle cx="296" cy="240" r="4" fill="none" stroke="rgba(201,168,76,0.45)" stroke-width="1"><animate attributeName="r" values="4;8;4" dur="3.2s" begin="2.1s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values="0.45;0;0.45" dur="3.2s" begin="2.1s" repeatCount="indefinite"/></circle>
+<circle cx="296" cy="240" r="2.5" fill="#c9a84c" filter="url(#glow-dot)" opacity="0.85"/>
+<text x="310" y="237" font-family="Orbitron,monospace" font-size="6" fill="rgba(201,168,76,0.7)" text-anchor="start" letter-spacing="1.5">DXB</text>
 
-  <!-- ── Floating data panel — Algorithm Status ── -->
-  <g transform="translate(440, 178)">
-    <rect x="0" y="0" width="128" height="82" rx="8" fill="rgba(4,10,18,0.9)" stroke="#c9a84c" stroke-width="1" stroke-opacity="0.5"/>
-    <rect x="0" y="0" width="128" height="20" rx="8" fill="rgba(201,168,76,0.08)"/>
-    <rect x="0" y="12" width="128" height="8" fill="rgba(201,168,76,0.08)"/>
-    <text x="10" y="14" font-family="monospace" font-size="7" fill="#c9a84c" fill-opacity="0.9" font-weight="bold">ALGO SYSTEMS</text>
-    <!-- Status items -->
-    <circle cx="18" cy="30" r="3" fill="#00e88a"/>
-    <text x="26" y="33" font-family="monospace" font-size="6.5" fill="#ccdde8" fill-opacity="0.8">US Indices</text>
-    <text x="100" y="33" font-family="monospace" font-size="6" fill="#00e88a">ACTIVE</text>
-    <circle cx="18" cy="45" r="3" fill="#00e88a"/>
-    <text x="26" y="48" font-family="monospace" font-size="6.5" fill="#ccdde8" fill-opacity="0.8">EU Indices</text>
-    <text x="100" y="48" font-family="monospace" font-size="6" fill="#00e88a">ACTIVE</text>
-    <circle cx="18" cy="60" r="3" fill="#00e88a"/>
-    <text x="26" y="63" font-family="monospace" font-size="6.5" fill="#ccdde8" fill-opacity="0.8">JPY / XAU</text>
-    <text x="100" y="63" font-family="monospace" font-size="6" fill="#00e88a">ACTIVE</text>
-    <line x1="10" y1="70" x2="118" y2="70" stroke="rgba(201,168,76,0.2)" stroke-width="0.5"/>
-    <text x="10" y="78" font-family="monospace" font-size="6" fill="#c9a84c" fill-opacity="0.5">STRATEGY QUANT X  •  PORTFOLIO MASTER</text>
-  </g>
+<!-- City connection arcs -->
+<g opacity="0.28" stroke="#c9a84c" stroke-width="0.75" fill="none" stroke-dasharray="3,3">
+  <path d="M 228,198 Q 205,190 182,228"/>
+  <path d="M 228,198 Q 244,187 260,192"/>
+  <path d="M 260,192 Q 299,185 338,215"/>
+  <path d="M 338,215 Q 343,252 348,288"/>
+  <path d="M 296,240 Q 317,228 338,215"/>
+  <path d="M 296,240 Q 278,218 260,192"/>
+</g>
 
-  <!-- ── Algorithm stream lines (right side) ── -->
-  <line x1="430" y1="112" x2="440" y2="112" stroke="#c9a84c" stroke-width="0.8" stroke-opacity="0.4" stroke-dasharray="3 2"/>
-  <line x1="430" y1="200" x2="440" y2="218" stroke="#c9a84c" stroke-width="0.8" stroke-opacity="0.4" stroke-dasharray="3 2"/>
+<!-- Ring front arcs — in front of globe, bright -->
+<path d="M 91,324  A 195,60,-25,1,0,445,160" fill="none" stroke="rgba(201,168,76,0.65)" stroke-width="1.5"><animate attributeName="stroke-opacity" values="0.65;0.42;0.65" dur="6s" repeatCount="indefinite"/></path>
+<path d="M 65,188  A 210,50,15,1,0,471,296"  fill="none" stroke="rgba(201,168,76,0.52)" stroke-width="1.5"><animate attributeName="stroke-opacity" values="0.52;0.32;0.52" dur="8s" begin="1s" repeatCount="indefinite"/></path>
+<path d="M 179,369 A 155,38,-55,1,0,357,115" fill="none" stroke="rgba(201,168,76,0.45)" stroke-width="1.2"><animate attributeName="stroke-opacity" values="0.45;0.25;0.45" dur="7s" begin="2s" repeatCount="indefinite"/></path>
 
-  <!-- ── Bottom floating chart panel ── -->
-  <g transform="translate(12, 370)">
-    <rect x="0" y="0" width="160" height="88" rx="8" fill="rgba(4,10,18,0.9)" stroke="#c9a84c" stroke-width="1" stroke-opacity="0.4"/>
-    <text x="10" y="16" font-family="monospace" font-size="7" fill="#c9a84c" fill-opacity="0.8" font-weight="bold">ROBUSTNESS TESTING</text>
-    <!-- Progress bars -->
-    <text x="10" y="32" font-family="monospace" font-size="6" fill="#8899aa">Monte Carlo</text>
-    <rect x="80" y="24" width="70" height="7" rx="3.5" fill="rgba(201,168,76,0.1)" stroke="#c9a84c" stroke-width="0.5" stroke-opacity="0.3"/>
-    <rect x="80" y="24" width="70" height="7" rx="3.5" fill="rgba(201,168,76,0.65)"/>
-    <text x="10" y="46" font-family="monospace" font-size="6" fill="#8899aa">Walk-Forward</text>
-    <rect x="80" y="38" width="70" height="7" rx="3.5" fill="rgba(201,168,76,0.1)" stroke="#c9a84c" stroke-width="0.5" stroke-opacity="0.3"/>
-    <rect x="80" y="38" width="62" height="7" rx="3.5" fill="rgba(201,168,76,0.55)"/>
-    <text x="10" y="60" font-family="monospace" font-size="6" fill="#8899aa">Out-of-Sample</text>
-    <rect x="80" y="52" width="70" height="7" rx="3.5" fill="rgba(201,168,76,0.1)" stroke="#c9a84c" stroke-width="0.5" stroke-opacity="0.3"/>
-    <rect x="80" y="52" width="66" height="7" rx="3.5" fill="rgba(201,168,76,0.6)"/>
-    <line x1="10" y1="70" x2="150" y2="70" stroke="rgba(201,168,76,0.15)" stroke-width="0.5"/>
-    <text x="10" y="82" font-family="monospace" font-size="6" fill="#c9a84c" fill-opacity="0.5">INSTITUTIONAL GRADE VALIDATION</text>
-  </g>
+<!-- Animated orbital dots — Ring 1 -->
+<circle r="9" fill="rgba(201,168,76,0.18)" filter="url(#blur-sm)"><animateMotion dur="9s" repeatCount="indefinite"><mpath href="#r1"/></animateMotion></circle>
+<circle r="4" fill="#e8c55a" filter="url(#glow-dot)"><animateMotion dur="9s" repeatCount="indefinite"><mpath href="#r1"/></animateMotion></circle>
 
-  <!-- ── Connector lines from panels to globe ── -->
-  <line x1="430" y1="114" x2="416" y2="200" stroke="rgba(201,168,76,0.15)" stroke-width="0.6" stroke-dasharray="3 4"/>
-  <line x1="172" y1="370" x2="240" y2="355" stroke="rgba(201,168,76,0.15)" stroke-width="0.6" stroke-dasharray="3 4"/>
+<!-- Ring 2 -->
+<circle r="8" fill="rgba(201,168,76,0.15)" filter="url(#blur-sm)"><animateMotion dur="13s" begin="2s" repeatCount="indefinite"><mpath href="#r2"/></animateMotion></circle>
+<circle r="3.5" fill="#e2c068" filter="url(#glow-dot)"><animateMotion dur="13s" begin="2s" repeatCount="indefinite"><mpath href="#r2"/></animateMotion></circle>
+
+<!-- Ring 3 -->
+<circle r="7" fill="rgba(201,168,76,0.13)" filter="url(#blur-sm)"><animateMotion dur="7.5s" begin="4s" repeatCount="indefinite"><mpath href="#r3"/></animateMotion></circle>
+<circle r="3" fill="#c9a84c" filter="url(#glow-dot)"><animateMotion dur="7.5s" begin="4s" repeatCount="indefinite"><mpath href="#r3"/></animateMotion></circle>
+
+<!-- Data Panel 1: Portfolio Status -->
+<line x1="382" y1="172" x2="412" y2="162" stroke="rgba(201,168,76,0.25)" stroke-width="0.75" stroke-dasharray="3,3"/>
+<circle cx="382" cy="172" r="2" fill="rgba(201,168,76,0.5)"/>
+<rect x="412" y="116" width="152" height="92" rx="8" fill="rgba(4,10,18,0.93)" stroke="rgba(201,168,76,0.28)" stroke-width="1"/>
+<rect x="412" y="116" width="152" height="18" rx="8" fill="rgba(201,168,76,0.07)"/>
+<rect x="412" y="126" width="152" height="8" fill="rgba(201,168,76,0.07)"/>
+<text x="422" y="129" font-family="Orbitron,monospace" font-size="6.5" fill="rgba(201,168,76,0.9)" letter-spacing="1.5">PORTFOLIO STATUS</text>
+<text x="422" y="150" font-family="monospace" font-size="7.5" fill="rgba(200,225,245,0.72)">SYSTEMS</text>
+<text x="422" y="164" font-family="monospace" font-size="7.5" fill="rgba(200,225,245,0.6)">ALGO RUN</text>
+<text x="422" y="178" font-family="monospace" font-size="7.5" fill="rgba(200,225,245,0.55)">RISK OK</text>
+<circle cx="546" cy="148" r="3.5" fill="#00e88a"><animate attributeName="opacity" values="1;0.2;1" dur="2.2s" repeatCount="indefinite"/></circle>
+<text x="542" y="162" font-family="monospace" font-size="7" fill="#00e88a" text-anchor="middle">LIVE</text>
+<circle cx="546" cy="176" r="3" fill="#c9a84c"><animate attributeName="opacity" values="0.9;0.25;0.9" dur="3.4s" begin="0.8s" repeatCount="indefinite"/></circle>
+<rect x="422" y="188" width="7" height="14" rx="1.5" fill="rgba(201,168,76,0.32)"/>
+<rect x="433" y="184" width="7" height="18" rx="1.5" fill="rgba(201,168,76,0.45)"/>
+<rect x="444" y="186" width="7" height="16" rx="1.5" fill="rgba(201,168,76,0.38)"/>
+<rect x="455" y="181" width="7" height="21" rx="1.5" fill="rgba(201,168,76,0.55)"><animate attributeName="height" values="21;26;21" dur="4s" repeatCount="indefinite"/><animate attributeName="y" values="181;176;181" dur="4s" repeatCount="indefinite"/></rect>
+<rect x="466" y="184" width="7" height="18" rx="1.5" fill="rgba(201,168,76,0.42)"/>
+<rect x="477" y="179" width="7" height="23" rx="1.5" fill="rgba(201,168,76,0.6)"/>
+<rect x="488" y="177" width="7" height="25" rx="1.5" fill="rgba(201,168,76,0.65)"><animate attributeName="height" values="25;29;25" dur="3s" begin="1s" repeatCount="indefinite"/><animate attributeName="y" values="177;173;177" dur="3s" begin="1s" repeatCount="indefinite"/></rect>
+<rect x="499" y="181" width="7" height="21" rx="1.5" fill="rgba(201,168,76,0.5)"/>
+<rect x="510" y="178" width="7" height="24" rx="1.5" fill="rgba(201,168,76,0.55)"/>
+<rect x="521" y="175" width="7" height="27" rx="1.5" fill="rgba(201,168,76,0.7)"/>
+<rect x="532" y="180" width="7" height="22" rx="1.5" fill="rgba(201,168,76,0.48)"/>
+<rect x="543" y="176" width="7" height="26" rx="1.5" fill="rgba(201,168,76,0.62)"/>
+
+<!-- Data Panel 2: Algo Systems -->
+<line x1="392" y1="296" x2="413" y2="300" stroke="rgba(201,168,76,0.22)" stroke-width="0.75" stroke-dasharray="3,3"/>
+<circle cx="392" cy="296" r="2" fill="rgba(201,168,76,0.4)"/>
+<rect x="413" y="282" width="152" height="92" rx="8" fill="rgba(4,10,18,0.93)" stroke="rgba(201,168,76,0.24)" stroke-width="1"/>
+<rect x="413" y="282" width="152" height="18" rx="8" fill="rgba(201,168,76,0.06)"/>
+<rect x="413" y="292" width="152" height="8" fill="rgba(201,168,76,0.06)"/>
+<text x="423" y="295" font-family="Orbitron,monospace" font-size="6.5" fill="rgba(201,168,76,0.85)" letter-spacing="1.5">ALGO SYSTEMS</text>
+<text x="423" y="316" font-family="monospace" font-size="7.5" fill="rgba(200,225,245,0.72)">White Rabbit</text>
+<circle cx="549" cy="314" r="3" fill="#00e88a"><animate attributeName="opacity" values="1;0.2;1" dur="2.5s" repeatCount="indefinite"/></circle>
+<text x="423" y="332" font-family="monospace" font-size="7.5" fill="rgba(200,225,245,0.7)">Portfolio Master</text>
+<circle cx="549" cy="330" r="3" fill="#00e88a"><animate attributeName="opacity" values="0.9;0.25;0.9" dur="3.2s" begin="0.9s" repeatCount="indefinite"/></circle>
+<text x="423" y="348" font-family="monospace" font-size="7.5" fill="rgba(200,225,245,0.68)">Risk Engine</text>
+<circle cx="549" cy="346" r="3" fill="#c9a84c"><animate attributeName="opacity" values="0.85;0.2;0.85" dur="4s" begin="1.8s" repeatCount="indefinite"/></circle>
+<text x="423" y="366" font-family="monospace" font-size="6" fill="rgba(80,100,120,0.7)" letter-spacing="0.8">NEXUS CAPITAL · LIVE SYSTEMS</text>
+
 </svg>
