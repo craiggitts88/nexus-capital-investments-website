@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms &amp; Conditions | Nexus Capital &amp; Investments</title>
+  <meta name="description" content="Terms and Conditions for Nexus Capital &amp; Investments and Nexus Algorithmics software products.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .legal-hero {
+      padding: 140px 28px 60px;
+      text-align: center;
+      position: relative;
+    }
+    .legal-hero-label {
+      font-family: var(--font-head); font-size: 9px; font-weight: 700;
+      letter-spacing: 4px; text-transform: uppercase; color: var(--gold);
+      margin-bottom: 16px; opacity: 0.8;
+    }
+    .legal-hero-title {
+      font-family: var(--font-head); font-size: clamp(28px, 4vw, 52px);
+      font-weight: 900; color: var(--text); letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+    .legal-hero-title span { color: var(--gold); }
+    .legal-updated {
+      font-size: 12px; color: var(--text-muted); letter-spacing: 0.5px;
+    }
+    .legal-content {
+      max-width: 820px; margin: 0 auto; padding: 0 28px 100px;
+    }
+    .legal-nav {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 48px;
+      padding: 16px; background: rgba(201,168,76,0.04);
+      border: 1px solid var(--gold-border); border-radius: 10px;
+    }
+    .legal-nav a {
+      font-size: 11px; color: var(--gold); letter-spacing: 0.5px;
+      padding: 4px 10px; border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .legal-nav a:hover { background: rgba(201,168,76,0.1); }
+    .legal-section { margin-bottom: 48px; }
+    .legal-section h2 {
+      font-family: var(--font-head); font-size: 13px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; color: var(--gold);
+      margin-bottom: 20px; padding-bottom: 10px;
+      border-bottom: 1px solid var(--gold-border);
+    }
+    .legal-section h3 {
+      font-size: 15px; font-weight: 600; color: var(--text);
+      margin: 24px 0 10px;
+    }
+    .legal-section p {
+      font-size: 15px; color: var(--silver); line-height: 1.85;
+      margin-bottom: 14px;
+    }
+    .legal-section ul {
+      list-style: none; margin: 0 0 14px; padding: 0;
+    }
+    .legal-section ul li {
+      font-size: 15px; color: var(--silver); line-height: 1.85;
+      padding: 4px 0 4px 20px; position: relative;
+    }
+    .legal-section ul li::before {
+      content: '·'; position: absolute; left: 6px; color: var(--gold);
+      font-weight: 700;
+    }
+    .legal-highlight {
+      background: rgba(201,168,76,0.06); border-left: 3px solid var(--gold);
+      border-radius: 0 6px 6px 0; padding: 16px 20px; margin: 20px 0;
+    }
+    .legal-highlight p { margin: 0; }
+    .legal-divider {
+      height: 1px; background: var(--gold-border); margin: 48px 0;
+    }
+    .legal-contact-box {
+      background: rgba(201,168,76,0.04); border: 1px solid var(--gold-border);
+      border-radius: 10px; padding: 24px 28px; margin-top: 40px;
+    }
+    .legal-contact-box h3 {
+      font-family: var(--font-head); font-size: 11px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .legal-contact-box p { margin: 0; font-size: 14px; color: var(--silver); line-height: 1.8; }
+    .legal-contact-box a { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+  <!-- ░░ SPLASH ░░ -->
+  <div id="splash" class="splash">
+    <div class="splash-inner">
+      <div class="splash-logo-wrap">
+        <div class="splash-ring"></div>
+        <img src="../Logo/Nexus Capital and Investments Logo.png" alt="Nexus Capital and Investments" class="splash-logo">
+      </div>
+      <div class="splash-name">NEXUS CAPITAL &amp; INVESTMENTS</div>
+      <div class="splash-sub">Terms &amp; Conditions</div>
+      <div class="splash-bar"><div class="splash-bar-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- ░░ PARTICLE CANVAS ░░ -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- ░░ NAVIGATION ░░ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">
+        <img src="../Logo/Nexus Capital and Investments Logo.png" alt="Nexus Capital and Investments">
+        <span class="nav-brand">Nexus<span class="nav-brand-dim"> Capital &amp; Investments</span></span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="../index.html" class="nav-link">Home</a></li>
+        <li><a href="../index.html#about" class="nav-link">About</a></li>
+        <li class="nav-dropdown">
+          <button class="nav-link nav-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+            Products <span class="nav-dropdown-caret">▾</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="../products/nexus-position-tool.html" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Nexus Position Tool</span>
+              <span class="dropdown-item-sub">Professional ATAS position sizing</span>
+            </a>
+            <a href="../products/quant-panel.html" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Quant Panel</span>
+              <span class="dropdown-item-sub coming-soon">MT5 · Coming Soon</span>
+            </a>
+          </div>
+        </li>
+        <li><a href="../about-nexus-algorithmics.html" class="nav-link">Nexus Algorithmics</a></li>
+      </ul>
+      <button class="nav-burger" id="nav-burger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+
+    <section class="legal-hero">
+      <div class="legal-hero-label">Legal</div>
+      <h1 class="legal-hero-title">Terms &amp; <span>Conditions</span></h1>
+      <p class="legal-updated">Last updated: 13 May 2026</p>
+    </section>
+
+    <div class="legal-content">
+
+      <!-- Quick nav -->
+      <nav class="legal-nav" aria-label="Jump to section">
+        <a href="#agreement">Agreement</a>
+        <a href="#licence">Licence</a>
+        <a href="#permitted-use">Permitted Use</a>
+        <a href="#restrictions">Restrictions</a>
+        <a href="#payment">Payment &amp; Delivery</a>
+        <a href="#refunds">Refund Policy</a>
+        <a href="#disclaimer">Disclaimer</a>
+        <a href="#liability">Liability</a>
+        <a href="#ip">Intellectual Property</a>
+        <a href="#governing-law">Governing Law</a>
+      </nav>
+
+      <!-- 1. Agreement -->
+      <div class="legal-section" id="agreement">
+        <h2>1. Agreement to These Terms</h2>
+        <p>These Terms and Conditions ("Terms") govern your purchase and use of any software products sold by Nexus Capital &amp; Investments and developed by Nexus Algorithmics ("we", "us", "our"). By completing a purchase you confirm that you have read, understood, and agree to be bound by these Terms in full.</p>
+        <p>If you do not agree to these Terms you must not purchase or use our software products. These Terms apply to all products offered through our authorised sales channels, including but not limited to LemonSqueezy.</p>
+      </div>
+
+      <!-- 2. Licence -->
+      <div class="legal-section" id="licence">
+        <h2>2. Software Licence</h2>
+        <p>Upon successful payment you are granted a <strong>personal, non-exclusive, non-transferable, perpetual (lifetime) licence</strong> to install and use the software on your own trading account and systems. This licence is for a single user only.</p>
+        <div class="legal-highlight">
+          <p>Your purchase grants you a licence to use the software — it does not transfer ownership of the software or any intellectual property contained within it to you.</p>
+        </div>
+        <p>The licence commences on the date of purchase and remains valid for the lifetime of the product version purchased, subject to these Terms.</p>
+      </div>
+
+      <!-- 3. Permitted Use -->
+      <div class="legal-section" id="permitted-use">
+        <h2>3. Permitted Use</h2>
+        <p>You may use the licensed software for the following purposes only:</p>
+        <ul>
+          <li>Personal trading operations on your own accounts</li>
+          <li>Installation on devices owned or exclusively controlled by you</li>
+          <li>Use within the compatible third-party platform(s) specified in the product description (e.g. ATAS Order Flow Trading platform)</li>
+        </ul>
+        <p>You are responsible for ensuring your use of the software complies with all applicable laws and regulations in your jurisdiction, including any rules imposed by your broker or trading platform provider.</p>
+      </div>
+
+      <!-- 4. Restrictions -->
+      <div class="legal-section" id="restrictions">
+        <h2>4. Restrictions</h2>
+        <p>You must not, and must not permit any third party to:</p>
+        <ul>
+          <li>Copy, reproduce, distribute, or resell the software or any component thereof</li>
+          <li>Share, transfer, sub-licence, or rent the software to any other person</li>
+          <li>Reverse engineer, decompile, disassemble, or attempt to derive the source code of the software</li>
+          <li>Modify, adapt, translate, or create derivative works based on the software</li>
+          <li>Remove or alter any proprietary notices, labels, or markings on the software</li>
+          <li>Use the software for any unlawful purpose or in any way that violates these Terms</li>
+          <li>Publish or publicly disclose any results of benchmark tests without prior written consent</li>
+        </ul>
+        <p>Any breach of these restrictions will result in the immediate termination of your licence without refund.</p>
+      </div>
+
+      <!-- 5. Payment & Delivery -->
+      <div class="legal-section" id="payment">
+        <h2>5. Payment &amp; Digital Delivery</h2>
+        <p>All prices are listed in Great British Pounds (GBP) and are inclusive of any applicable taxes unless otherwise stated. Payment is processed securely through LemonSqueezy. We do not store your payment card details.</p>
+        <p>Upon successful payment confirmation, the software files will be made available to you for immediate download via the link provided. You are responsible for downloading and saving your files. We recommend you keep a personal backup of the software files after download.</p>
+        <p>If you experience any issues with your download please contact us within 30 days of purchase and we will arrange for the files to be re-sent to you.</p>
+      </div>
+
+      <!-- 6. Refund Policy -->
+      <div class="legal-section" id="refunds">
+        <h2>6. Refund Policy</h2>
+        <div class="legal-highlight">
+          <p><strong>All sales of our software products are final. We do not offer refunds, returns, or exchanges on digital software products.</strong></p>
+        </div>
+        <p>Because our products are delivered as digital files (including DLL files and associated components) that are made available for immediate download upon purchase, the software is treated as a fully consumed digital good from the moment of delivery. As permitted under UK Consumer Contracts Regulations 2013 (Regulation 13), the right to cancel does not apply once a digital product has been downloaded or access has been granted.</p>
+        <p>By completing your purchase you expressly acknowledge and agree that:</p>
+        <ul>
+          <li>You waive your statutory right to cancel under the Consumer Contracts Regulations 2013 once the digital content has been supplied</li>
+          <li>You understand the product is a digital software file and not a physical good</li>
+          <li>You have read the product description and confirmed the software is compatible with your platform before purchasing</li>
+        </ul>
+        <h3>Technical Support</h3>
+        <p>Rather than offering refunds, we are committed to ensuring your software functions correctly. If you experience a technical issue with the software, please contact our support team before requesting any form of refund. We will make every reasonable effort to resolve technical problems.</p>
+        <p>In the event the software is fundamentally defective and we are unable to resolve the issue, we will assess the situation on a case-by-case basis at our sole discretion.</p>
+        <p>For support, please see the contact details at the bottom of this page.</p>
+      </div>
+
+      <!-- 7. Trading Disclaimer -->
+      <div class="legal-section" id="disclaimer">
+        <h2>7. Trading Risk Disclaimer</h2>
+        <p>Our software products are tools designed to assist with trade management and position sizing. They do not provide financial advice, investment recommendations, or trading signals.</p>
+        <div class="legal-highlight">
+          <p>Trading financial instruments including futures, contracts for difference (CFDs), and other derivatives involves substantial risk of loss and is not suitable for all investors. Past performance is not indicative of future results.</p>
+        </div>
+        <p>You are solely responsible for all trading decisions made using our software. Nexus Capital &amp; Investments and Nexus Algorithmics expressly disclaim any responsibility for trading losses, missed profits, or any financial outcome resulting from use of our software products.</p>
+        <p>You should ensure you fully understand the risks involved in trading and seek independent financial advice if necessary before trading with real capital.</p>
+      </div>
+
+      <!-- 8. Limitation of Liability -->
+      <div class="legal-section" id="liability">
+        <h2>8. Limitation of Liability</h2>
+        <p>To the maximum extent permitted by applicable law, Nexus Capital &amp; Investments and Nexus Algorithmics shall not be liable for:</p>
+        <ul>
+          <li>Any direct, indirect, incidental, special, or consequential damages arising from use of the software</li>
+          <li>Trading losses or missed trading opportunities of any kind</li>
+          <li>Loss of data, business interruption, or loss of profits</li>
+          <li>Any damage caused by incompatibility between the software and your trading platform, broker, or hardware</li>
+          <li>Any failure of the third-party platform (e.g. ATAS) that may affect the software's operation</li>
+        </ul>
+        <p>In any event, our total aggregate liability shall not exceed the amount paid by you for the specific product giving rise to the claim.</p>
+        <p>Nothing in these Terms excludes or limits liability for death or personal injury caused by negligence, fraud or fraudulent misrepresentation, or any other liability that cannot be excluded or limited under applicable law.</p>
+      </div>
+
+      <!-- 9. Intellectual Property -->
+      <div class="legal-section" id="ip">
+        <h2>9. Intellectual Property</h2>
+        <p>All software, source code, algorithms, design, branding, documentation, and other materials produced by Nexus Capital &amp; Investments and Nexus Algorithmics are and remain the exclusive intellectual property of Nexus Capital &amp; Investments. All rights are reserved.</p>
+        <p>Nothing in these Terms transfers any intellectual property rights to you. Your licence is a limited right to use the software only as described in Section 2.</p>
+      </div>
+
+      <!-- 10. Updates -->
+      <div class="legal-section">
+        <h2>10. Software Updates</h2>
+        <p>We may, at our discretion, provide updates, patches, or new versions of the software. Where updates are provided, they will be subject to these same Terms unless separate terms are indicated.</p>
+        <p>We do not guarantee that the software will be updated indefinitely, nor that it will remain compatible with future versions of any third-party platform. We will endeavour to communicate any significant changes via the contact details provided at purchase.</p>
+      </div>
+
+      <!-- 11. Termination -->
+      <div class="legal-section">
+        <h2>11. Termination</h2>
+        <p>Your licence to use the software will terminate immediately and automatically if you breach any provision of these Terms. Upon termination you must delete all copies of the software in your possession.</p>
+        <p>We reserve the right to update or amend these Terms at any time. The current version of these Terms will always be published on our website. Your continued use of the software constitutes acceptance of any revised Terms.</p>
+      </div>
+
+      <!-- 12. Governing Law -->
+      <div class="legal-section" id="governing-law">
+        <h2>12. Governing Law &amp; Jurisdiction</h2>
+        <p>These Terms are governed by and construed in accordance with the laws of England and Wales. Any disputes arising under or in connection with these Terms shall be subject to the exclusive jurisdiction of the courts of England and Wales.</p>
+        <p>If any provision of these Terms is found to be invalid or unenforceable, the remaining provisions will continue in full force and effect.</p>
+      </div>
+
+      <div class="legal-divider"></div>
+
+      <!-- Contact -->
+      <div class="legal-contact-box">
+        <h3>Contact Us</h3>
+        <p>
+          If you have any questions about these Terms, please contact us:<br><br>
+          <strong>Nexus Capital &amp; Investments — Nexus Algorithmics</strong><br>
+          Email: <a href="mailto:support@nexuscapitalinvestments.com">support@nexuscapitalinvestments.com</a><br><br>
+          Also see: <a href="privacy.html">Privacy Policy</a> · <a href="refund-policy.html">Refund Policy</a>
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ░░ FOOTER ░░ -->
+  <footer class="nci-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-brand-row">
+            <img src="../Logo/Nexus Capital and Investments Logo.png" alt="Nexus Capital and Investments" class="footer-logo">
+            <div class="footer-brand-name">Nexus Capital &amp; Investments</div>
+          </div>
+          <p class="footer-tagline">Systematic. Algorithmic. Institutional.</p>
+        </div>
+        <div class="footer-nav-col">
+          <div class="footer-nav-title">Navigation</div>
+          <div class="footer-nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../about-nexus-algorithmics.html">Nexus Algorithmics</a>
+            <a href="../products/nexus-position-tool.html">Nexus Position Tool</a>
+            <a href="../products/quant-panel.html">Quant Panel</a>
+          </div>
+        </div>
+        <div class="footer-legal">
+          <div class="footer-legal-title">Legal</div>
+          <div class="footer-nav-links">
+            <a href="terms.html">Terms &amp; Conditions</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="refund-policy.html">Refund Policy</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Nexus Capital &amp; Investments · Nexus Algorithmics. All rights reserved.</p>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin:8px 0;">
+          <a href="terms.html" style="font-size:11px;color:var(--text-muted);">Terms &amp; Conditions</a>
+          <span style="color:var(--gold-border);">·</span>
+          <a href="privacy.html" style="font-size:11px;color:var(--text-muted);">Privacy Policy</a>
+          <span style="color:var(--gold-border);">·</span>
+          <a href="refund-policy.html" style="font-size:11px;color:var(--text-muted);">Refund Policy</a>
+        </div>
+        <p class="footer-risk">Trading involves substantial risk of loss. Past performance is not indicative of future results. This software does not provide financial advice.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
