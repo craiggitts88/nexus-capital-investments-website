@@ -26,9 +26,9 @@
   /* Shared */
   --green:        #00e88a;
   --red:          #ff4646;
-  --silver:       #8899aa;
+  --silver:       #a4b6c8;
   --text:         #ccdde8;
-  --text-muted:   #4a5a6a;
+  --text-muted:   #6d8299;
   --border:       rgba(0, 204, 255, 0.1);
   --border-hi:    rgba(0, 204, 255, 0.32);
   --font-head:    'Orbitron', sans-serif;
@@ -708,7 +708,7 @@ svg { display: block; }
   color: var(--gold); letter-spacing: 1px; margin-bottom: 4px;
 }
 .founder-title {
-  font-size: 11px; color: var(--text-muted); letter-spacing: 1px;
+  font-size: 11px; color: var(--silver); letter-spacing: 1px;
   text-transform: uppercase; margin-bottom: 14px;
 }
 .founder-bio { font-size: 13px; color: var(--silver); line-height: 1.75; }
@@ -870,12 +870,12 @@ svg { display: block; }
   animation: pulse-gold 2.4s ease-in-out infinite;
 }
 .market-dot--gold { background: var(--gold); box-shadow: 0 0 8px var(--gold-glow-sm); }
-.market-dot--silver { background: var(--silver); box-shadow: 0 0 8px rgba(136,153,170,0.3); animation: none; }
+.market-dot--silver { background: var(--silver); box-shadow: 0 0 8px rgba(164,182,200,0.4); animation: none; }
 .market-name {
   font-family: var(--font-head); font-size: 10px; font-weight: 700;
   letter-spacing: 1.5px; text-transform: uppercase; color: var(--text);
 }
-.market-sub { font-size: 11px; color: var(--text-muted); }
+.market-sub { font-size: 11px; color: var(--silver); }
 .markets-note {
   text-align: center; margin-top: 40px; font-size: 13px;
   color: var(--text-muted); line-height: 1.7; max-width: 600px; margin: 40px auto 0;
@@ -1077,7 +1077,7 @@ svg { display: block; }
   font-family: var(--font-head); font-size: 15px; font-weight: 700;
   color: var(--gold); letter-spacing: 0.5px; margin-bottom: 6px;
 }
-.contact-card-title { font-size: 12px; color: var(--text-muted); margin-bottom: 20px; }
+.contact-card-title { font-size: 12px; color: var(--silver); margin-bottom: 20px; }
 .contact-card-email {
   display: inline-block; font-size: 13.5px; color: var(--text);
   border-bottom: 1px solid var(--gold-border-hi); padding-bottom: 2px;
