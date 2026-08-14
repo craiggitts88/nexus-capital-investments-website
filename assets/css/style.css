@@ -662,6 +662,36 @@ svg { display: block; }
 .about-highlight-text { font-size: 13px; color: var(--silver); line-height: 1.7; }
 .about-highlight-text strong { color: var(--text); font-weight: 600; }
 
+/* Full-width about banner: pull-quote + quick facts */
+.about-banner {
+  margin-top: 64px; border-radius: var(--radius);
+  background: var(--gold-card); border: 1px solid var(--gold-border);
+  padding: 40px 48px; display: flex; align-items: center; gap: 48px;
+}
+.about-banner-quote {
+  display: flex; align-items: flex-start; gap: 16px; flex: 1.4;
+}
+.about-banner-stats {
+  display: flex; gap: 36px; flex: 1; justify-content: flex-end;
+  border-left: 1px solid var(--gold-border); padding-left: 36px;
+}
+.about-banner-stat { text-align: center; }
+.about-banner-stat-num {
+  font-family: var(--font-head); font-size: 26px; font-weight: 800;
+  color: var(--gold); letter-spacing: -0.5px; margin-bottom: 6px;
+}
+.about-banner-stat-lbl {
+  font-size: 10.5px; color: var(--text-muted); letter-spacing: 0.3px;
+  max-width: 90px;
+}
+@media (max-width: 900px) {
+  .about-banner { flex-direction: column; gap: 32px; padding: 32px; }
+  .about-banner-stats { border-left: none; padding-left: 0; border-top: 1px solid var(--gold-border); padding-top: 28px; justify-content: center; gap: 28px; }
+}
+@media (max-width: 560px) {
+  .about-banner-stats { flex-wrap: wrap; }
+}
+
 /* Founder cards */
 .founders-grid { display: flex; flex-direction: column; gap: 24px; }
 .founder-card {
@@ -748,6 +778,26 @@ svg { display: block; }
 .method-list li {
   display: flex; align-items: flex-start; gap: 8px;
   font-size: 13px; color: var(--silver); line-height: 1.5;
+}
+
+/* Wide methodology card (spans full grid width) */
+.method-card--wide {
+  grid-column: 1 / -1;
+  display: flex; align-items: center; gap: 36px; padding: 36px 44px;
+}
+.method-card-wide-icon {
+  flex-shrink: 0; display: flex; align-items: center; gap: 18px;
+}
+.method-card-wide-icon .method-num { margin-bottom: 0; font-size: 36px; }
+.method-card-wide-icon svg {
+  width: 56px; height: 56px; padding: 10px; border-radius: 14px;
+  background: rgba(201,168,76,0.07); border: 1px solid var(--gold-border);
+}
+.method-card-wide-text { flex: 1; }
+.method-card-wide-text .method-title { margin-bottom: 8px; }
+@media (max-width: 720px) {
+  .method-card--wide { flex-direction: column; text-align: center; padding: 32px 28px; }
+  .method-card-wide-icon { flex-direction: column; }
 }
 .method-list li::before {
   content: '▸'; color: var(--gold); font-size: 10px; margin-top: 2px; flex-shrink: 0;
