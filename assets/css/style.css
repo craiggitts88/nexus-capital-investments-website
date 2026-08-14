@@ -14,9 +14,9 @@
   --gold-dim:     #a07a2a;
   --gold-glow:    rgba(201, 168, 76, 0.30);
   --gold-glow-sm: rgba(201, 168, 76, 0.15);
-  --gold-card:    rgba(201, 168, 76, 0.04);
-  --gold-border:  rgba(201, 168, 76, 0.12);
-  --gold-border-hi: rgba(201, 168, 76, 0.35);
+  --gold-card:    rgba(201, 168, 76, 0.09);
+  --gold-border:  rgba(201, 168, 76, 0.20);
+  --gold-border-hi: rgba(201, 168, 76, 0.45);
   /* Algo Cyan */
   --cyan:         #00ccff;
   --cyan-bright:  #33ddff;
@@ -1452,6 +1452,7 @@ svg { display: block; }
   .hero-actions { justify-content: center; }
   .nci-trust { justify-content: center; }
   .nci-hero-visual { display: none; }
+  .scroll-cue { position: static; margin: 32px auto 0; }
   .about-grid { grid-template-columns: 1fr; gap: 48px; }
   .method-grid { grid-template-columns: 1fr; }
   .nci-products-grid { grid-template-columns: 1fr; }
@@ -1471,6 +1472,9 @@ svg { display: block; }
 @media (max-width: 700px) {
   .nav-links { display: none; }
   .nav-burger { display: flex; }
+  .nav-inner { gap: 12px; }
+  .nav-logo img { height: 40px; }
+  .nav-brand-dim { display: none; }
   .nav-links.open {
     display: flex; flex-direction: column; position: fixed;
     inset: 64px 0 0 0; background: rgba(4,10,18,0.97);
