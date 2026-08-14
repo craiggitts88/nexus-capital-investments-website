@@ -165,7 +165,7 @@ svg { display: block; }
 
 /* Nav Links */
 .nav-links {
-  display: flex; list-style: none; gap: 22px; margin-left: auto;
+  display: flex; list-style: none; gap: 18px; margin-left: auto;
   align-items: center;
 }
 .nav-link {
@@ -1604,8 +1604,8 @@ svg { display: block; }
 }
 
 /* Nav collapses to the burger menu earlier than other mobile breakpoints —
-   at 8 top-level items it no longer fits a single row past ~1100px. */
-@media (max-width: 1100px) {
+   at 9 top-level items it no longer fits a single row past ~1180px. */
+@media (max-width: 1180px) {
   .nav-links { display: none; }
   .nav-burger { display: flex; }
   .nav-inner { gap: 12px; }

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Strategy Reports | Nexus Capital &amp; Investments</title>
+  <meta name="description" content="Individual algorithm strategy reports from Nexus Capital & Investments — live and demo performance samples from our research library.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .reports-hero {
+      padding: 140px 28px 40px;
+      text-align: center;
+      position: relative;
+    }
+    .reports-hero-label {
+      font-family: var(--font-head); font-size: 9px; font-weight: 700;
+      letter-spacing: 4px; text-transform: uppercase; color: var(--gold);
+      margin-bottom: 16px; opacity: 0.8;
+    }
+    .reports-hero-title {
+      font-family: var(--font-head); font-size: clamp(28px, 4vw, 52px);
+      font-weight: 900; color: var(--text); letter-spacing: -1px;
+      margin-bottom: 20px;
+    }
+    .reports-hero-title span { color: var(--gold); }
+    .reports-hero-desc {
+      max-width: 640px; margin: 0 auto; font-size: 15px; color: var(--silver);
+      line-height: 1.8;
+    }
+    .reports-hero-note {
+      max-width: 640px; margin: 16px auto 0; font-size: 12px; color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .reports-hero-note a { color: var(--gold); }
+
+    .reports-content { max-width: 780px; margin: 0 auto; padding: 40px 28px 120px; }
+    .reports-list { display: flex; flex-direction: column; gap: 16px; }
+
+    .report-item {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; flex-wrap: wrap;
+      background: var(--gold-card); border: 1px solid var(--gold-border);
+      border-radius: var(--radius); padding: 24px 28px;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.15s var(--ease);
+    }
+    .report-item:hover {
+      border-color: var(--gold-border-hi);
+      box-shadow: 0 0 40px rgba(201,168,76,0.07), 0 16px 40px rgba(0,0,0,0.4);
+      transform: translateY(-2px);
+    }
+    .report-item-left { display: flex; align-items: center; gap: 16px; min-width: 0; }
+    .report-icon {
+      flex-shrink: 0; width: 44px; height: 44px; border-radius: 10px;
+      background: rgba(201,168,76,0.07); border: 1px solid var(--gold-border);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .report-icon svg { width: 22px; height: 22px; }
+    .report-name {
+      font-family: var(--font-head); font-size: 14px; font-weight: 700;
+      color: var(--text); letter-spacing: 0.3px; margin-bottom: 4px;
+    }
+    .report-sub { font-size: 12px; color: var(--silver); }
+    .report-sub--sample { color: var(--gold); text-transform: uppercase; letter-spacing: 1px; font-size: 10px; font-weight: 700; }
+
+    .btn-report {
+      display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0;
+      font-size: 13px; font-weight: 500; letter-spacing: 0.5px;
+      color: var(--gold); border: 1px solid var(--gold-border-hi);
+      padding: 12px 22px; border-radius: 8px;
+      transition: all 0.3s var(--ease);
+    }
+    .btn-report:hover { background: rgba(201,168,76,0.06); border-color: var(--gold); }
+    .btn-report--disabled {
+      color: var(--text-muted); border-color: var(--gold-border);
+      opacity: 0.6; cursor: not-allowed; pointer-events: none;
+    }
+
+    .reports-empty-note {
+      text-align: center; font-size: 13px; color: var(--text-muted);
+      margin-top: 32px; line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ░░ SPLASH ░░ -->
+  <div id="splash" class="splash">
+    <div class="splash-inner">
+      <div class="splash-logo-wrap">
+        <div class="splash-ring"></div>
+        <img src="Logo/Nexus Capital and Investments Logo.png" alt="Nexus Capital and Investments" class="splash-logo">
+      </div>
+      <div class="splash-name">NEXUS CAPITAL &amp; INVESTMENTS</div>
+      <div class="splash-sub">Strategy Reports</div>
+      <div class="splash-bar"><div class="splash-bar-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- ░░ PARTICLE CANVAS ░░ -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- ░░ NAVIGATION ░░ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="Logo/Nexus Capital and Investments Logo.png" alt="Nexus Capital and Investments">
+        <span class="nav-brand">Nexus<span class="nav-brand-dim"> Capital &amp; Investments</span></span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="index.html#about" class="nav-link">About</a></li>
+        <li><a href="index.html#who-we-serve" class="nav-link">Who We Serve</a></li>
+        <li><a href="index.html#methodology" class="nav-link">Methodology</a></li>
+        <li><a href="index.html#markets" class="nav-link">Markets</a></li>
+        <li><a href="index.html#algo-development" class="nav-link">Algo Development</a></li>
+        <li><a href="index.html#faq" class="nav-link">FAQ</a></li>
+        <li><a href="reports.html" class="nav-link">Reports</a></li>
+        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <button class="nav-burger" id="nav-burger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+
+    <section class="reports-hero">
+      <div class="reports-hero-label">Sample Performance</div>
+      <h1 class="reports-hero-title">Strategy<br><span>Reports</span></h1>
+      <p class="reports-hero-desc">
+        Individual algorithm reports from our live-market incubation and demo/cash accounts, a representative sample of what's in our research library. Because every client portfolio is individually tailored, we don't publish one aggregate track record, so this is what we can show instead.
+      </p>
+      <p class="reports-hero-note">
+        See <a href="index.html#important-information">Important Information</a> for full risk disclosures. Past performance is not a reliable indicator of future performance.
+      </p>
+    </section>
+
+    <div class="reports-content">
+      <div class="reports-list">
+
+        <!--
+          TEMPLATE — copy this block for each new report.
+          1. Drop the PDF into a "reports/" folder at the repo root.
+          2. Set href to "reports/your-file-name.pdf".
+          3. Change class="btn-report btn-report--disabled" to class="btn-report",
+             remove aria-disabled, and change the <span> to a real <a> with
+             target="_blank" rel="noopener".
+        -->
+        <div class="report-item">
+          <div class="report-item-left">
+            <div class="report-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z" stroke="#c9a84c" stroke-width="1.5"/>
+                <path d="M15 2v5h5" stroke="#c9a84c" stroke-width="1.5"/>
+                <path d="M8 13h8M8 17h8M8 9h3" stroke="#c9a84c" stroke-width="1.3" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <div class="report-name">Strategy 0.39765</div>
+              <div class="report-sub report-sub--sample">Sample &middot; add your PDF to activate</div>
+            </div>
+          </div>
+          <span class="btn-report btn-report--disabled" aria-disabled="true">
+            Open Report
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </span>
+        </div>
+
+      </div>
+
+      <p class="reports-empty-note">More strategy reports are added here as they become available.</p>
+    </div>
+
+  </main>
+
+
+  <!-- ░░ FOOTER ░░ -->
+  <footer class="nci-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+
+        <div class="footer-brand">
+          <div class="footer-brand-row">
+            <img src="Logo/Nexus Capital and Investments Logo.png" alt="Nexus Capital and Investments" class="footer-logo">
+            <div class="footer-brand-name">Nexus Capital &amp; Investments</div>
+          </div>
+          <p class="footer-tagline">Systematic. Algorithmic. Institutional.</p>
+        </div>
+
+        <div class="footer-nav-col">
+          <div class="footer-nav-title">Navigation</div>
+          <div class="footer-nav-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#who-we-serve">Who We Serve</a>
+            <a href="index.html#methodology">Methodology</a>
+            <a href="index.html#faq">FAQ</a>
+            <a href="reports.html">Reports</a>
+            <a href="index.html#contact">Contact</a>
+          </div>
+        </div>
+
+        <div class="footer-legal">
+          <div class="footer-legal-title">Legal</div>
+          <div class="footer-nav-links">
+            <a href="legal/terms.html">Terms &amp; Conditions</a>
+            <a href="legal/privacy.html">Privacy Policy</a>
+            <a href="legal/refund-policy.html">Refund Policy</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Nexus Capital &amp; Investments. All rights reserved.</p>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin:8px 0;">
+          <a href="legal/terms.html" style="font-size:11px;color:var(--text-muted);">Terms &amp; Conditions</a>
+          <span style="color:var(--gold-border);">·</span>
+          <a href="legal/privacy.html" style="font-size:11px;color:var(--text-muted);">Privacy Policy</a>
+          <span style="color:var(--gold-border);">·</span>
+          <a href="legal/refund-policy.html" style="font-size:11px;color:var(--text-muted);">Refund Policy</a>
+        </div>
+        <p class="footer-risk">
+          Trading in financial markets involves substantial risk of loss and is not suitable for all investors. Past performance of algorithmic systems is not indicative of future results. Nexus Capital &amp; Investments does not provide financial advice. All content on this site is for informational purposes only.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
