@@ -429,3 +429,28 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     }
   });
 })();
+
+
+/* ── 13. FAQ ACCORDION ── */
+(function () {
+  const items = document.querySelectorAll('.faq-item');
+  items.forEach(item => {
+    const btn    = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+    if (!btn || !answer) return;
+    btn.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      // Close any other open items (single-open accordion)
+      items.forEach(other => {
+        if (other !== item && other.classList.contains('open')) {
+          other.classList.remove('open');
+          other.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+          other.querySelector('.faq-answer').style.maxHeight = null;
+        }
+      });
+      item.classList.toggle('open', !isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
+      answer.style.maxHeight = isOpen ? null : answer.scrollHeight + 'px';
+    });
+  });
+})();
