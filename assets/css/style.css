@@ -806,9 +806,12 @@ svg { display: block; }
   pointer-events: none;
 }
 .algo-division-inner {
-  position: relative; display: grid; grid-template-columns: 1fr 1fr;
+  position: relative; display: grid; grid-template-columns: 1fr;
   gap: 80px; align-items: center;
+  max-width: 720px; margin: 0 auto; text-align: center;
 }
+.algo-division-inner .algo-div-features { align-items: center; }
+.algo-division-inner .algo-div-feat { justify-content: center; }
 .algo-div-label { color: var(--cyan); }
 .algo-div-heading {
   font-family: var(--font-head); font-size: clamp(26px, 3.5vw, 44px);
