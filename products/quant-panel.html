@@ -10,6 +10,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
   <style>
+    /* Screenshots vary widely in aspect ratio (table views vs. tall PDF export),
+       so this page overrides the shared carousel's fixed 16:9 slide box with a
+       flexible height instead, letting each image keep its own proportions. */
+    .qp-screenshots .carousel-slide { aspect-ratio: auto; height: clamp(320px, 62vh, 600px); background: #0a0e14; }
+    .qp-screenshots .carousel-slide img { object-fit: contain; }
+
     .qp-changelog-section { position: relative; z-index: 1; padding: 100px 28px; background: rgba(0,204,255,0.015); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     .qp-changelog-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
     .qp-changelog-item {
@@ -387,16 +393,36 @@
 
 
     <!-- ░░░░ REAL SCREENSHOTS ░░░░ -->
-    <section style="position:relative;z-index:1;padding:100px 28px;">
+    <section class="screenshots-section qp-screenshots" id="screenshots">
       <div class="section-wrap">
         <div class="section-header">
           <div class="section-label section-label--cyan">THE REAL INTERFACE</div>
           <h2 class="section-title">No Mockups.<br><span class="text-glow">This Is Quant Panel Live.</span></h2>
+          <p class="section-desc">Every screen below is the actual dashboard, running on a real account.</p>
         </div>
-        <div style="max-width:820px;margin:0 auto;">
-          <img src="../images/Quant%20Panel/manage-mode.png" alt="Quant Panel Manage mode showing hide/show controls across a full multi-algorithm portfolio" style="width:100%;border-radius:10px;border:1px solid var(--border-hi);box-shadow:0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(0,204,255,0.06);">
-          <p style="text-align:center;font-size:12px;color:var(--text-muted);margin-top:18px;line-height:1.7;">Manage mode: hide or show individual strategies without ever losing their history. More interface screenshots are added here as they're captured.</p>
+
+        <div class="carousel-wrap">
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="../images/Quant%20Panel/screenshot-main-table.jpg" alt="Quant Panel main table view across a full multi-algorithm portfolio" loading="lazy"></div>
+              <div class="carousel-slide"><img src="../images/Quant%20Panel/screenshot-strategy-detail.jpg" alt="Quant Panel strategy detail popup with full statistics and equity curve" loading="lazy"></div>
+              <div class="carousel-slide"><img src="../images/Quant%20Panel/screenshot-manage-mode.jpg" alt="Quant Panel Manage mode showing hide/show controls across a full multi-algorithm portfolio" loading="lazy"></div>
+              <div class="carousel-slide"><img src="../images/Quant%20Panel/screenshot-symbol-filter.jpg" alt="Quant Panel table filtered to a single symbol" loading="lazy"></div>
+              <div class="carousel-slide"><img src="../images/Quant%20Panel/screenshot-pdf-report.jpg" alt="Quant Panel exported PDF analytics report, page one" loading="lazy"></div>
+            </div>
+          </div>
+          <button class="carousel-btn carousel-prev" aria-label="Previous screenshot">&#8249;</button>
+          <button class="carousel-btn carousel-next" aria-label="Next screenshot">&#8250;</button>
+          <div class="carousel-dots">
+            <button class="carousel-dot active" aria-label="Screenshot 1"></button>
+            <button class="carousel-dot"        aria-label="Screenshot 2"></button>
+            <button class="carousel-dot"        aria-label="Screenshot 3"></button>
+            <button class="carousel-dot"        aria-label="Screenshot 4"></button>
+            <button class="carousel-dot"        aria-label="Screenshot 5"></button>
+          </div>
         </div>
+
+        <p style="text-align:center;font-size:12px;color:var(--text-muted);margin-top:24px;line-height:1.7;">Main table, strategy detail, Manage mode, symbol filtering and a PDF export, all from a live account.</p>
       </div>
     </section><!-- /screenshots -->
 
