@@ -3,102 +3,115 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quant Panel | Coming Soon · Nexus Algorithmics · MT5</title>
-  <meta name="description" content="Quant Panel — the next-generation quantitative dashboard for MetaTrader 5 from Nexus Algorithmics. Coming soon.">
+  <title>Quant Panel | Nexus Algorithmics · MetaTrader 5 Dashboard</title>
+  <meta name="description" content="Quant Panel — a real-time multi-algorithm performance dashboard for MetaTrader 5, built by Nexus Algorithmics. Live P&L, institutional risk metrics and exportable PDF reports for every EA on your account.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
   <style>
-    /* Animated countdown-style ring for coming soon */
-    .cs-ring-wrap {
-      position: relative; width: 160px; height: 160px;
-      margin: 0 auto 40px;
+    .qp-changelog-section { position: relative; z-index: 1; padding: 100px 28px; background: rgba(0,204,255,0.015); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .qp-changelog-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+    .qp-changelog-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
+      padding: 16px 20px; font-size: 13.5px; color: var(--silver); line-height: 1.7;
     }
-    .cs-ring-svg { width: 160px; height: 160px; transform: rotate(-90deg); }
-    .cs-ring-track { fill: none; stroke: rgba(201,168,76,0.1); stroke-width: 3; }
-    .cs-ring-progress {
-      fill: none; stroke: url(#cs-ring-grad); stroke-width: 3;
-      stroke-linecap: round; stroke-dasharray: 440; stroke-dashoffset: 110;
-      animation: cs-ring-spin 8s linear infinite;
-    }
-    @keyframes cs-ring-spin {
-      0%   { stroke-dashoffset: 440; }
-      100% { stroke-dashoffset: 0; }
-    }
-    .cs-ring-logo {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      width: 90px; height: 90px; object-fit: contain; border-radius: 14px;
-    }
-    /* Animated data stream lines */
-    .cs-data-streams {
-      position: absolute; inset: 0; pointer-events: none; overflow: hidden;
-    }
-    .cs-stream {
-      position: absolute; height: 1px; background: linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent);
-      animation: cs-stream-flow 3s ease-in-out infinite;
-    }
-    .cs-stream:nth-child(1) { top: 18%; width: 60%; left: -10%; animation-delay: 0s; }
-    .cs-stream:nth-child(2) { top: 35%; width: 45%; left: 50%; animation-delay: 0.8s; }
-    .cs-stream:nth-child(3) { top: 60%; width: 55%; left: -5%; animation-delay: 1.6s; }
-    .cs-stream:nth-child(4) { top: 80%; width: 40%; left: 55%; animation-delay: 2.4s; }
-    @keyframes cs-stream-flow {
-      0%   { opacity: 0; transform: translateX(-20px); }
-      30%  { opacity: 1; }
-      70%  { opacity: 1; }
-      100% { opacity: 0; transform: translateX(20px); }
-    }
+    .qp-changelog-item strong { color: var(--text); }
+    .qp-changelog-dot { flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); margin-top: 7px; box-shadow: 0 0 8px var(--cyan-glow-sm); }
+    .qp-partner-note { text-align: center; font-size: 12.5px; color: var(--text-muted); max-width: 640px; margin: 32px auto 0; line-height: 1.7; }
   </style>
 </head>
-<body>
+<body class="algo-page">
 
   <!-- ░░ SPLASH ░░ -->
   <div id="splash" class="splash">
     <div class="splash-inner">
       <div class="splash-logo-wrap">
-        <div class="splash-ring"></div>
-        <img src="../Logo/Nexus Capital and Investments Logo.png" alt="Nexus Capital and Investments" class="splash-logo">
+        <div class="splash-ring splash-ring--cyan"></div>
+        <img src="../Logo/Nexus Algorithmics Logo Redraw.png" alt="Nexus Algorithmics" class="splash-logo">
       </div>
-      <div class="splash-name">NEXUS CAPITAL &amp; INVESTMENTS</div>
-      <div class="splash-sub">Quant Panel · Coming Soon</div>
-      <div class="splash-bar"><div class="splash-bar-fill"></div></div>
+      <div class="splash-name">NEXUS ALGORITHMICS</div>
+      <div class="splash-sub splash-sub--cyan">Quant Panel</div>
+      <div class="splash-bar"><div class="splash-bar-fill splash-bar-fill--cyan"></div></div>
     </div>
   </div>
 
   <!-- ░░ PARTICLE CANVAS ░░ -->
   <canvas id="particle-canvas"></canvas>
 
-  <!-- ░░ NAVIGATION — NCI Branded ░░ -->
+  <!-- ░░ NAVIGATION ░░ -->
   <nav class="navbar" id="navbar">
     <div class="nav-inner">
       <a href="../index.html" class="nav-logo">
         <img src="../Logo/Nexus Capital and Investments Logo.png" alt="Nexus Capital and Investments">
         <span class="nav-brand">Nexus<span class="nav-brand-dim"> Capital &amp; Investments</span></span>
       </a>
-
       <ul class="nav-links" id="nav-links">
-        <li><a href="../index.html"       class="nav-link">Home</a></li>
-        <li><a href="../index.html#about" class="nav-link">About</a></li>
-
+        <li><a href="../index.html" class="nav-link">Home</a></li>
+        <li class="nav-dropdown">
+          <button class="nav-link nav-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+            About <span class="nav-dropdown-caret">▾</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="../index.html#about" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Who We Are</span>
+              <span class="dropdown-item-sub">Founders &amp; approach</span>
+            </a>
+            <a href="../index.html#who-we-serve" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Clients</span>
+              <span class="dropdown-item-sub">Who we work with</span>
+            </a>
+            <a href="../index.html#methodology" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Methodology</span>
+              <span class="dropdown-item-sub">How we build and test</span>
+            </a>
+            <a href="../index.html#markets" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Markets</span>
+              <span class="dropdown-item-sub">What we trade</span>
+            </a>
+            <a href="../index.html#algo-development" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Algorithms</span>
+              <span class="dropdown-item-sub">In-house development</span>
+            </a>
+          </div>
+        </li>
+        <li class="nav-dropdown">
+          <button class="nav-link nav-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+            Resources <span class="nav-dropdown-caret">▾</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="../index.html#faq" class="nav-dropdown-item">
+              <span class="dropdown-item-title">FAQ</span>
+              <span class="dropdown-item-sub">Common questions, answered</span>
+            </a>
+            <a href="../reports.html" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Strategy Reports</span>
+              <span class="dropdown-item-sub">Sample algorithm performance</span>
+            </a>
+            <a href="../education.html" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Education</span>
+              <span class="dropdown-item-sub coming-soon">Coming Soon</span>
+            </a>
+          </div>
+        </li>
         <li class="nav-dropdown">
           <button class="nav-link nav-dropdown-btn" aria-expanded="false" aria-haspopup="true">
             Products <span class="nav-dropdown-caret">▾</span>
           </button>
           <div class="nav-dropdown-menu">
-            <a href="nexus-position-tool.html" class="nav-dropdown-item">
-              <span class="dropdown-item-title">Nexus Position Tool</span>
-              <span class="dropdown-item-sub">Professional ATAS position sizing</span>
-            </a>
-            <a href="quant-panel.html" class="nav-dropdown-item">
+            <a href="../products/quant-panel.html" class="nav-dropdown-item">
               <span class="dropdown-item-title">Quant Panel</span>
-              <span class="dropdown-item-sub coming-soon">MT5 · Coming Soon</span>
+              <span class="dropdown-item-sub">MT5 portfolio dashboard</span>
+            </a>
+            <a href="../products/bpfx-suite.html" class="nav-dropdown-item">
+              <span class="dropdown-item-title">BPFX Suite</span>
+              <span class="dropdown-item-sub">Recommended partner tool</span>
             </a>
           </div>
         </li>
-
-        <li><a href="../about-nexus-algorithmics.html" class="nav-link">Nexus Algorithmics</a></li>
+        <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
       </ul>
-
       <button class="nav-burger" id="nav-burger" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
@@ -107,103 +120,330 @@
 
   <main>
 
-    <!-- ░░░░ COMING SOON HERO ░░░░ -->
-    <section class="coming-soon-section">
-      <div class="coming-soon-glow"></div>
+    <!-- ░░░░ HERO ░░░░ -->
+    <section class="product-page-hero" id="home">
+      <div class="product-page-hero-grid"></div>
+      <div class="product-page-hero-glow-tl"></div>
+      <div class="product-page-hero-glow-br"></div>
 
-      <!-- Animated data streams -->
-      <div class="cs-data-streams">
-        <div class="cs-stream"></div>
-        <div class="cs-stream"></div>
-        <div class="cs-stream"></div>
-        <div class="cs-stream"></div>
+      <div class="product-page-hero-inner">
+
+        <div class="hero-text">
+
+          <div class="nci-origin-badge">
+            <img src="../Logo/Nexus Capital and Investments Logo.png" alt="Nexus Capital and Investments">
+            <span class="nci-origin-badge-text">A Nexus Capital &amp; Investments Division</span>
+          </div>
+
+          <div class="hero-product-name">Nexus Algorithmics</div>
+
+          <div class="hero-eyebrow">
+            <span class="eyebrow-pulse"></span>
+            MetaTrader 5 &middot; Live on MQL5 Market
+          </div>
+
+          <h1 class="hero-heading">
+            One Dashboard.<br>
+            <span class="text-glow">Every Algorithm.</span>
+          </h1>
+
+          <p class="hero-sub">
+            Quant Panel is a real-time performance dashboard for MetaTrader 5 that tracks every algorithm running on your account from a single screen: live P&amp;L, drawdown, win rate, and full institutional-grade analytics, calculated independently per strategy. Built by Nexus Algorithmics, the algorithmic division of Nexus Capital &amp; Investments.
+          </p>
+
+          <div class="hero-actions">
+            <a href="https://www.mql5.com/en/market/product/143061?source=Site+Market+My+Products+Page" class="btn-primary" target="_blank" rel="noopener noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L4.09 12.97 12 12.97 11 22 19.91 11.03 12 11.03z"/></svg>
+              View on MQL5 Market
+            </a>
+            <a href="#features" class="btn-ghost">
+              See Features
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-arrow"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+            </a>
+          </div>
+
+          <div class="hero-trust">
+            <div class="trust-badge"><span class="trust-check">✓</span> Free Demo Available</div>
+            <div class="trust-badge"><span class="trust-check">✓</span> Independent Per-Algo Tracking</div>
+            <div class="trust-badge"><span class="trust-check">✓</span> Actively Developed</div>
+          </div>
+        </div>
+
+      </div><!-- /hero-inner -->
+
+      <div class="scroll-cue">
+        <div class="scroll-cue-line"></div>
+        <span>SCROLL</span>
       </div>
+    </section><!-- /hero -->
 
-      <div class="coming-soon-inner">
 
-        <!-- Animated ring logo -->
-        <div class="cs-ring-wrap">
-          <svg class="cs-ring-svg" viewBox="0 0 160 160">
-            <defs>
-              <linearGradient id="cs-ring-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%"   stop-color="#c9a84c" stop-opacity="0.3"/>
-                <stop offset="50%"  stop-color="#e2c068"/>
-                <stop offset="100%" stop-color="#c9a84c" stop-opacity="0.3"/>
-              </linearGradient>
-            </defs>
-            <circle class="cs-ring-track" cx="80" cy="80" r="70"/>
-            <circle class="cs-ring-progress" cx="80" cy="80" r="70"/>
-          </svg>
-          <img src="../Logo/Nexus Algorithmics Logo Redraw.png" class="cs-ring-logo" alt="Nexus Algorithmics">
+    <!-- ░░░░ STATS BAR ░░░░ -->
+    <div class="stats-bar">
+      <div class="stats-inner">
+        <div class="stat">
+          <div class="stat-number" data-count="15">0</div>
+          <div class="stat-label">Institutional Risk Metrics</div>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat">
+          <div class="stat-number">4-Page</div>
+          <div class="stat-label">PDF Analytics Reports</div>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat">
+          <div class="stat-number" data-count="4">0</div>
+          <div class="stat-label">Zoom Levels, Any Session</div>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat">
+          <div class="stat-number">$99</div>
+          <div class="stat-label">One-Time Purchase</div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ░░░░ FEATURES ░░░░ -->
+    <section class="features" id="features">
+      <div class="section-wrap">
+
+        <div class="section-header">
+          <div class="section-label section-label--cyan">WHAT YOU GET</div>
+          <h2 class="section-title">Stop Juggling Charts.<br><span class="text-glow">Start Monitoring Properly.</span></h2>
+          <p class="section-desc">Every algorithm on your account, tracked independently, with the same rigour we apply to our own live trading.</p>
         </div>
 
-        <!-- NCI Origin Badge -->
-        <div class="nci-origin-badge" style="margin:0 auto 24px;width:fit-content;">
-          <img src="../Logo/Nexus Capital and Investments Logo.png" alt="">
-          <span class="nci-origin-badge-text">A Nexus Capital &amp; Investments Division</span>
+        <div class="features-grid">
+
+          <div class="feat-card" data-tilt>
+            <div class="feat-card-shine"></div>
+            <div class="feat-icon">
+              <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                <rect x="6" y="8" width="36" height="32" rx="4" stroke="#00ccff" stroke-width="1.5" fill="rgba(0,204,255,0.05)"/>
+                <line x1="6" y1="17" x2="42" y2="17" stroke="rgba(0,204,255,0.3)" stroke-width="1"/>
+                <rect x="10" y="22" width="8" height="6" rx="2" fill="rgba(0,204,255,0.25)" stroke="#00ccff" stroke-width="0.8"/>
+                <rect x="26" y="22" width="12" height="4" rx="2" fill="rgba(0,204,255,0.15)" stroke="#00ccff" stroke-width="0.8"/>
+                <rect x="10" y="31" width="8" height="6" rx="2" fill="rgba(0,204,255,0.3)" stroke="#00ccff" stroke-width="0.8"/>
+              </svg>
+            </div>
+            <div class="feat-tag">Live Tracking</div>
+            <h3 class="feat-title">Real-Time Multi-Algo Monitoring</h3>
+            <p class="feat-desc">Track every EA on your account from one panel, with each strategy's P&amp;L, drawdown and equity calculated independently against its own virtual starting balance, not blended into one misleading average.</p>
+          </div>
+
+          <div class="feat-card" data-tilt>
+            <div class="feat-card-shine"></div>
+            <div class="feat-icon">
+              <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                <rect x="10" y="4" width="28" height="40" rx="3" stroke="#00ccff" stroke-width="1.5" fill="rgba(0,204,255,0.05)"/>
+                <line x1="15" y1="12" x2="33" y2="12" stroke="rgba(0,204,255,0.4)" stroke-width="1.2"/>
+                <line x1="15" y1="18" x2="33" y2="18" stroke="rgba(0,204,255,0.25)" stroke-width="1"/>
+                <path d="M15 30 L20 24 L25 28 L33 18" stroke="#00ccff" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+                <line x1="15" y1="38" x2="33" y2="38" stroke="rgba(0,204,255,0.25)" stroke-width="1"/>
+              </svg>
+            </div>
+            <div class="feat-tag">Deep Analytics</div>
+            <h3 class="feat-title">Four-Page PDF Analytics Reports</h3>
+            <p class="feat-desc">Export a full report for any algorithm: overview, monthly and trade detail, risk/return analysis, and a seasonality heatmap with calculation methodology, written natively with no external dependencies.</p>
+          </div>
+
+          <div class="feat-card" data-tilt>
+            <div class="feat-card-shine"></div>
+            <div class="feat-icon">
+              <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                <path d="M14 8 L34 8 L24 22 L34 40 L14 40 L24 22 Z" stroke="#00ccff" stroke-width="1.5" fill="rgba(0,204,255,0.05)"/>
+              </svg>
+            </div>
+            <div class="feat-tag">Institutional Grade</div>
+            <h3 class="feat-title">Real Risk Metrics, Not Just P&amp;L</h3>
+            <p class="feat-desc">Sharpe, Sortino, Calmar, Ulcer Index, historical VaR, expected shortfall, skew, kurtosis, annualised volatility and realised CAGR, calculated per algorithm alongside the fundamentals: profit factor, expectancy, average win/loss and recovery factor.</p>
+          </div>
+
+          <div class="feat-card" data-tilt>
+            <div class="feat-card-shine"></div>
+            <div class="feat-icon">
+              <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                <circle cx="24" cy="24" r="17" stroke="#00ccff" stroke-width="1.5" fill="rgba(0,204,255,0.05)"/>
+                <path d="M24 24 L24 12" stroke="#00ccff" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M24 24 L32 30" stroke="#00ccff" stroke-width="1.5" stroke-linecap="round"/>
+                <circle cx="24" cy="24" r="2" fill="#00ccff"/>
+              </svg>
+            </div>
+            <div class="feat-tag">Any Session</div>
+            <h3 class="feat-title">Adaptive Zoom, Local or VPS</h3>
+            <p class="feat-desc">A persistent on-screen zoom control (85%, 100%, 115%, 130%) scales the entire panel, rows, charts and popups included, so the dashboard reads cleanly whether you're local, on RDP, or running on a VPS.</p>
+          </div>
+
+          <div class="feat-card" data-tilt>
+            <div class="feat-card-shine"></div>
+            <div class="feat-icon">
+              <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                <rect x="8" y="10" width="32" height="28" rx="3" stroke="#00ccff" stroke-width="1.5" fill="rgba(0,204,255,0.05)"/>
+                <path d="M15 24 L20 29 L33 16" stroke="#00e88a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="feat-tag">Stay Organised</div>
+            <h3 class="feat-title">Manage Mode</h3>
+            <p class="feat-desc">Hide or show individual algorithms from the dashboard without losing their history, with a dedicated status row and per-algo export button, so you can curate your view without ever deleting data.</p>
+          </div>
+
+          <div class="feat-card" data-tilt>
+            <div class="feat-card-shine"></div>
+            <div class="feat-icon">
+              <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                <path d="M8 30 L8 14 Q8 10 12 10 L36 10 Q40 10 40 14 L40 30" stroke="#00ccff" stroke-width="1.5" fill="none"/>
+                <rect x="6" y="30" width="36" height="8" rx="2" stroke="#00ccff" stroke-width="1.5" fill="rgba(0,204,255,0.08)"/>
+                <path d="M16 20 L22 26 L32 14" stroke="rgba(0,204,255,0.6)" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+              </svg>
+            </div>
+            <div class="feat-tag">No Data Loss</div>
+            <h3 class="feat-title">Broker-Independent History</h3>
+            <p class="feat-desc">Merges live broker data with an account-specific archive stored locally, so broker-pruned demo history doesn't quietly erase your track record. Current broker data always takes precedence when a record is corrected.</p>
+          </div>
+
+        </div><!-- /features-grid -->
+      </div>
+    </section><!-- /features -->
+
+
+    <!-- ░░░░ HOW IT WORKS ░░░░ -->
+    <section class="how-it-works" id="how-it-works">
+      <div class="section-wrap">
+
+        <div class="section-header">
+          <div class="section-label section-label--cyan">GETTING STARTED</div>
+          <h2 class="section-title">Set Up Once.<br><span class="text-glow">Monitor Forever.</span></h2>
         </div>
 
-        <div class="coming-soon-badge">In Development · Nexus Algorithmics · MetaTrader 5</div>
+        <div class="steps-row">
+          <div class="step" data-reveal>
+            <div class="step-num">01</div>
+            <div class="step-icon">
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="4" y="8" width="32" height="24" rx="4" stroke="#00ccff" stroke-width="1.5" fill="rgba(0,204,255,0.05)"/>
+                <line x1="4" y1="16" x2="36" y2="16" stroke="rgba(0,204,255,0.3)" stroke-width="1"/>
+                <circle cx="12" cy="12" r="1.5" fill="#00ccff"/>
+              </svg>
+            </div>
+            <h3>Attach To Any Chart</h3>
+            <p>Quant Panel runs from a single chart and reads your account's complete trade history, no per-symbol setup required.</p>
+          </div>
 
-        <h1 class="coming-soon-title">
-          Quant<br>
-          <span class="text-glow-gold">Panel</span>
-        </h1>
+          <div class="step-arrow">
+            <svg viewBox="0 0 60 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <line x1="0" y1="12" x2="50" y2="12" stroke="rgba(0,204,255,0.3)" stroke-width="1" stroke-dasharray="4 3"/>
+              <path d="M46 6 L54 12 L46 18" stroke="rgba(0,204,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
 
-        <p class="coming-soon-sub">
-          The next-generation quantitative dashboard for MetaTrader 5 — bringing institutional-grade analytics, real-time portfolio monitoring, and advanced intelligence directly to your MT5 environment. Built by Nexus Algorithmics, the algorithmic division of Nexus Capital &amp; Investments.
-        </p>
+          <div class="step" data-reveal>
+            <div class="step-num">02</div>
+            <div class="step-icon">
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="4" y="4" width="32" height="32" rx="4" stroke="rgba(0,204,255,0.3)" stroke-width="1" fill="rgba(0,204,255,0.03)"/>
+                <line x1="10" y1="14" x2="30" y2="14" stroke="#00ccff" stroke-width="1.5"/>
+                <line x1="10" y1="20" x2="24" y2="20" stroke="rgba(0,204,255,0.5)" stroke-width="1.5"/>
+                <line x1="10" y1="26" x2="27" y2="26" stroke="rgba(0,204,255,0.4)" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <h3>Configure Your View</h3>
+            <p>Set your refresh rate, visible columns and magic-number grouping to match how you actually trade, then choose your zoom level for the session.</p>
+          </div>
 
-        <div class="coming-soon-features">
-          <div class="coming-soon-feat">
-            <span class="coming-soon-feat-dot"></span>
-            MetaTrader 5 Native Integration
+          <div class="step-arrow">
+            <svg viewBox="0 0 60 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <line x1="0" y1="12" x2="50" y2="12" stroke="rgba(0,204,255,0.3)" stroke-width="1" stroke-dasharray="4 3"/>
+              <path d="M46 6 L54 12 L46 18" stroke="rgba(0,204,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
           </div>
-          <div class="coming-soon-feat">
-            <span class="coming-soon-feat-dot"></span>
-            Advanced Quantitative Analytics
-          </div>
-          <div class="coming-soon-feat">
-            <span class="coming-soon-feat-dot"></span>
-            Real-Time Portfolio Monitoring
-          </div>
-          <div class="coming-soon-feat">
-            <span class="coming-soon-feat-dot"></span>
-            Multi-Instrument Correlation
-          </div>
-          <div class="coming-soon-feat">
-            <span class="coming-soon-feat-dot"></span>
-            Risk-Adjusted Performance Metrics
-          </div>
-          <div class="coming-soon-feat">
-            <span class="coming-soon-feat-dot"></span>
-            Institutional-Grade Execution Tools
+
+          <div class="step" data-reveal>
+            <div class="step-num">03</div>
+            <div class="step-icon">
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="20" r="17" stroke="rgba(0,204,255,0.2)" stroke-width="1" stroke-dasharray="2 3"/>
+                <path d="M12 24 L16 20 L20 24 L28 12" stroke="#00ccff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </div>
+            <h3>Monitor &amp; Export</h3>
+            <p>Watch live performance update in real time, and export a full PDF analytics report for any algorithm whenever you need one.</p>
           </div>
         </div>
 
-        <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;">
-          Register your interest and be first to know when Quant Panel launches.
-        </p>
+      </div>
+    </section><!-- /how-it-works -->
 
-        <form class="notify-form" id="notify-form">
-          <input type="email" class="notify-input" placeholder="your@email.com" required>
-          <button type="submit" class="notify-btn">Notify Me</button>
-        </form>
 
-        <div style="margin-top:40px;">
-          <a href="nexus-position-tool.html" class="btn-ghost-gold" style="display:inline-flex;">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-            View Nexus Position Tool
+    <!-- ░░░░ RECENT UPDATES ░░░░ -->
+    <section class="qp-changelog-section">
+      <div class="section-wrap">
+
+        <div class="section-header">
+          <div class="section-label section-label--cyan">ACTIVELY DEVELOPED</div>
+          <h2 class="section-title">Built By Traders<br><span class="text-glow">Who Actually Use It</span></h2>
+          <p class="section-desc">Quant Panel is developed alongside our own live trading, so it keeps evolving with what we actually need from it. Recent highlights from the v2.7 release:</p>
+        </div>
+
+        <div class="qp-changelog-list">
+          <div class="qp-changelog-item"><span class="qp-changelog-dot"></span><span><strong>Panel-wide zoom.</strong> A persistent on-screen zoom control (85–130%) scales the entire panel, not just the text, across local, RDP and VPS sessions.</span></div>
+          <div class="qp-changelog-item"><span class="qp-changelog-dot"></span><span><strong>Four-page PDF reports.</strong> Each algorithm's export now covers overview, monthly and trade detail, risk/return analysis, seasonality heatmap and methodology.</span></div>
+          <div class="qp-changelog-item"><span class="qp-changelog-dot"></span><span><strong>A full institutional metrics set.</strong> Realised CAGR, Sharpe, Sortino, annualised volatility, Calmar, Ulcer Index, historical VaR, expected shortfall, skew, kurtosis and return distribution, added to every report.</span></div>
+          <div class="qp-changelog-item"><span class="qp-changelog-dot"></span><span><strong>More honest drawdown reporting.</strong> Removed a floating-drawdown estimate that MT5's closed history can't actually reconstruct reliably, keeping underwater drawdown tied to each algo's real, realised equity peak.</span></div>
+          <div class="qp-changelog-item"><span class="qp-changelog-dot"></span><span><strong>Cleaner Manage mode.</strong> A dedicated status row and per-algo export button replaced the old Kill List workflow, so hiding a strategy no longer disturbs the table layout.</span></div>
+        </div>
+
+        <p class="qp-partner-note">Full version history is available on request. Every update ships to existing owners at no extra cost.</p>
+      </div>
+    </section><!-- /qp-changelog -->
+
+
+    <!-- ░░░░ PRICING ░░░░ -->
+    <section class="pricing" id="pricing">
+      <div class="pricing-bg-glow"></div>
+      <div class="section-wrap">
+
+        <div class="section-header">
+          <div class="section-label section-label--cyan">GET STARTED</div>
+          <h2 class="section-title">See Every Algorithm.<br><span class="text-glow">One Screen, No Guesswork.</span></h2>
+          <p style="margin-top:16px;font-size:13px;color:var(--text-muted);text-align:center;">
+            A professional tool by <strong style="color:var(--cyan);">Nexus Algorithmics</strong>, the algorithmic division of Nexus Capital &amp; Investments
+          </p>
+        </div>
+
+        <div class="pricing-card">
+          <div class="pricing-card-glow"></div>
+          <div class="pricing-badge">PROFESSIONAL TOOL &middot; NEXUS ALGORITHMICS</div>
+          <div class="pricing-name">Quant Panel</div>
+          <div class="pricing-price-wrap">
+            <span class="price-sym">$</span>
+            <span class="price-num">99</span>
+            <span class="price-period">One-Time</span>
+          </div>
+          <ul class="pricing-list">
+            <li><span class="plist-check">✓</span> Real-time multi-algorithm monitoring</li>
+            <li><span class="plist-check">✓</span> Four-page PDF analytics reports, per algorithm</li>
+            <li><span class="plist-check">✓</span> Full institutional risk metrics suite</li>
+            <li><span class="plist-check">✓</span> Adaptive zoom for local, RDP and VPS sessions</li>
+            <li><span class="plist-check">✓</span> Manage mode with per-algo export</li>
+            <li><span class="plist-check">✓</span> Broker-independent history archive</li>
+            <li><span class="plist-check">✓</span> Free demo available before you buy</li>
+            <li><span class="plist-check">✓</span> All future updates included</li>
+          </ul>
+          <a href="https://www.mql5.com/en/market/product/143061?source=Site+Market+My+Products+Page" class="btn-pricing" target="_blank" rel="noopener noreferrer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L4.09 12.97 12 12.97 11 22 19.91 11.03 12 11.03z"/></svg>
+            View on MQL5 Market — $99
           </a>
+          <p class="pricing-note">Or rent from $30/month &middot; Purchase, licensing and delivery are handled entirely through the MQL5 Market</p>
         </div>
 
       </div>
-    </section>
+    </section><!-- /pricing -->
 
   </main>
 
 
-  <!-- ░░ FOOTER — NCI Branded ░░ -->
+  <!-- ░░ FOOTER ░░ -->
   <footer class="nci-footer">
     <div class="footer-inner">
       <div class="footer-top">
@@ -220,9 +460,11 @@
           <div class="footer-nav-title">Navigation</div>
           <div class="footer-nav-links">
             <a href="../index.html">Home</a>
-            <a href="../about-nexus-algorithmics.html">Nexus Algorithmics</a>
-            <a href="nexus-position-tool.html">Nexus Position Tool</a>
+            <a href="../index.html#about">Who We Are</a>
+            <a href="../index.html#faq">FAQ</a>
             <a href="quant-panel.html">Quant Panel</a>
+            <a href="bpfx-suite.html">BPFX Suite</a>
+            <a href="../index.html#contact">Contact</a>
           </div>
         </div>
 
@@ -236,8 +478,9 @@
         </div>
 
       </div>
+
       <div class="footer-bottom">
-        <p>© 2026 Nexus Capital &amp; Investments · Nexus Algorithmics. All rights reserved.</p>
+        <p>© 2026 Nexus Capital &amp; Investments. All rights reserved.</p>
         <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin:8px 0;">
           <a href="../legal/terms.html" style="font-size:11px;color:var(--text-muted);">Terms &amp; Conditions</a>
           <span style="color:var(--gold-border);">·</span>

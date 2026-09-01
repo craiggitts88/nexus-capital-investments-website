@@ -111,11 +111,33 @@
       </a>
       <ul class="nav-links" id="nav-links">
         <li><a href="index.html" class="nav-link">Home</a></li>
-        <li><a href="index.html#about" class="nav-link">About</a></li>
-        <li><a href="index.html#who-we-serve" class="nav-link">Clients</a></li>
-        <li><a href="index.html#methodology" class="nav-link">Methodology</a></li>
-        <li><a href="index.html#markets" class="nav-link">Markets</a></li>
-        <li><a href="index.html#algo-development" class="nav-link">Algorithms</a></li>
+        <li class="nav-dropdown">
+          <button class="nav-link nav-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+            About <span class="nav-dropdown-caret">▾</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="index.html#about" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Who We Are</span>
+              <span class="dropdown-item-sub">Founders &amp; approach</span>
+            </a>
+            <a href="index.html#who-we-serve" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Clients</span>
+              <span class="dropdown-item-sub">Who we work with</span>
+            </a>
+            <a href="index.html#methodology" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Methodology</span>
+              <span class="dropdown-item-sub">How we build and test</span>
+            </a>
+            <a href="index.html#markets" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Markets</span>
+              <span class="dropdown-item-sub">What we trade</span>
+            </a>
+            <a href="index.html#algo-development" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Algorithms</span>
+              <span class="dropdown-item-sub">In-house development</span>
+            </a>
+          </div>
+        </li>
         <li class="nav-dropdown">
           <button class="nav-link nav-dropdown-btn" aria-expanded="false" aria-haspopup="true">
             Resources <span class="nav-dropdown-caret">▾</span>
@@ -132,6 +154,21 @@
             <a href="education.html" class="nav-dropdown-item">
               <span class="dropdown-item-title">Education</span>
               <span class="dropdown-item-sub coming-soon">Coming Soon</span>
+            </a>
+          </div>
+        </li>
+        <li class="nav-dropdown">
+          <button class="nav-link nav-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+            Products <span class="nav-dropdown-caret">▾</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="products/quant-panel.html" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Quant Panel</span>
+              <span class="dropdown-item-sub">MT5 portfolio dashboard</span>
+            </a>
+            <a href="products/bpfx-suite.html" class="nav-dropdown-item">
+              <span class="dropdown-item-title">BPFX Suite</span>
+              <span class="dropdown-item-sub">Recommended partner tool</span>
             </a>
           </div>
         </li>
@@ -252,12 +289,14 @@
           <div class="footer-nav-title">Navigation</div>
           <div class="footer-nav-links">
             <a href="index.html">Home</a>
-            <a href="index.html#about">About</a>
+            <a href="index.html#about">Who We Are</a>
             <a href="index.html#who-we-serve">Clients</a>
             <a href="index.html#methodology">Methodology</a>
             <a href="index.html#faq">FAQ</a>
             <a href="reports.html">Reports</a>
             <a href="education.html">Education</a>
+            <a href="products/quant-panel.html">Quant Panel</a>
+            <a href="products/bpfx-suite.html">BPFX Suite</a>
             <a href="index.html#contact">Contact</a>
           </div>
         </div>

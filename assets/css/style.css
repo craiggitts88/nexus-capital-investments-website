@@ -1608,10 +1608,11 @@ svg { display: block; }
 }
 
 /* Nav collapses to the burger menu earlier than other mobile breakpoints —
-   the full logo (372px) + 9 nav-link items (693px) no longer fit one row
-   below ~1175px. Links use white-space:nowrap, so below this breakpoint
-   they'd otherwise overflow rather than wrap. */
-@media (max-width: 1180px) {
+   the full logo (372px) + 5 top-level nav items (Home/About/Resources/
+   Products/Contact, ~417px) no longer fit one row below ~860px. Links use
+   white-space:nowrap, so below this breakpoint they'd otherwise overflow
+   rather than wrap. */
+@media (max-width: 900px) {
   .nav-links { display: none; }
   .nav-burger { display: flex; }
   .nav-inner { gap: 12px; }
