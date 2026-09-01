@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /about-nexus-algorithmics.html
+Disallow: /products/nexus-position-tool.html
+Allow: /
+
+Sitemap: https://nexuscapitalandinvestments.com/sitemap.xml
