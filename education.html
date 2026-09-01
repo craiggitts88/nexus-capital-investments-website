@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Education | Nexus Algorithmics</title>
+  <meta name="description" content="Nexus Algorithmics Education — coming soon. Learn to build statistically robust, verifiable trading algorithms from the team behind Nexus Capital & Investments.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* Page-scoped: cyan background texture for the Education hero */
+    .edu-hero-grid-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(0,204,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,204,255,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, black 20%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, black 20%, transparent 100%);
+    }
+    .edu-glow-tl {
+      position: absolute; top: -180px; left: -180px; width: 600px; height: 600px;
+      border-radius: 50%; pointer-events: none;
+      background: radial-gradient(circle, rgba(0,204,255,0.08) 0%, transparent 70%);
+      filter: blur(80px);
+    }
+    .edu-glow-br {
+      position: absolute; bottom: -180px; right: -180px; width: 500px; height: 500px;
+      border-radius: 50%; pointer-events: none;
+      background: radial-gradient(circle, rgba(0,80,200,0.07) 0%, transparent 70%);
+      filter: blur(80px);
+    }
+
+    /* Division lineage (reused pattern) */
+    .edu-lineage {
+      display: flex; align-items: center; justify-content: center;
+      gap: 16px; margin-bottom: 36px; flex-wrap: wrap;
+    }
+    .edu-lineage-item {
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(4,10,18,0.8); border: 1px solid var(--gold-border);
+      border-radius: 8px; padding: 10px 16px;
+    }
+    .edu-lineage-item img { height: 28px; width: auto; object-fit: contain; }
+    .edu-lineage-item-name { font-size: 11px; font-weight: 600; color: var(--gold); letter-spacing: 0.5px; }
+    .edu-lineage-arrow { color: var(--text-muted); font-size: 16px; font-weight: 300; }
+    .edu-lineage-item--algo { border-color: var(--border-hi); }
+    .edu-lineage-item--algo .edu-lineage-item-name { color: var(--cyan); }
+
+    .edu-coming-soon-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(0,204,255,0.08); border: 1px solid var(--border-hi);
+      border-radius: 30px; padding: 8px 20px; margin-bottom: 28px;
+      font-family: var(--font-head); font-size: 10px; font-weight: 700;
+      letter-spacing: 3px; text-transform: uppercase; color: var(--cyan);
+    }
+    .edu-coming-soon-dot {
+      width: 6px; height: 6px; border-radius: 50%; background: var(--cyan);
+      box-shadow: 0 0 8px var(--cyan); animation: pulse-cyan 2s ease-in-out infinite;
+    }
+
+    /* Curriculum grid */
+    .curriculum-section { position: relative; z-index: 1; padding: 100px 28px; }
+    .curriculum-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+    }
+    .curriculum-card {
+      position: relative; background: rgba(0,204,255,0.04);
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 32px 26px; overflow: hidden;
+      transition: border-color 0.35s, box-shadow 0.35s, transform 0.15s var(--ease);
+    }
+    .curriculum-card:hover {
+      border-color: var(--border-hi); transform: translateY(-3px);
+      box-shadow: 0 0 40px rgba(0,204,255,0.07), 0 16px 40px rgba(0,0,0,0.4);
+    }
+    .curriculum-num {
+      font-family: var(--font-head); font-size: 32px; font-weight: 900;
+      color: rgba(0,204,255,0.25); line-height: 1; margin-bottom: 16px;
+      letter-spacing: -1px;
+    }
+    .curriculum-icon {
+      width: 52px; height: 52px; border-radius: 12px;
+      background: rgba(0,204,255,0.07); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 18px;
+    }
+    .curriculum-icon svg { width: 28px; height: 28px; }
+    .curriculum-title {
+      font-family: var(--font-head); font-size: 13.5px; font-weight: 700;
+      color: var(--text); margin-bottom: 10px; letter-spacing: 0.2px; line-height: 1.35;
+    }
+    .curriculum-desc { font-size: 12.5px; color: var(--silver); line-height: 1.7; }
+    @media (max-width: 1000px) { .curriculum-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .curriculum-grid { grid-template-columns: 1fr; } }
+
+    /* CTA */
+    .edu-cta-section { position: relative; z-index: 1; padding: 0 28px 120px; }
+    .edu-cta-box {
+      max-width: 720px; margin: 0 auto; text-align: center;
+      background: rgba(0,204,255,0.05); border: 1px solid var(--border-hi);
+      border-radius: var(--radius); padding: 52px 40px;
+    }
+    .edu-cta-title {
+      font-family: var(--font-head); font-size: clamp(20px, 2.6vw, 28px); font-weight: 800;
+      color: var(--text); margin-bottom: 14px; letter-spacing: -0.3px;
+    }
+    .edu-cta-desc { font-size: 14px; color: var(--silver); line-height: 1.8; margin-bottom: 28px; max-width: 520px; margin-left: auto; margin-right: auto; }
+  </style>
+</head>
+<body class="algo-page">
+
+  <!-- ░░ SPLASH ░░ -->
+  <div id="splash" class="splash">
+    <div class="splash-inner">
+      <div class="splash-logo-wrap">
+        <div class="splash-ring splash-ring--cyan"></div>
+        <img src="Logo/Nexus Algorithmics Logo Redraw.png" alt="Nexus Algorithmics" class="splash-logo">
+      </div>
+      <div class="splash-name">NEXUS ALGORITHMICS</div>
+      <div class="splash-sub splash-sub--cyan">Education</div>
+      <div class="splash-bar"><div class="splash-bar-fill splash-bar-fill--cyan"></div></div>
+    </div>
+  </div>
+
+  <!-- ░░ PARTICLE CANVAS ░░ -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- ░░ NAVIGATION ░░ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="Logo/Nexus Capital and Investments Logo.png" alt="Nexus Capital and Investments">
+        <span class="nav-brand">Nexus<span class="nav-brand-dim"> Capital &amp; Investments</span></span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="index.html#about" class="nav-link">About</a></li>
+        <li><a href="index.html#who-we-serve" class="nav-link">Clients</a></li>
+        <li><a href="index.html#methodology" class="nav-link">Methodology</a></li>
+        <li><a href="index.html#markets" class="nav-link">Markets</a></li>
+        <li><a href="index.html#algo-development" class="nav-link">Algorithms</a></li>
+        <li><a href="index.html#faq" class="nav-link">FAQ</a></li>
+        <li><a href="reports.html" class="nav-link">Reports</a></li>
+        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <button class="nav-burger" id="nav-burger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ░░░░ HERO ░░░░ -->
+    <section class="algo-about-hero" style="position:relative;overflow:hidden;">
+      <div class="edu-hero-grid-bg"></div>
+      <div class="edu-glow-tl"></div>
+      <div class="edu-glow-br"></div>
+
+      <div class="algo-about-inner">
+
+        <div class="edu-lineage">
+          <div class="edu-lineage-item">
+            <img src="Logo/Nexus Capital and Investments Logo.png" alt="NCI">
+            <div class="edu-lineage-item-name">Nexus Capital &amp; Investments</div>
+          </div>
+          <span class="edu-lineage-arrow">›</span>
+          <div class="edu-lineage-item edu-lineage-item--algo">
+            <img src="Logo/Nexus Algorithmics Logo Redraw.png" alt="Nexus Algorithmics" style="border-radius:6px;">
+            <div class="edu-lineage-item-name">Nexus Algorithmics</div>
+          </div>
+        </div>
+
+        <div class="edu-coming-soon-badge">
+          <span class="edu-coming-soon-dot"></span>
+          Coming Soon
+        </div>
+
+        <h1 class="algo-about-title">
+          Learn To Build<br>
+          <span class="text-glow">Statistically Robust Algorithms</span>
+        </h1>
+
+        <p class="algo-about-sub">
+          Nexus Algorithmics, the technology and research arm of Nexus Capital &amp; Investments, is building a complete education programme on how to design, test and verify trading algorithms the way we do internally, grounded in data and statistics, not gut feel.
+        </p>
+
+        <div class="algo-about-badges">
+          <div class="algo-about-badge">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="6"/></svg>
+            Data &amp; Statistics
+          </div>
+          <div class="algo-about-badge">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="6"/></svg>
+            Portfolio Logic
+          </div>
+          <div class="algo-about-badge">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="6"/></svg>
+            Statistical Verification
+          </div>
+          <div class="algo-about-badge">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="6"/></svg>
+            Live Monitoring
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ░░░░ CURRICULUM ░░░░ -->
+    <section class="curriculum-section">
+      <div class="section-wrap">
+
+        <div class="section-header">
+          <div class="section-label section-label--cyan">WHAT WE PLAN TO TEACH</div>
+          <h2 class="section-title">Start To Finish.<br><span class="text-glow">Rule By Rule.</span></h2>
+          <p class="section-desc">Taught from the same research methodology behind our own live trading, starting with the fundamentals and building up to the statistical theory that separates a real edge from a lucky backtest.</p>
+        </div>
+
+        <div class="curriculum-grid">
+
+          <div class="curriculum-card">
+            <div class="curriculum-num">01</div>
+            <div class="curriculum-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="24" cy="12" rx="16" ry="6" stroke="#00ccff" stroke-width="1.5" fill="rgba(0,204,255,0.05)"/>
+                <path d="M8 12 L8 36 Q8 42 24 42 Q40 42 40 36 L40 12" stroke="#00ccff" stroke-width="1.5" fill="none"/>
+                <path d="M8 24 Q8 30 24 30 Q40 30 40 24" stroke="rgba(0,204,255,0.4)" stroke-width="1"/>
+              </svg>
+            </div>
+            <h3 class="curriculum-title">Market &amp; Data Foundations</h3>
+            <p class="curriculum-desc">Sourcing clean historical data, understanding market structure, and why data integrity determines everything that follows.</p>
+          </div>
+
+          <div class="curriculum-card">
+            <div class="curriculum-num">02</div>
+            <div class="curriculum-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 6 L18 18 L8 36 Q6 40 10 40 L38 40 Q42 40 40 36 L30 18 L30 6" stroke="#00ccff" stroke-width="1.5" fill="rgba(0,204,255,0.05)"/>
+                <line x1="16" y1="6" x2="32" y2="6" stroke="#00ccff" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="14" y1="30" x2="34" y2="30" stroke="rgba(0,204,255,0.5)" stroke-width="1"/>
+              </svg>
+            </div>
+            <h3 class="curriculum-title">From Idea To Testable Rule</h3>
+            <p class="curriculum-desc">Turning a market observation into a precise, mechanical rule that can actually be backtested, not just eyeballed on a chart.</p>
+          </div>
+
+          <div class="curriculum-card">
+            <div class="curriculum-num">03</div>
+            <div class="curriculum-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14 8 L34 8 L24 22 L34 40 L14 40 L24 22 Z" stroke="#00ccff" stroke-width="1.5" fill="rgba(0,204,255,0.05)"/>
+              </svg>
+            </div>
+            <h3 class="curriculum-title">Statistical Theory &amp; Sigma</h3>
+            <p class="curriculum-desc">Hypothesis testing, standard deviation and confidence levels, and what "statistically significant" actually means for a strategy.</p>
+          </div>
+
+          <div class="curriculum-card">
+            <div class="curriculum-num">04</div>
+            <div class="curriculum-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="8" y="8" width="14" height="14" rx="3" stroke="#00ccff" stroke-width="1.5" fill="rgba(0,204,255,0.05)"/>
+                <circle cx="13" cy="13" r="1.6" fill="#00ccff"/>
+                <circle cx="17" cy="17" r="1.6" fill="#00ccff"/>
+                <rect x="26" y="26" width="14" height="14" rx="3" stroke="#00ccff" stroke-width="1.5" fill="rgba(0,204,255,0.05)"/>
+                <circle cx="31" cy="31" r="1.6" fill="#00ccff"/>
+                <circle cx="35" cy="35" r="1.6" fill="#00ccff"/>
+                <circle cx="31" cy="35" r="1.6" fill="rgba(0,204,255,0.4)"/>
+                <circle cx="35" cy="31" r="1.6" fill="rgba(0,204,255,0.4)"/>
+              </svg>
+            </div>
+            <h3 class="curriculum-title">Verifying Edge vs Random Noise</h3>
+            <p class="curriculum-desc">Monte Carlo simulation and permutation testing: the tools that tell a genuine market edge apart from a result that only looks good by chance.</p>
+          </div>
+
+          <div class="curriculum-card">
+            <div class="curriculum-num">05</div>
+            <div class="curriculum-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="6" y1="24" x2="42" y2="24" stroke="rgba(0,204,255,0.3)" stroke-width="1" stroke-dasharray="3 2"/>
+                <path d="M6 30 L14 26 L20 32 L28 16 L34 22 L42 12" stroke="#00ccff" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                <rect x="20" y="24" width="8" height="8" rx="1.5" stroke="#00ccff" stroke-width="1.2" fill="rgba(0,204,255,0.08)"/>
+              </svg>
+            </div>
+            <h3 class="curriculum-title">In-Sample, Out-of-Sample &amp; Walk-Forward</h3>
+            <p class="curriculum-desc">Why a single backtest proves nothing on its own, and how staged testing exposes curve-fitting before it costs real money.</p>
+          </div>
+
+          <div class="curriculum-card">
+            <div class="curriculum-num">06</div>
+            <div class="curriculum-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="12" y1="10" x2="12" y2="38" stroke="#00ccff" stroke-width="1.5"/>
+                <rect x="9" y="14" width="6" height="10" fill="rgba(0,204,255,0.15)" stroke="#00ccff" stroke-width="1"/>
+                <line x1="22" y1="6" x2="22" y2="34" stroke="#00ccff" stroke-width="1.5"/>
+                <rect x="19" y="18" width="6" height="12" fill="rgba(0,204,255,0.3)" stroke="#00ccff" stroke-width="1"/>
+                <line x1="32" y1="12" x2="32" y2="40" stroke="#00ccff" stroke-width="1.5"/>
+                <rect x="29" y="16" width="6" height="8" fill="rgba(0,204,255,0.15)" stroke="#00ccff" stroke-width="1"/>
+              </svg>
+            </div>
+            <h3 class="curriculum-title">Chart &amp; Price-Action Analysis</h3>
+            <p class="curriculum-desc">Reading market structure systematically, not on gut feel, and turning what you see into rules a computer can execute.</p>
+          </div>
+
+          <div class="curriculum-card">
+            <div class="curriculum-num">07</div>
+            <div class="curriculum-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="6"  y="30" width="10" height="10" rx="2" fill="rgba(0,204,255,0.5)" stroke="#00ccff" stroke-width="1"/>
+                <rect x="19" y="20" width="10" height="20" rx="2" fill="rgba(0,204,255,0.3)" stroke="#00ccff" stroke-width="1"/>
+                <rect x="32" y="10" width="10" height="30" rx="2" fill="rgba(0,204,255,0.6)" stroke="#00ccff" stroke-width="1.2"/>
+              </svg>
+            </div>
+            <h3 class="curriculum-title">Portfolio Logic &amp; Construction</h3>
+            <p class="curriculum-desc">Combining multiple strategies, correlation and position sizing, and building a portfolio that survives conditions no single strategy was designed for.</p>
+          </div>
+
+          <div class="curriculum-card">
+            <div class="curriculum-num">08</div>
+            <div class="curriculum-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="17" stroke="#00ccff" stroke-width="1.5" fill="rgba(0,204,255,0.05)"/>
+                <path d="M14 24 L19 24 L22 16 L27 32 L30 24 L34 24" stroke="#00ccff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </div>
+            <h3 class="curriculum-title">Live Monitoring &amp; Ongoing Verification</h3>
+            <p class="curriculum-desc">Tracking a strategy once it's live, spotting regime change, and knowing when to retire an algorithm before it costs you.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ░░░░ WHY NEXUS ALGORITHMICS ░░░░ -->
+    <section class="algo-mission-section">
+      <div class="section-wrap">
+        <div class="algo-mission-grid">
+
+          <div class="algo-mission-text">
+            <div class="section-label section-label--cyan">WHY NEXUS ALGORITHMICS</div>
+            <h2 class="algo-mission-heading">
+              Taught From Practice.<br>
+              <span class="text-glow">Not Just Theory.</span>
+            </h2>
+            <div class="algo-mission-body">
+              <p>
+                Nexus Algorithmics is the technology and research arm behind Nexus Capital &amp; Investments' own live trading. The same robustness-testing methodology, statistical standards and monitoring discipline used to build our client portfolios is what this programme is built to teach.
+              </p>
+              <p>
+                This isn't a course written from books. It's the working process of a team that has to answer for its statistics with real capital.
+              </p>
+            </div>
+          </div>
+
+          <div class="algo-mission-visual">
+            <div class="algo-mission-card">
+              <div class="algo-mission-card-title">Grounded In Real Methodology</div>
+              <div class="algo-mission-card-text">Every module traces back to a real stage of our own process, from data sourcing through to live monitoring, not a generic trading-course syllabus.</div>
+            </div>
+            <div class="algo-mission-card">
+              <div class="algo-mission-card-title">Statistically Rigorous</div>
+              <div class="algo-mission-card-text">Sigma, significance testing, Monte Carlo simulation and walk-forward analysis are treated as the core of the curriculum, not an advanced afterthought.</div>
+            </div>
+            <div class="algo-mission-card">
+              <div class="algo-mission-card-title">Continuously Updated</div>
+              <div class="algo-mission-card-text">As our own research methodology evolves, so does the programme. This is a living curriculum, not a one-time recording.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ░░░░ CTA ░░░░ -->
+    <section class="edu-cta-section">
+      <div class="edu-cta-box">
+        <h2 class="edu-cta-title">Want to know when this launches?</h2>
+        <p class="edu-cta-desc">The full programme is still in development. Email us and we'll let you know as soon as it's ready.</p>
+        <a href="mailto:craig@nexuscapitalandinvestments.com?subject=Nexus%20Algorithmics%20Education" class="btn-primary">
+          Register Interest
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ░░ FOOTER ░░ -->
+  <footer class="nci-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+
+        <div class="footer-brand">
+          <div class="footer-brand-row">
+            <img src="Logo/Nexus Capital and Investments Logo.png" alt="Nexus Capital and Investments" class="footer-logo">
+            <div class="footer-brand-name">Nexus Capital &amp; Investments</div>
+          </div>
+          <p class="footer-tagline">Systematic. Algorithmic. Institutional.</p>
+        </div>
+
+        <div class="footer-nav-col">
+          <div class="footer-nav-title">Navigation</div>
+          <div class="footer-nav-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#who-we-serve">Clients</a>
+            <a href="index.html#methodology">Methodology</a>
+            <a href="index.html#faq">FAQ</a>
+            <a href="reports.html">Reports</a>
+            <a href="education.html">Education</a>
+            <a href="index.html#contact">Contact</a>
+          </div>
+        </div>
+
+        <div class="footer-legal">
+          <div class="footer-legal-title">Legal</div>
+          <div class="footer-nav-links">
+            <a href="legal/terms.html">Terms &amp; Conditions</a>
+            <a href="legal/privacy.html">Privacy Policy</a>
+            <a href="legal/refund-policy.html">Refund Policy</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Nexus Capital &amp; Investments. All rights reserved.</p>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin:8px 0;">
+          <a href="legal/terms.html" style="font-size:11px;color:var(--text-muted);">Terms &amp; Conditions</a>
+          <span style="color:var(--gold-border);">·</span>
+          <a href="legal/privacy.html" style="font-size:11px;color:var(--text-muted);">Privacy Policy</a>
+          <span style="color:var(--gold-border);">·</span>
+          <a href="legal/refund-policy.html" style="font-size:11px;color:var(--text-muted);">Refund Policy</a>
+        </div>
+        <p class="footer-risk">
+          Trading in financial markets involves substantial risk of loss and is not suitable for all investors. Educational content is provided for informational purposes only and does not constitute financial advice.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
