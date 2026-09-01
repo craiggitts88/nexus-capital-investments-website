@@ -193,7 +193,8 @@ svg { display: block; }
   font-size: 9px; transition: transform 0.25s var(--ease);
   display: inline-block;
 }
-.nav-dropdown.open .nav-dropdown-caret { transform: rotate(180deg); }
+.nav-dropdown.open .nav-dropdown-caret,
+.nav-dropdown:hover .nav-dropdown-caret { transform: rotate(180deg); }
 
 .nav-dropdown-menu {
   position: absolute; top: 100%; left: 50%;
@@ -212,7 +213,8 @@ svg { display: block; }
 .nav-dropdown-menu::before {
   content: ''; position: absolute; top: -14px; left: 0; right: 0; height: 14px;
 }
-.nav-dropdown.open .nav-dropdown-menu {
+.nav-dropdown.open .nav-dropdown-menu,
+.nav-dropdown:hover .nav-dropdown-menu {
   opacity: 1; visibility: visible; pointer-events: all;
   transform: translateX(-50%) translateY(0);
 }
@@ -234,7 +236,8 @@ svg { display: block; }
   font-style: italic;
 }
 /* Dropdown hover line on trigger */
-.nav-dropdown.open .nav-link::after { width: 100%; }
+.nav-dropdown.open .nav-link::after,
+.nav-dropdown:hover .nav-link::after { width: 100%; }
 
 /* Burger */
 .nav-burger {
@@ -1621,7 +1624,10 @@ svg { display: block; }
     gap: 24px; align-items: center; justify-content: flex-start; z-index: 800;
   }
   .nav-links.open .nav-link { font-size: 15px; }
-  .nav-dropdown-menu { position: static; transform: none; opacity: 1; visibility: visible; pointer-events: all; width: 100%; }
+  /* #nav-links.open outranks .nav-dropdown:hover's specificity, so a lingering
+     :hover state on touch (common after a tap) can't reintroduce the desktop
+     absolute-position/transform here. */
+  #nav-links.open .nav-dropdown-menu { position: static; transform: none; opacity: 1; visibility: visible; pointer-events: all; width: 100%; }
 }
 
 @media (max-width: 700px) {

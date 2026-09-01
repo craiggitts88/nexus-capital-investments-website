@@ -169,55 +169,37 @@
 
 
 /* ── 3. PRODUCTS DROPDOWN ── */
+/* Open/close on desktop is handled purely by CSS :hover (see
+   .nav-dropdown:hover .nav-dropdown-menu in style.css) — that's the
+   browser's own hover tracking, which correctly treats the menu as
+   part of the trigger with no gap or timing to get wrong. JS here
+   only handles the click-to-toggle path (needed for touch, since
+   touch devices have no real hover state) and keeps aria-expanded
+   in sync for screen readers. */
 (function () {
   const dropdowns = document.querySelectorAll('.nav-dropdown');
 
   dropdowns.forEach(dropdown => {
-    const btn  = dropdown.querySelector('.nav-dropdown-btn');
-    const menu = dropdown.querySelector('.nav-dropdown-menu');
-    if (!btn || !menu) return;
+    const btn = dropdown.querySelector('.nav-dropdown-btn');
+    if (!btn) return;
 
-    let leaveTimer;
-
-    // Toggle on click (works on desktop + mobile)
+    // Toggle on click (primary interaction for touch/mobile)
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
-      clearTimeout(leaveTimer);
       const isOpen = dropdown.classList.toggle('open');
       btn.setAttribute('aria-expanded', isOpen);
     });
 
-    // Hover open on desktop — clear any pending close on re-enter
+    // Keep aria-expanded accurate for mouse users too
     dropdown.addEventListener('mouseenter', () => {
-      if (window.innerWidth > 1180) {
-        clearTimeout(leaveTimer);
-        dropdown.classList.add('open');
-        btn.setAttribute('aria-expanded', 'true');
-      }
+      btn.setAttribute('aria-expanded', 'true');
     });
-    // Delay close so cursor can travel into the menu without it vanishing
     dropdown.addEventListener('mouseleave', () => {
-      if (window.innerWidth > 1180) {
-        leaveTimer = setTimeout(() => {
-          dropdown.classList.remove('open');
-          btn.setAttribute('aria-expanded', 'false');
-        }, 300);
-      }
-    });
-
-    // Keep open if mouse enters the menu itself
-    menu.addEventListener('mouseenter', () => { clearTimeout(leaveTimer); });
-    menu.addEventListener('mouseleave', () => {
-      if (window.innerWidth > 1180) {
-        leaveTimer = setTimeout(() => {
-          dropdown.classList.remove('open');
-          btn.setAttribute('aria-expanded', 'false');
-        }, 300);
-      }
+      btn.setAttribute('aria-expanded', dropdown.classList.contains('open'));
     });
   });
 
-  // Close all dropdowns when clicking outside
+  // Close all click-opened dropdowns when clicking outside
   document.addEventListener('click', () => {
     dropdowns.forEach(d => {
       d.classList.remove('open');
