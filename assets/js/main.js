@@ -189,7 +189,7 @@
 
     // Hover open on desktop — clear any pending close on re-enter
     dropdown.addEventListener('mouseenter', () => {
-      if (window.innerWidth > 700) {
+      if (window.innerWidth > 1180) {
         clearTimeout(leaveTimer);
         dropdown.classList.add('open');
         btn.setAttribute('aria-expanded', 'true');
@@ -197,22 +197,22 @@
     });
     // Delay close so cursor can travel into the menu without it vanishing
     dropdown.addEventListener('mouseleave', () => {
-      if (window.innerWidth > 700) {
+      if (window.innerWidth > 1180) {
         leaveTimer = setTimeout(() => {
           dropdown.classList.remove('open');
           btn.setAttribute('aria-expanded', 'false');
-        }, 180);
+        }, 300);
       }
     });
 
     // Keep open if mouse enters the menu itself
     menu.addEventListener('mouseenter', () => { clearTimeout(leaveTimer); });
     menu.addEventListener('mouseleave', () => {
-      if (window.innerWidth > 700) {
+      if (window.innerWidth > 1180) {
         leaveTimer = setTimeout(() => {
           dropdown.classList.remove('open');
           btn.setAttribute('aria-expanded', 'false');
-        }, 180);
+        }, 300);
       }
     });
   });

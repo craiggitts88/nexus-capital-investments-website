@@ -196,7 +196,7 @@ svg { display: block; }
 .nav-dropdown.open .nav-dropdown-caret { transform: rotate(180deg); }
 
 .nav-dropdown-menu {
-  position: absolute; top: calc(100% + 6px); left: 50%;
+  position: absolute; top: 100%; left: 50%;
   transform: translateX(-50%);
   background: rgba(4, 10, 18, 0.98);
   border: 1px solid var(--gold-border-hi);
