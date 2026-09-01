@@ -8,15 +8,15 @@
   <link rel="icon" type="image/png" sizes="32x32" href="Logo/favicon-32.png">
   <link rel="apple-touch-icon" href="Logo/apple-touch-icon.png">
   <title>Strategy Reports | Nexus Capital &amp; Investments</title>
-  <meta name="description" content="Individual algorithm strategy reports from Nexus Capital & Investments — live and demo performance samples from our research library.">
+  <meta name="description" content="How Nexus Capital & Investments develops and validates algorithms — from demo incubation to a live-tracked validation account to individual strategy reports.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://nexuscapitalandinvestments.com/reports.html">
   <meta property="og:title" content="Strategy Reports | Nexus Capital & Investments">
-  <meta property="og:description" content="Individual algorithm strategy reports from Nexus Capital & Investments — live and demo performance samples from our research library.">
+  <meta property="og:description" content="How Nexus Capital & Investments develops and validates algorithms — from demo incubation to a live-tracked validation account to individual strategy reports.">
   <meta property="og:image" content="https://nexuscapitalandinvestments.com/images/Main%20Images/social-preview.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Strategy Reports | Nexus Capital & Investments">
-  <meta name="twitter:description" content="Individual algorithm strategy reports from Nexus Capital & Investments — live and demo performance samples from our research library.">
+  <meta name="twitter:description" content="How Nexus Capital & Investments develops and validates algorithms — from demo incubation to a live-tracked validation account to individual strategy reports.">
   <meta name="twitter:image" content="https://nexuscapitalandinvestments.com/images/Main%20Images/social-preview.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -94,6 +94,70 @@
     .reports-empty-note {
       text-align: center; font-size: 13px; color: var(--text-muted);
       margin-top: 32px; line-height: 1.7;
+    }
+
+    /* Pipeline */
+    .pipeline-section { margin-bottom: 56px; }
+    .pipeline-heading {
+      font-family: var(--font-head); font-size: 11px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .pipeline-title {
+      font-family: var(--font-head); font-size: clamp(20px, 2.6vw, 28px);
+      font-weight: 800; color: var(--text); margin-bottom: 16px; letter-spacing: -0.3px;
+    }
+    .pipeline-intro { font-size: 14px; color: var(--silver); line-height: 1.8; margin-bottom: 32px; max-width: 680px; }
+    .pipeline-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px; }
+    .pipeline-step {
+      background: var(--gold-card); border: 1px solid var(--gold-border);
+      border-radius: var(--radius); padding: 24px 22px; position: relative;
+    }
+    .pipeline-step-num {
+      font-family: var(--font-head); font-size: 11px; font-weight: 800;
+      color: var(--gold); letter-spacing: 1px; margin-bottom: 10px;
+    }
+    .pipeline-step-title {
+      font-family: var(--font-head); font-size: 13px; font-weight: 700;
+      color: var(--text); letter-spacing: 0.3px; margin-bottom: 8px;
+    }
+    .pipeline-step-desc { font-size: 12.5px; color: var(--silver); line-height: 1.7; }
+    .pipeline-arrow {
+      display: none;
+    }
+    @media (max-width: 720px) {
+      .pipeline-steps { grid-template-columns: 1fr; }
+    }
+
+    /* Live validation card */
+    .validation-card {
+      background: var(--gold-card); border: 1px solid var(--gold-border-hi);
+      border-radius: var(--radius); padding: 32px 32px 28px; margin-bottom: 16px;
+    }
+    .validation-card-top {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap; margin-bottom: 24px;
+    }
+    .validation-card-title {
+      font-family: var(--font-head); font-size: 15px; font-weight: 800;
+      color: var(--text); letter-spacing: 0.3px; margin-bottom: 6px;
+    }
+    .validation-card-sub { font-size: 12.5px; color: var(--text-muted); }
+    .validation-stats {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+      margin-bottom: 24px;
+    }
+    .validation-stat { text-align: center; padding: 16px 8px; background: rgba(201,168,76,0.04); border-radius: 8px; }
+    .validation-stat-num {
+      font-family: var(--font-head); font-size: clamp(18px, 2vw, 24px); font-weight: 800;
+      color: var(--gold); line-height: 1; margin-bottom: 6px;
+    }
+    .validation-stat-lbl { font-size: 9px; color: var(--text-muted); letter-spacing: 1.5px; text-transform: uppercase; }
+    .validation-note { font-size: 12.5px; color: var(--silver); line-height: 1.75; margin-bottom: 20px; }
+    .validation-note strong { color: var(--text); }
+    .validation-footnote { font-size: 11px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; }
+    @media (max-width: 620px) {
+      .validation-stats { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
   <!-- Cloudflare Web Analytics -->
@@ -202,7 +266,7 @@
       <div class="reports-hero-label">Sample Performance</div>
       <h1 class="reports-hero-title">Strategy<br><span>Reports</span></h1>
       <p class="reports-hero-desc">
-        Individual algorithm reports from our live-market incubation and demo/cash accounts, a representative sample of what's in our research library. Because every client portfolio is individually tailored, we don't publish one aggregate track record, so this is what we can show instead.
+        Because every client portfolio is individually tailored, we don't publish one aggregate client track record. What we can show is how the algorithms behind those portfolios are actually developed and proven — from demo incubation, through live-market validation, to the strategies that make it into client accounts.
       </p>
       <p class="reports-hero-note">
         See <a href="index.html#important-information">Important Information</a> for full risk disclosures. Past performance is not a reliable indicator of future performance.
@@ -210,6 +274,74 @@
     </section>
 
     <div class="reports-content">
+
+      <div class="pipeline-section">
+        <div class="pipeline-heading">How Algorithms Get Here</div>
+        <h2 class="pipeline-title">From Demo Incubator to Client Portfolio</h2>
+        <p class="pipeline-intro">
+          Every algorithm we run goes through the same three-stage process before it ever touches client capital. As of September 2026, we're cycling our 11th generation of demo incubation — each new generation replaces the families of builds that no longer keep up.
+        </p>
+        <div class="pipeline-steps">
+          <div class="pipeline-step">
+            <div class="pipeline-step-num">Stage 1</div>
+            <div class="pipeline-step-title">Demo Incubators</div>
+            <div class="pipeline-step-desc">Algorithm builds are loaded onto demo incubator accounts in generations. Underperforming systems are archived and replaced with new builds; each generation is measured against the last, and older families that can't keep up are retired even if they were still profitable.</div>
+          </div>
+          <div class="pipeline-step">
+            <div class="pipeline-step-num">Stage 2</div>
+            <div class="pipeline-step-title">Live Validation Account</div>
+            <div class="pipeline-step-desc">Once an algorithm has completed a minimum of roughly three months and 30 trades on demo, it's elevated to a live cash account. This is a pure live-market test of that algorithm's real-world expectancy — deliberately with no portfolio construction or balancing applied.</div>
+          </div>
+          <div class="pipeline-step">
+            <div class="pipeline-step-num">Stage 3</div>
+            <div class="pipeline-step-title">Portfolio Construction</div>
+            <div class="pipeline-step-desc">Only algorithms proven live in Stage 2 become eligible for client portfolios. This is where real risk management happens: our portfolio construction process manages Value at Risk, notional value and leverage, exposure, and position sizing across the blend.</div>
+          </div>
+        </div>
+
+        <div class="validation-card">
+          <div class="validation-card-top">
+            <div>
+              <div class="validation-card-title">Stage 2 in Practice: Our Live Validation Account</div>
+              <div class="validation-card-sub">Real (USD) cash account · MetaTrader 5 · independently tracked by MyFXBook since 2024</div>
+            </div>
+          </div>
+          <div class="validation-stats">
+            <div class="validation-stat">
+              <div class="validation-stat-num">+128%</div>
+              <div class="validation-stat-lbl">Gain Since Inception</div>
+            </div>
+            <div class="validation-stat">
+              <div class="validation-stat-num">31%</div>
+              <div class="validation-stat-lbl">Max Drawdown</div>
+            </div>
+            <div class="validation-stat">
+              <div class="validation-stat-num">1,801</div>
+              <div class="validation-stat-lbl">Trades Executed</div>
+            </div>
+            <div class="validation-stat">
+              <div class="validation-stat-num">~$10k</div>
+              <div class="validation-stat-lbl">Account Size</div>
+            </div>
+          </div>
+          <p class="validation-note">
+            <strong>This is not a portfolio.</strong> It's a real-money account where every algorithm that graduates from demo gets stacked together, unbalanced, purely to prove live expectancy. The drawdown is the honest cost of that design choice — it's what you get before our portfolio construction process (Stage 3) applies actual risk management. It is not representative of what a client account experiences.
+          </p>
+          <p class="validation-footnote">
+            Gain figure is MyFXBook's time-weighted return, which compounds across deposits added over the account's life. Figures shown are correct as of publication and update continuously — view the live, unedited numbers directly on MyFXBook.
+          </p>
+          <a href="https://www.myfxbook.com/portfolio/nexus-capital-amp-investments-1/11075059" target="_blank" rel="noopener" class="btn-report">
+            View Live on MyFXBook
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="pipeline-heading" style="margin-bottom:8px;">Stage 2 Graduates</div>
+      <h2 class="pipeline-title" style="margin-bottom:16px;">Individual Strategy Reports</h2>
+      <p class="pipeline-intro">
+        The reports below are individual strategies that have gone through this process — a representative sample of what's live in our research library.
+      </p>
       <div class="reports-list">
 
         <!--
