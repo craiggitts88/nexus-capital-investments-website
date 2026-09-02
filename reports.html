@@ -159,6 +159,45 @@
     @media (max-width: 620px) {
       .validation-stats { grid-template-columns: repeat(2, 1fr); }
     }
+
+    /* Per-algo performance grid */
+    .algo-perf-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 8px;
+    }
+    .algo-perf-card {
+      background: var(--gold-card); border: 1px solid var(--gold-border);
+      border-radius: var(--radius); padding: 22px 20px;
+      transition: border-color 0.25s;
+    }
+    .algo-perf-card:hover { border-color: var(--gold-border-hi); }
+    .algo-perf-symbol {
+      display: inline-block; font-family: var(--font-head); font-size: 9px; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold);
+      background: rgba(201,168,76,0.08); border: 1px solid var(--gold-border);
+      border-radius: 5px; padding: 4px 9px; margin-bottom: 12px;
+    }
+    .algo-perf-name {
+      font-family: var(--font-head); font-size: 13.5px; font-weight: 700;
+      color: var(--text); letter-spacing: 0.2px; margin-bottom: 14px; line-height: 1.4;
+    }
+    .algo-perf-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+    .algo-perf-stat-num {
+      font-family: var(--font-head); font-size: 17px; font-weight: 800; color: var(--gold); line-height: 1;
+    }
+    .algo-perf-stat-num--dd { color: var(--silver); }
+    .algo-perf-stat-lbl { font-size: 8.5px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
+    .algo-perf-period { font-size: 11px; color: var(--text-muted); }
+    .algo-perf-badge {
+      display: inline-block; font-size: 9.5px; font-weight: 700; letter-spacing: 0.5px;
+      color: #e8c15a; background: rgba(201,168,76,0.1); border: 1px solid var(--gold-border-hi);
+      border-radius: 5px; padding: 3px 8px;
+    }
+    @media (max-width: 900px) {
+      .algo-perf-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .algo-perf-grid { grid-template-columns: 1fr; }
+    }
   </style>
   <!-- Cloudflare Web Analytics -->
   <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "42544c17fb214b56bba81ecb0739444f"}'></script>
@@ -337,6 +376,92 @@
         </div>
       </div>
 
+      <div class="pipeline-section">
+        <div class="pipeline-heading">Inside the Validation Account</div>
+        <h2 class="pipeline-title">Live Algorithm Performance</h2>
+        <p class="pipeline-intro">
+          Each algorithm on the validation account trades under its own unique ID, so its performance can be isolated from the account total. These are real closed trades, not a backtest or simulation — the same six-strategy sample referenced above.
+        </p>
+        <div class="algo-perf-grid">
+
+          <div class="algo-perf-card">
+            <span class="algo-perf-symbol">USDJPY</span>
+            <div class="algo-perf-name">USDJPY Swing Algorithm I</div>
+            <div class="algo-perf-stats">
+              <div><div class="algo-perf-stat-num">+$496</div><div class="algo-perf-stat-lbl">Net P&amp;L</div></div>
+              <div><div class="algo-perf-stat-num">53%</div><div class="algo-perf-stat-lbl">Win Rate</div></div>
+              <div><div class="algo-perf-stat-num">34</div><div class="algo-perf-stat-lbl">Trades</div></div>
+              <div><div class="algo-perf-stat-num algo-perf-stat-num--dd">$146</div><div class="algo-perf-stat-lbl">Max Drawdown</div></div>
+            </div>
+            <div class="algo-perf-period">Live since Mar 2026 · avg hold ~3 days</div>
+          </div>
+
+          <div class="algo-perf-card">
+            <span class="algo-perf-symbol">USDJPY</span>
+            <div class="algo-perf-name">USDJPY Swing Algorithm II</div>
+            <div class="algo-perf-stats">
+              <div><div class="algo-perf-stat-num">+$400</div><div class="algo-perf-stat-lbl">Net P&amp;L</div></div>
+              <div><div class="algo-perf-stat-num">52%</div><div class="algo-perf-stat-lbl">Win Rate</div></div>
+              <div><div class="algo-perf-stat-num">31</div><div class="algo-perf-stat-lbl">Trades</div></div>
+              <div><div class="algo-perf-stat-num algo-perf-stat-num--dd">$123</div><div class="algo-perf-stat-lbl">Max Drawdown</div></div>
+            </div>
+            <div class="algo-perf-period">Live since Mar 2026 · avg hold ~2.9 days</div>
+          </div>
+
+          <div class="algo-perf-card">
+            <span class="algo-perf-symbol">USDJPY</span>
+            <div class="algo-perf-name">USDJPY Short-Term Algorithm</div>
+            <div class="algo-perf-stats">
+              <div><div class="algo-perf-stat-num">+$850</div><div class="algo-perf-stat-lbl">Net P&amp;L</div></div>
+              <div><div class="algo-perf-stat-num">55%</div><div class="algo-perf-stat-lbl">Win Rate</div></div>
+              <div><div class="algo-perf-stat-num">88</div><div class="algo-perf-stat-lbl">Trades</div></div>
+              <div><div class="algo-perf-stat-num algo-perf-stat-num--dd">$391</div><div class="algo-perf-stat-lbl">Max Drawdown</div></div>
+            </div>
+            <div class="algo-perf-period">Live since Jul 2025 · avg hold ~1.1 days</div>
+          </div>
+
+          <div class="algo-perf-card">
+            <span class="algo-perf-symbol">USTEC</span>
+            <div class="algo-perf-name">Nasdaq Short-Term Algorithm</div>
+            <div class="algo-perf-stats">
+              <div><div class="algo-perf-stat-num">+$1,078</div><div class="algo-perf-stat-lbl">Net P&amp;L</div></div>
+              <div><div class="algo-perf-stat-num">39%</div><div class="algo-perf-stat-lbl">Win Rate</div></div>
+              <div><div class="algo-perf-stat-num">80</div><div class="algo-perf-stat-lbl">Trades</div></div>
+              <div><div class="algo-perf-stat-num algo-perf-stat-num--dd">$403</div><div class="algo-perf-stat-lbl">Max Drawdown</div></div>
+            </div>
+            <div class="algo-perf-period">Live since Aug 2025 · avg hold ~1 day</div>
+          </div>
+
+          <div class="algo-perf-card">
+            <span class="algo-perf-symbol">XAUUSD</span>
+            <div class="algo-perf-name">Gold Scalping Algorithm I</div>
+            <div class="algo-perf-stats">
+              <div><div class="algo-perf-stat-num">+$879</div><div class="algo-perf-stat-lbl">Net P&amp;L</div></div>
+              <div><div class="algo-perf-stat-num">40%</div><div class="algo-perf-stat-lbl">Win Rate</div></div>
+              <div><div class="algo-perf-stat-num">38</div><div class="algo-perf-stat-lbl">Trades</div></div>
+              <div><div class="algo-perf-stat-num algo-perf-stat-num--dd">$270</div><div class="algo-perf-stat-lbl">Max Drawdown</div></div>
+            </div>
+            <div class="algo-perf-period">Live since Aug 2025 · avg hold ~1.6 hours</div>
+          </div>
+
+          <div class="algo-perf-card">
+            <span class="algo-perf-symbol">XAUUSD</span>
+            <div class="algo-perf-name">Gold Scalping Algorithm II</div>
+            <div class="algo-perf-stats">
+              <div><div class="algo-perf-stat-num">+$759</div><div class="algo-perf-stat-lbl">Net P&amp;L</div></div>
+              <div><div class="algo-perf-stat-num">47%</div><div class="algo-perf-stat-lbl">Win Rate</div></div>
+              <div><div class="algo-perf-stat-num">30</div><div class="algo-perf-stat-lbl">Trades</div></div>
+              <div><div class="algo-perf-stat-num algo-perf-stat-num--dd">$245</div><div class="algo-perf-stat-lbl">Max Drawdown</div></div>
+            </div>
+            <div class="algo-perf-period"><span class="algo-perf-badge">Back in Incubation</span><br><span style="display:inline-block;margin-top:6px;">Traded Aug–Oct 2025 · logic redeveloped, currently re-testing on demo</span></div>
+          </div>
+
+        </div>
+        <p class="validation-footnote" style="margin-top:16px;">
+          Figures are dollar profit/loss on the shared validation account (not a percentage return), based on closed trades only. Individual algorithm results are not representative of client portfolio performance — see Stage 3 above. Past performance is not a reliable indicator of future performance.
+        </p>
+      </div>
+
       <div class="pipeline-heading" style="margin-bottom:8px;">Stage 2 Graduates</div>
       <h2 class="pipeline-title" style="margin-bottom:16px;">Individual Strategy Reports</h2>
       <p class="pipeline-intro">
@@ -402,7 +527,7 @@
               </svg>
             </div>
             <div>
-              <div class="report-name">Strategy 170249255 USDJPY</div>
+              <div class="report-name">USDJPY Swing Algorithm I</div>
               <div class="report-sub">Individual Strategy Report</div>
             </div>
           </div>
