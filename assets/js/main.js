@@ -156,12 +156,14 @@
       const open = links.classList.toggle('open');
       burger.classList.toggle('open', open);
       burger.setAttribute('aria-expanded', open);
+      document.body.classList.toggle('nav-open', open);
     });
 
     links.querySelectorAll('a.nav-link').forEach(link => {
       link.addEventListener('click', () => {
         links.classList.remove('open');
         burger.classList.remove('open');
+        document.body.classList.remove('nav-open');
       });
     });
   }

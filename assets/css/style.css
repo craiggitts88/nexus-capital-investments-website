@@ -255,6 +255,9 @@ svg { display: block; }
 .nav-burger.open span:nth-child(2) { opacity: 0; }
 .nav-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
+/* Lock background scroll while the mobile nav panel is open */
+body.nav-open { overflow: hidden; }
+
 
 /* ═══════════════════════════════════════════════════════════════
    SPLASH SCREEN
@@ -268,6 +271,7 @@ svg { display: block; }
 
 .splash-inner {
   display: flex; flex-direction: column; align-items: center; gap: 18px;
+  max-width: 100%; padding: 0 24px; box-sizing: border-box;
 }
 .splash-logo-wrap {
   position: relative; width: 180px; height: 180px;
@@ -295,15 +299,16 @@ svg { display: block; }
   100% { opacity: 1; transform: scale(1); }
 }
 .splash-name {
-  font-family: var(--font-head); font-size: 14px; font-weight: 700;
-  letter-spacing: 3px; color: rgba(255,255,255,0.9);
+  font-family: var(--font-head); font-size: clamp(11px, 3.4vw, 14px); font-weight: 700;
+  letter-spacing: clamp(1px, 0.8vw, 3px); color: rgba(255,255,255,0.9);
   opacity: 0; animation: splash-text-in 0.8s 0.5s ease forwards;
-  text-align: center;
+  text-align: center; max-width: 100%; line-height: 1.4;
 }
 .splash-sub {
-  font-family: var(--font-head); font-size: 8px; font-weight: 500;
-  letter-spacing: 3.5px; text-transform: uppercase; color: var(--gold);
+  font-family: var(--font-head); font-size: clamp(7px, 2vw, 8px); font-weight: 500;
+  letter-spacing: clamp(1.5px, 0.9vw, 3.5px); text-transform: uppercase; color: var(--gold);
   opacity: 0; animation: splash-text-in 0.8s 0.7s ease forwards;
+  text-align: center; max-width: 100%;
 }
 @keyframes splash-text-in {
   0%   { opacity: 0; transform: translateY(8px); }
@@ -1083,13 +1088,15 @@ svg { display: block; }
 }
 .contact-card-title { font-size: 12px; color: var(--silver); margin-bottom: 20px; }
 .contact-card-email {
-  display: inline-block; font-size: 13.5px; color: var(--text);
+  display: inline-block; max-width: 100%; font-size: 13.5px; color: var(--text);
   border-bottom: 1px solid var(--gold-border-hi); padding-bottom: 2px;
-  transition: color 0.25s;
+  transition: color 0.25s; overflow-wrap: anywhere; word-break: break-word;
 }
 .contact-card-email:hover { color: var(--gold); }
 @media (max-width: 600px) {
   .contact-grid { grid-template-columns: 1fr; }
+  .contact-card { padding: 30px 22px; }
+  .contact-card-email { font-size: clamp(11px, 3vw, 13.5px); }
 }
 
 
@@ -1617,18 +1624,36 @@ svg { display: block; }
   .nav-burger { display: flex; }
   .nav-inner { gap: 12px; }
   .nav-logo img { height: 40px; }
-  .nav-brand-dim { display: none; }
+  /* Full brand shown as a stacked two-line lockup on mobile, not truncated */
+  .nav-brand { display: flex; flex-direction: column; line-height: 1.15; font-size: 12px; }
+  .nav-brand-dim { display: block; font-size: 8.5px; letter-spacing: 0.5px; margin-top: 2px; }
+
   .nav-links.open {
     display: flex; flex-direction: column; position: fixed;
-    inset: 64px 0 0 0; background: rgba(4,10,18,0.97);
-    backdrop-filter: blur(20px); padding: 40px 28px;
-    gap: 24px; align-items: center; justify-content: flex-start; z-index: 800;
+    inset: 64px 0 0 0; background: rgba(4,10,18,0.98);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    padding: 16px 22px 56px;
+    gap: 0; align-items: stretch; justify-content: flex-start; z-index: 800;
+    overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain;
   }
+  .nav-links.open > li { width: 100%; border-bottom: 1px solid var(--gold-border); }
+  .nav-links.open > li:last-child { border-bottom: none; }
   .nav-links.open .nav-link { font-size: 15px; }
-  /* #nav-links.open outranks .nav-dropdown:hover's specificity, so a lingering
-     :hover state on touch (common after a tap) can't reintroduce the desktop
-     absolute-position/transform here. */
-  #nav-links.open .nav-dropdown-menu { position: static; transform: none; opacity: 1; visibility: visible; pointer-events: all; width: 100%; }
+  .nav-links.open .nav-link:not(.nav-dropdown-btn) { display: block; width: 100%; text-align: left; padding: 16px 4px; }
+  .nav-links.open .nav-dropdown-btn { width: 100%; justify-content: space-between; padding: 16px 4px; }
+
+  /* Flatten dropdown menus inside the mobile panel — no floating boxes,
+     full-width indented lists that scroll with the panel. #nav-links.open
+     also outranks .nav-dropdown:hover so a lingering touch :hover can't
+     reintroduce the desktop absolute-position/transform here. */
+  #nav-links.open .nav-dropdown-menu {
+    position: static; transform: none; opacity: 1; visibility: visible;
+    pointer-events: all; width: 100%; min-width: 0;
+    background: none; border: none; border-radius: 0; box-shadow: none;
+    backdrop-filter: none; -webkit-backdrop-filter: none;
+    padding: 0 0 12px 10px; margin: 0;
+  }
+  #nav-links.open .nav-dropdown-item { padding: 9px 12px; }
 }
 
 @media (max-width: 700px) {
