@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="512x512" href="Logo/favicon-512.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="Logo/favicon-192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="Logo/favicon-32.png">
+  <link rel="apple-touch-icon" href="Logo/apple-touch-icon.png">
+  <title>SQX Spread Calculator | Nexus Algorithmics</title>
+  <meta name="description" content="A free StrategyQuant X spread calculator from Nexus Algorithmics. Convert your MT5 Market Watch spread into the exact value to enter in the SQX spread field for accurate backtests.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nexuscapitalandinvestments.com/sqx-spread-calculator.html">
+  <meta property="og:title" content="SQX Spread Calculator | Nexus Algorithmics">
+  <meta property="og:description" content="A free StrategyQuant X spread calculator from Nexus Algorithmics. Convert your MT5 Market Watch spread into the exact value to enter in the SQX spread field for accurate backtests.">
+  <meta property="og:image" content="https://nexuscapitalandinvestments.com/images/Main%20Images/social-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SQX Spread Calculator | Nexus Algorithmics">
+  <meta name="twitter:description" content="A free StrategyQuant X spread calculator from Nexus Algorithmics. Convert your MT5 Market Watch spread into the exact value to enter in the SQX spread field for accurate backtests.">
+  <meta name="twitter:image" content="https://nexuscapitalandinvestments.com/images/Main%20Images/social-preview.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* Page-scoped: SQX Spread Calculator (cyan Nexus Algorithmics theme) */
+    .sqx-hero { padding: 150px 28px 30px; text-align: center; position: relative; overflow: hidden; }
+    .sqx-hero-grid-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(0,204,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,204,255,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, black 20%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, black 20%, transparent 100%);
+    }
+    .sqx-glow-tl {
+      position: absolute; top: -180px; left: -180px; width: 560px; height: 560px;
+      border-radius: 50%; pointer-events: none;
+      background: radial-gradient(circle, rgba(0,204,255,0.08) 0%, transparent 70%);
+      filter: blur(80px);
+    }
+    .sqx-hero-inner { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; }
+    .sqx-hero-label {
+      font-family: var(--font-head); font-size: 9px; font-weight: 700;
+      letter-spacing: 4px; text-transform: uppercase; color: var(--cyan);
+      margin-bottom: 16px; opacity: 0.85;
+    }
+    .sqx-hero-title {
+      font-family: var(--font-head); font-size: clamp(28px, 5vw, 50px);
+      font-weight: 900; color: var(--text); letter-spacing: -1px; margin-bottom: 18px; line-height: 1.05;
+    }
+    .sqx-hero-title span { color: var(--cyan); }
+    .sqx-hero-desc { font-size: 15px; color: var(--silver); line-height: 1.85; max-width: 620px; margin: 0 auto; }
+
+    /* Partnership lineage chip */
+    .sqx-lineage {
+      display: inline-flex; align-items: center; gap: 10px; margin-top: 26px;
+      background: rgba(0,204,255,0.05); border: 1px solid var(--border-hi);
+      border-radius: 999px; padding: 8px 18px;
+    }
+    .sqx-lineage-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 8px var(--cyan); flex-shrink: 0; }
+    .sqx-lineage-text { font-size: 11px; color: var(--silver); letter-spacing: 0.4px; }
+    .sqx-lineage-text strong { color: var(--cyan); font-weight: 600; }
+
+    .sqx-content { max-width: 860px; margin: 0 auto; padding: 20px 28px 110px; }
+
+    /* Section headings */
+    .sqx-section-label {
+      font-family: var(--font-head); font-size: 10px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; color: var(--cyan); margin-bottom: 10px;
+    }
+    .sqx-section-title {
+      font-family: var(--font-head); font-size: clamp(20px, 2.6vw, 27px);
+      font-weight: 800; color: var(--text); margin-bottom: 14px; letter-spacing: -0.3px;
+    }
+    .sqx-section-intro { font-size: 14px; color: var(--silver); line-height: 1.8; max-width: 640px; margin-bottom: 26px; }
+
+    /* Calculator */
+    .sqx-calc {
+      background: var(--bg-card); border: 1px solid var(--border-hi);
+      border-radius: var(--radius); padding: 34px 32px;
+    }
+    .sqx-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+    .sqx-field { display: grid; gap: 8px; }
+    .sqx-field-label {
+      font-family: var(--font-head); font-size: 10.5px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase; color: var(--cyan);
+    }
+    .sqx-field input {
+      width: 100%; min-height: 52px;
+      background: rgba(4,10,18,0.7); border: 1px solid var(--border);
+      border-radius: 8px; padding: 12px 14px; color: var(--text);
+      font-family: 'Courier New', monospace; font-size: 18px; font-weight: 700;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .sqx-field input::placeholder { color: var(--text-muted); font-weight: 400; }
+    .sqx-field input:focus { outline: none; border-color: var(--cyan); box-shadow: 0 0 0 3px var(--cyan-glow-sm); }
+    .sqx-hint { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+    .sqx-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+    .sqx-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 50px; padding: 12px 30px; border-radius: 8px; cursor: pointer;
+      font-family: var(--font-head); font-size: 12px; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      border: 1px solid var(--cyan); background: var(--cyan); color: #04121a;
+      transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease), background 0.2s;
+    }
+    .sqx-btn:hover { transform: translateY(-2px); box-shadow: 0 0 34px var(--cyan-glow); }
+    .sqx-btn--secondary { background: transparent; color: var(--cyan); border-color: var(--border-hi); }
+    .sqx-btn--secondary:hover { background: rgba(0,204,255,0.06); border-color: var(--cyan); box-shadow: none; transform: translateY(-2px); }
+
+    .sqx-error {
+      display: none; margin-top: 18px; padding: 12px 16px;
+      background: rgba(255,70,70,0.06); border: 1px solid rgba(255,70,70,0.4);
+      border-radius: 8px; color: #ff8a8a; font-size: 13.5px; font-weight: 600; line-height: 1.5;
+    }
+
+    .sqx-result {
+      display: none; margin-top: 26px; padding: 28px;
+      background: rgba(0,204,255,0.045); border: 1px solid var(--border-hi);
+      border-radius: var(--radius);
+    }
+    .sqx-result-label {
+      font-family: var(--font-head); font-size: 10px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px;
+    }
+    .sqx-answer {
+      font-family: 'Courier New', monospace; font-weight: 800;
+      font-size: clamp(2.4rem, 9vw, 4.2rem); line-height: 1;
+      color: var(--cyan-bright); text-shadow: 0 0 34px var(--cyan-glow);
+      overflow-wrap: anywhere;
+    }
+    .sqx-working { display: grid; gap: 9px; margin-top: 24px; color: var(--silver); font-size: 13.5px; line-height: 1.6; }
+    .sqx-working code {
+      color: var(--text); font-family: 'Courier New', monospace; font-weight: 700;
+      overflow-wrap: anywhere; background: rgba(4,10,18,0.6); padding: 1px 6px; border-radius: 4px;
+    }
+    .sqx-working code strong { color: var(--cyan); }
+    .sqx-check {
+      display: none; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border);
+      color: var(--green); font-size: 12.5px; font-weight: 600; line-height: 1.5;
+    }
+
+    /* How it works */
+    .sqx-how { margin-top: 64px; }
+    .sqx-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 26px; }
+    .sqx-step {
+      background: rgba(0,204,255,0.03); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px 22px;
+    }
+    .sqx-step-num { font-family: var(--font-head); font-size: 11px; font-weight: 800; color: var(--cyan); letter-spacing: 1px; margin-bottom: 10px; }
+    .sqx-step-title { font-family: var(--font-head); font-size: 12.5px; font-weight: 700; color: var(--text); margin-bottom: 8px; letter-spacing: 0.3px; }
+    .sqx-step-body { font-size: 12.5px; color: var(--silver); line-height: 1.7; }
+    .sqx-step-body code { font-family: 'Courier New', monospace; color: var(--cyan); font-size: 12px; }
+
+    @media (max-width: 760px) {
+      .sqx-steps { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .sqx-grid { grid-template-columns: 1fr; }
+      .sqx-calc { padding: 24px 20px; }
+      .sqx-btn { width: 100%; }
+    }
+  </style>
+  <!-- Cloudflare Web Analytics -->
+  <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "42544c17fb214b56bba81ecb0739444f"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+</head>
+<body class="algo-page">
+
+  <!-- SPLASH -->
+  <div id="splash" class="splash">
+    <div class="splash-inner">
+      <div class="splash-logo-wrap">
+        <div class="splash-ring splash-ring--cyan"></div>
+        <img src="Logo/Nexus Algorithmics Logo Redraw.png" alt="Nexus Algorithmics" class="splash-logo">
+      </div>
+      <div class="splash-name">NEXUS ALGORITHMICS</div>
+      <div class="splash-sub splash-sub--cyan">SQX Spread Calculator</div>
+      <div class="splash-bar"><div class="splash-bar-fill splash-bar-fill--cyan"></div></div>
+    </div>
+  </div>
+
+  <!-- PARTICLE CANVAS -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="Logo/Nexus Capital and Investments Logo.png" alt="Nexus Capital and Investments">
+        <span class="nav-brand">Nexus<span class="nav-brand-dim"> Capital &amp; Investments</span></span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li class="nav-dropdown">
+          <button class="nav-link nav-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+            About <span class="nav-dropdown-caret">&#9662;</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="index.html#about" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Who We Are</span>
+              <span class="dropdown-item-sub">Founders &amp; approach</span>
+            </a>
+            <a href="index.html#who-we-serve" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Clients</span>
+              <span class="dropdown-item-sub">Who we work with</span>
+            </a>
+            <a href="index.html#methodology" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Methodology</span>
+              <span class="dropdown-item-sub">How we build and test</span>
+            </a>
+            <a href="index.html#markets" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Markets</span>
+              <span class="dropdown-item-sub">What we trade</span>
+            </a>
+            <a href="index.html#algo-development" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Algorithms</span>
+              <span class="dropdown-item-sub">In-house development</span>
+            </a>
+          </div>
+        </li>
+        <li class="nav-dropdown">
+          <button class="nav-link nav-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+            Resources <span class="nav-dropdown-caret">&#9662;</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="index.html#faq" class="nav-dropdown-item">
+              <span class="dropdown-item-title">FAQ</span>
+              <span class="dropdown-item-sub">Common questions, answered</span>
+            </a>
+            <a href="reports.html" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Strategy Reports</span>
+              <span class="dropdown-item-sub">Sample algorithm performance</span>
+            </a>
+            <a href="sqx-spread-calculator.html" class="nav-dropdown-item">
+              <span class="dropdown-item-title">SQX Spread Calculator</span>
+              <span class="dropdown-item-sub">Free StrategyQuant tool</span>
+            </a>
+            <a href="education.html" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Education</span>
+              <span class="dropdown-item-sub coming-soon">Coming Soon</span>
+            </a>
+          </div>
+        </li>
+        <li class="nav-dropdown">
+          <button class="nav-link nav-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+            Products <span class="nav-dropdown-caret">&#9662;</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="products/quant-panel.html" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Quant Panel</span>
+              <span class="dropdown-item-sub">MT5 portfolio dashboard</span>
+            </a>
+            <a href="products/bpfx-suite.html" class="nav-dropdown-item">
+              <span class="dropdown-item-title">BPFX Suite</span>
+              <span class="dropdown-item-sub">Recommended partner tool</span>
+            </a>
+          </div>
+        </li>
+        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <button class="nav-burger" id="nav-burger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="sqx-hero">
+      <div class="sqx-hero-grid-bg"></div>
+      <div class="sqx-glow-tl"></div>
+      <div class="sqx-hero-inner">
+        <div class="sqx-hero-label">Free Tools &middot; Nexus Algorithmics</div>
+        <h1 class="sqx-hero-title">SQX Spread <span>Calculator</span></h1>
+        <p class="sqx-hero-desc">
+          Getting the spread right is one of the most common mistakes when moving a strategy into StrategyQuant&nbsp;X. Enter your broker's values from MT5 and SQX below and this tool gives you the exact number to type into the SQX spread field &mdash; so your backtests model real trading costs instead of guesswork.
+        </p>
+        <div class="sqx-lineage">
+          <span class="sqx-lineage-dot"></span>
+          <span class="sqx-lineage-text">Part of our <strong>free education</strong> series &mdash; built by an official StrategyQuant partner</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="sqx-content">
+
+      <!-- CALCULATOR -->
+      <div class="sqx-section-label">The Tool</div>
+      <h2 class="sqx-section-title">Calculate Your SQX Spread</h2>
+      <p class="sqx-section-intro">
+        Enter the four values below, then press Calculate. The large number is what you enter in the SQX spread section, with the full working shown underneath.
+      </p>
+
+      <section class="sqx-calc" aria-label="SQX spread calculator">
+        <div class="sqx-grid">
+          <label class="sqx-field">
+            <span class="sqx-field-label">Digits</span>
+            <input id="digits" inputmode="numeric" autocomplete="off" placeholder="Example: 5">
+            <span class="sqx-hint">The number of decimal places for the broker symbol.</span>
+          </label>
+
+          <label class="sqx-field">
+            <span class="sqx-field-label">Market Watch value</span>
+            <input id="marketWatch" inputmode="decimal" autocomplete="off" placeholder="Example: 3">
+            <span class="sqx-hint">The spread number shown in MT5 Market Watch.</span>
+          </label>
+
+          <label class="sqx-field">
+            <span class="sqx-field-label">SQX Pip/Tick Size</span>
+            <input id="pipTickSize" inputmode="decimal" autocomplete="off" placeholder="Example: 0.0001">
+            <span class="sqx-hint">The Pip/Tick Size shown in SQX for the instrument.</span>
+          </label>
+
+          <label class="sqx-field">
+            <span class="sqx-field-label">SQX Pip/Tick Step</span>
+            <input id="pipTickStep" inputmode="decimal" autocomplete="off" placeholder="Example: 0.00001">
+            <span class="sqx-hint">The Pip/Tick Step shown in SQX for the instrument.</span>
+          </label>
+        </div>
+
+        <div class="sqx-actions">
+          <button type="button" id="calculate" class="sqx-btn">Calculate</button>
+          <button type="button" id="clear" class="sqx-btn sqx-btn--secondary">Clear</button>
+        </div>
+
+        <div class="sqx-error" id="error" role="alert"></div>
+
+        <div class="sqx-result" id="result" aria-live="polite">
+          <div class="sqx-result-label">Enter this in the SQX spread section</div>
+          <div class="sqx-answer" id="answer">0</div>
+          <div class="sqx-working">
+            <div id="pointSizeLine"></div>
+            <div id="actualSpreadLine"></div>
+            <div id="sqxSpreadLine"></div>
+          </div>
+          <div class="sqx-check" id="check"></div>
+        </div>
+      </section>
+
+      <!-- HOW IT WORKS -->
+      <div class="sqx-how">
+        <div class="sqx-section-label">Under The Hood</div>
+        <h2 class="sqx-section-title">How The Calculation Works</h2>
+        <p class="sqx-section-intro">
+          No magic &mdash; just three small steps that convert the spread from the units MT5 reports into the units SQX expects.
+        </p>
+        <div class="sqx-steps">
+          <div class="sqx-step">
+            <div class="sqx-step-num">Step 1</div>
+            <div class="sqx-step-title">Point Size</div>
+            <div class="sqx-step-body">From your Digits: <code>1 / 10^Digits</code>. This is the size of one point for the symbol.</div>
+          </div>
+          <div class="sqx-step">
+            <div class="sqx-step-num">Step 2</div>
+            <div class="sqx-step-title">Actual Spread</div>
+            <div class="sqx-step-body">The Market Watch value in real price terms: <code>MarketWatch &times; Pip/Tick Step</code>.</div>
+          </div>
+          <div class="sqx-step">
+            <div class="sqx-step-num">Step 3</div>
+            <div class="sqx-step-title">SQX Entry</div>
+            <div class="sqx-step-body">Convert into SQX's units: <code>Actual Spread / Pip/Tick Size</code>. That result is your answer.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="nci-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+
+        <div class="footer-brand">
+          <div class="footer-brand-row">
+            <img src="Logo/Nexus Capital and Investments Logo.png" alt="Nexus Capital and Investments" class="footer-logo">
+            <div class="footer-brand-name">Nexus Capital &amp; Investments</div>
+          </div>
+          <p class="footer-tagline">Systematic. Algorithmic. Institutional.</p>
+        </div>
+
+        <div class="footer-nav-col">
+          <div class="footer-nav-title">Navigation</div>
+          <div class="footer-nav-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#about">Who We Are</a>
+            <a href="index.html#who-we-serve">Clients</a>
+            <a href="index.html#methodology">Methodology</a>
+            <a href="index.html#faq">FAQ</a>
+            <a href="reports.html">Reports</a>
+            <a href="sqx-spread-calculator.html">SQX Spread Calculator</a>
+            <a href="education.html">Education</a>
+            <a href="products/quant-panel.html">Quant Panel</a>
+            <a href="products/bpfx-suite.html">BPFX Suite</a>
+            <a href="index.html#contact">Contact</a>
+          </div>
+        </div>
+
+        <div class="footer-legal">
+          <div class="footer-legal-title">Legal</div>
+          <div class="footer-nav-links">
+            <a href="legal/terms.html">Terms &amp; Conditions</a>
+            <a href="legal/privacy.html">Privacy Policy</a>
+            <a href="legal/refund-policy.html">Refund Policy</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Nexus Capital &amp; Investments. All rights reserved.</p>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin:8px 0;">
+          <a href="legal/terms.html" style="font-size:11px;color:var(--text-muted);">Terms &amp; Conditions</a>
+          <span style="color:var(--gold-border);">&middot;</span>
+          <a href="legal/privacy.html" style="font-size:11px;color:var(--text-muted);">Privacy Policy</a>
+          <span style="color:var(--gold-border);">&middot;</span>
+          <a href="legal/refund-policy.html" style="font-size:11px;color:var(--text-muted);">Refund Policy</a>
+        </div>
+        <p class="footer-risk">
+          This tool is provided free for educational purposes only. StrategyQuant X and MetaTrader are trademarks of their respective owners; Nexus Algorithmics is not affiliated with MetaQuotes. Always verify spread settings against your own broker data. Trading involves substantial risk of loss.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    /* SQX Spread Calculator logic */
+    const digitsInput = document.getElementById("digits");
+    const marketWatchInput = document.getElementById("marketWatch");
+    const pipTickSizeInput = document.getElementById("pipTickSize");
+    const pipTickStepInput = document.getElementById("pipTickStep");
+    const calculateButton = document.getElementById("calculate");
+    const clearButton = document.getElementById("clear");
+    const error = document.getElementById("error");
+    const result = document.getElementById("result");
+    const answer = document.getElementById("answer");
+    const pointSizeLine = document.getElementById("pointSizeLine");
+    const actualSpreadLine = document.getElementById("actualSpreadLine");
+    const sqxSpreadLine = document.getElementById("sqxSpreadLine");
+    const check = document.getElementById("check");
+
+    function parseInput(value) {
+      const clean = String(value).trim().replace(/,/g, "");
+      if (clean === "") return NaN;
+      return Number(clean);
+    }
+
+    function formatNumber(value) {
+      if (!Number.isFinite(value)) return "";
+      if (value === 0) return "0";
+      const abs = Math.abs(value);
+      if (abs >= 1000) return value.toLocaleString("en-GB", { maximumFractionDigits: 8 });
+      if (abs >= 1) return Number(value.toFixed(10)).toString();
+      return Number(value.toPrecision(12)).toString();
+    }
+
+    function showError(message) {
+      error.textContent = message;
+      error.style.display = "block";
+      result.style.display = "none";
+    }
+
+    function clearError() {
+      error.textContent = "";
+      error.style.display = "none";
+    }
+
+    function calculate() {
+      const digits = parseInput(digitsInput.value);
+      const marketWatch = parseInput(marketWatchInput.value);
+      const pipTickSize = parseInput(pipTickSizeInput.value);
+      const pipTickStep = parseInput(pipTickStepInput.value);
+
+      if (!Number.isInteger(digits) || digits < 0 || digits > 10) {
+        showError("Enter Digits as a whole number from 0 to 10.");
+        return;
+      }
+
+      if (!Number.isFinite(marketWatch) || marketWatch < 0) {
+        showError("Enter a Market Watch value of 0 or higher.");
+        return;
+      }
+
+      if (!Number.isFinite(pipTickSize) || pipTickSize <= 0) {
+        showError("Enter an SQX Pip/Tick Size above 0.");
+        return;
+      }
+
+      if (!Number.isFinite(pipTickStep) || pipTickStep <= 0) {
+        showError("Enter an SQX Pip/Tick Step above 0.");
+        return;
+      }
+
+      clearError();
+
+      const pointSize = 1 / Math.pow(10, digits);
+      const actualSpread = marketWatch * pipTickStep;
+      const sqxSpread = actualSpread / pipTickSize;
+
+      answer.textContent = formatNumber(sqxSpread);
+      pointSizeLine.innerHTML = `Point size from Digits: <code>1 / 10^${digits} = ${formatNumber(pointSize)}</code>`;
+      actualSpreadLine.innerHTML = `Actual price spread: <code>${formatNumber(marketWatch)} x ${formatNumber(pipTickStep)} = ${formatNumber(actualSpread)}</code>`;
+      sqxSpreadLine.innerHTML = `SQX spread entry: <code>${formatNumber(actualSpread)} / ${formatNumber(pipTickSize)} = <strong>${formatNumber(sqxSpread)}</strong></code>`;
+
+      const difference = Math.abs(pointSize - pipTickStep);
+      const tolerance = Math.max(pointSize, pipTickStep) * 0.000001;
+      if (difference <= tolerance) {
+        check.textContent = "Digits and Pip/Tick Step match, so the decimal precision looks consistent.";
+      } else {
+        check.textContent = "Digits and Pip/Tick Step do not match. The result still uses the SQX values entered above.";
+      }
+      check.style.display = "block";
+      result.style.display = "block";
+    }
+
+    function clearAll() {
+      digitsInput.value = "";
+      marketWatchInput.value = "";
+      pipTickSizeInput.value = "";
+      pipTickStepInput.value = "";
+      clearError();
+      result.style.display = "none";
+      digitsInput.focus();
+    }
+
+    calculateButton.addEventListener("click", calculate);
+    clearButton.addEventListener("click", clearAll);
+
+    [digitsInput, marketWatchInput, pipTickSizeInput, pipTickStepInput].forEach((input) => {
+      input.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") calculate();
+      });
+    });
+  </script>
+</body>
+</html>
